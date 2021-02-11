@@ -21,7 +21,7 @@
         <!--Main Screen View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController storyboardIdentifier="HomeScreeen" id="BV1-FR-VrT" customClass="MainScreenViewController" customModule="Sort_N_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeScreeen" id="BV1-FR-VrT" customClass="MainScreenViewController" customModule="String_Alignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="oMK-L8-RaK" userLabel="Main Label Stack View">
                                         <rect key="frame" x="20" y="20" width="328" height="94"/>
                                         <subviews>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sort N Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OaO-jX-FWi">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="String Alignment" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OaO-jX-FWi">
                                                 <rect key="frame" x="0.0" y="0.0" width="328" height="40"/>
                                                 <color key="backgroundColor" name="Right View Background"/>
                                                 <accessibility key="accessibilityConfiguration">
@@ -52,7 +52,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EYG-IF-HxQ" userLabel="Score Stack View">
                                                 <rect key="frame" x="0.0" y="60" width="328" height="34"/>
                                                 <subviews>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Comparisons: 0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FCi-3a-UgI">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Word 1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FCi-3a-UgI">
                                                         <rect key="frame" x="0.0" y="0.0" width="154" height="34"/>
                                                         <color key="backgroundColor" name="Right View Background"/>
                                                         <accessibility key="accessibilityConfiguration">
@@ -70,7 +70,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JiO-p9-PEj">
                                                         <rect key="frame" x="154" y="0.0" width="20" height="34"/>
                                                     </view>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Swaps: 0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJU-qy-YPl">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Word 2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJU-qy-YPl">
                                                         <rect key="frame" x="174" y="0.0" width="154" height="34"/>
                                                         <color key="backgroundColor" name="Right View Background"/>
                                                         <accessibility key="accessibilityConfiguration">
@@ -98,7 +98,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xML-Cb-vHu" userLabel="Button Stack View">
                                         <rect key="frame" x="20" y="334" width="328" height="60"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-q0-oD3" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-q0-oD3" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <constraints>
@@ -116,7 +116,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8N-5G-4W5">
                                                 <rect key="frame" x="60" y="0.0" width="20" height="60"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGo-DO-Zbt" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGo-DO-Zbt" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="80" y="0.0" width="248" height="60"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <fontDescription key="fontDescription" name="Dogica_Pixel_Bold" family="Dogica Pixel" pointSize="27"/>
@@ -146,7 +146,7 @@
                                     <constraint firstAttribute="trailing" secondItem="xML-Cb-vHu" secondAttribute="trailing" multiplier="368/348" id="vTx-uD-sGF"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwY-Km-gxB" userLabel="Left View" customClass="LeftUIView" customModule="Sort_N_Search" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwY-Km-gxB" userLabel="Left View" customClass="LeftUIView" customModule="String_Alignment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="368" height="414"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4ws-Ya-BSO" userLabel="Algorithim Stack View">
@@ -156,8 +156,8 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <segments>
-                                                    <segment title="Sort"/>
-                                                    <segment title="Search"/>
+                                                    <segment title="Word 1"/>
+                                                    <segment title="Word 2"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="segmentedControllerTapped:" destination="BV1-FR-VrT" eventType="valueChanged" id="YQn-jb-5x6"/>
@@ -170,10 +170,10 @@
                                                 <rect key="frame" x="0.0" y="51" width="328" height="323"/>
                                                 <color key="backgroundColor" name="Left View Background"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="34" id="OnX-qu-dyM" customClass="ViewControllerTableViewCell" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="34" id="OnX-qu-dyM" customClass="ViewControllerTableViewCell" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="328" height="34"/>
                                                         <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OnX-qu-dyM" id="3Xt-JA-Krb" customClass="ViewControllerTableViewCell" customModule="Sort_N_Search" customModuleProvider="target">
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OnX-qu-dyM" id="3Xt-JA-Krb" customClass="ViewControllerTableViewCell" customModule="String_Alignment" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="328" height="34"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
@@ -251,7 +251,7 @@
         <!--MainScreen-->
         <scene sceneID="JvJ-p6-B9n">
             <objects>
-                <viewController title="MainScreen" id="x7L-u7-4Ti" customClass="SettingsSceenViewController" customModule="Sort_N_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MainScreen" id="x7L-u7-4Ti" customClass="SettingsSceenViewController" customModule="String_Alignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DhK-yG-hbA">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,7 +279,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kc-Gc-Rnt">
                                                 <rect key="frame" x="0.0" y="60" width="400" height="40"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvk-QH-ZQf" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvk-QH-ZQf" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="195" height="40"/>
                                                         <color key="backgroundColor" name="UI Button"/>
                                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="11"/>
@@ -293,7 +293,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bI-XU-0x1">
                                                         <rect key="frame" x="195" y="0.0" width="10" height="40"/>
                                                     </view>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Q6-95-HQk" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Q6-95-HQk" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="205" y="0.0" width="195" height="40"/>
                                                         <color key="backgroundColor" name="UI Button"/>
                                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="11"/>
@@ -315,7 +315,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4C-yR-mpB">
                                                 <rect key="frame" x="0.0" y="110" width="400" height="40"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-yG-aAq" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-yG-aAq" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="195" height="40"/>
                                                         <color key="backgroundColor" name="UI Button"/>
                                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="11"/>
@@ -329,7 +329,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhp-fz-olc">
                                                         <rect key="frame" x="195" y="0.0" width="10" height="40"/>
                                                     </view>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDw-Gg-rpE" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDw-Gg-rpE" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="205" y="0.0" width="195" height="40"/>
                                                         <color key="backgroundColor" name="UI Button"/>
                                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="11"/>
@@ -351,7 +351,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmi-3H-80m">
                                                 <rect key="frame" x="0.0" y="160" width="400" height="40"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0B-4l-xoA" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0B-4l-xoA" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="195" height="40"/>
                                                         <color key="backgroundColor" name="UI Button"/>
                                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="11"/>
@@ -365,7 +365,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKf-aL-YmV">
                                                         <rect key="frame" x="195" y="0.0" width="10" height="40"/>
                                                     </view>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dca-WQ-y2k" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dca-WQ-y2k" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="205" y="0.0" width="195" height="40"/>
                                                         <color key="backgroundColor" name="UI Button"/>
                                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="11"/>
@@ -384,7 +384,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyO-Ac-ZIX">
                                                 <rect key="frame" x="0.0" y="200" width="400" height="10"/>
                                             </view>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iw0-3b-GoY" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iw0-3b-GoY" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="210" width="400" height="40"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="11"/>
@@ -414,7 +414,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZ4-1e-uDG">
                                         <rect key="frame" x="20" y="349" width="400" height="45"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uq-B1-7Ui" userLabel="Sound" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uq-B1-7Ui" userLabel="Sound" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <constraints>
@@ -430,7 +430,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwj-Jz-ge3">
                                                 <rect key="frame" x="45" y="0.0" width="90" height="45"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upX-fy-FEE" userLabel="Help" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upX-fy-FEE" userLabel="Help" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="135" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <constraints>
@@ -446,7 +446,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23C-t7-XjM">
                                                 <rect key="frame" x="180" y="0.0" width="10" height="45"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF9-Fn-yKR" userLabel="Sound" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF9-Fn-yKR" userLabel="Sound" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="190" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <constraints>
@@ -462,7 +462,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lih-NH-5sh">
                                                 <rect key="frame" x="235" y="0.0" width="10" height="45"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfL-tN-qLN" userLabel="Step / Auto Play " customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfL-tN-qLN" userLabel="Step / Auto Play " customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="245" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <constraints>
@@ -478,7 +478,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aba-cC-95C">
                                                 <rect key="frame" x="290" y="0.0" width="10" height="45"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXh-5F-g45" userLabel="Dark/ Light Mode" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXh-5F-g45" userLabel="Dark/ Light Mode" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="300" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <constraints>
@@ -494,7 +494,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylw-zA-N0H">
                                                 <rect key="frame" x="345" y="0.0" width="10" height="45"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4T-iy-Fyn" userLabel="Home" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4T-iy-Fyn" userLabel="Home" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                 <rect key="frame" x="355" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" name="UI Button"/>
                                                 <constraints>
@@ -536,7 +536,7 @@
                                     <constraint firstItem="Iw0-3b-GoY" firstAttribute="height" secondItem="xDg-9d-HTP" secondAttribute="height" multiplier="40/414" id="vd9-xx-zBY"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzl-h0-Vcb" userLabel="Left View" customClass="LeftUIView" customModule="Sort_N_Search" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzl-h0-Vcb" userLabel="Left View" customClass="LeftUIView" customModule="String_Alignment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="296" height="414"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tnm-iq-dtA">
@@ -560,10 +560,10 @@
                                                 <rect key="frame" x="0.0" y="60" width="256" height="314"/>
                                                 <color key="backgroundColor" name="Left View Background"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="34" id="Nju-Ya-EcK" customClass="SettingsScreenTableViewCell" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="34" id="Nju-Ya-EcK" customClass="SettingsScreenTableViewCell" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="256" height="34"/>
                                                         <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nju-Ya-EcK" id="yrd-gP-fDt" customClass="SettingsScreenTableViewCell" customModule="Sort_N_Search" customModuleProvider="target">
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nju-Ya-EcK" id="yrd-gP-fDt" customClass="SettingsScreenTableViewCell" customModule="String_Alignment" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="256" height="34"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
@@ -645,7 +645,7 @@
         <!--Game Screen View Controller-->
         <scene sceneID="wct-s6-TV9">
             <objects>
-                <viewController storyboardIdentifier="GameScreen" id="bKH-RY-faG" customClass="GameScreenViewController" customModule="Sort_N_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameScreen" id="bKH-RY-faG" customClass="GameScreenViewController" customModule="String_Alignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V6u-dH-R6S" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -653,7 +653,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="os2-yv-uox">
                                 <rect key="frame" x="20" y="349" width="696" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZ8-7E-hZ7" userLabel="Score Button" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZ8-7E-hZ7" userLabel="Score Button" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="16"/>
@@ -667,7 +667,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="et9-wm-bbf">
                                         <rect key="frame" x="135" y="0.0" width="351" height="45"/>
                                     </view>
-                                    <button opaque="NO" alpha="0.80000000000000004" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GO-jV-W0k" userLabel="Step / Auto Play " customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.80000000000000004" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GO-jV-W0k" userLabel="Step / Auto Play " customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="486" y="0.0" width="45" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <constraints>
@@ -683,7 +683,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoi-kw-a8i">
                                         <rect key="frame" x="531" y="0.0" width="10" height="45"/>
                                     </view>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjg-eF-i5t" userLabel="Return To Settings" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjg-eF-i5t" userLabel="Return To Settings" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="541" y="0.0" width="45" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <constraints>
@@ -699,7 +699,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xp-fm-nUi">
                                         <rect key="frame" x="586" y="0.0" width="10" height="45"/>
                                     </view>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0t6-qA-ACA" userLabel="Home" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0t6-qA-ACA" userLabel="Home" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="596" y="0.0" width="45" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <constraints>
@@ -715,7 +715,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7y-o8-THV">
                                         <rect key="frame" x="641" y="0.0" width="10" height="45"/>
                                     </view>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00f-v8-ibJ" userLabel="Return To Settings" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00f-v8-ibJ" userLabel="Return To Settings" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="651" y="0.0" width="45" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <constraints>
@@ -761,7 +761,7 @@
         <!--Help Screen View Controller-->
         <scene sceneID="ykz-Db-5xt">
             <objects>
-                <viewController id="9gE-ur-Y08" customClass="HelpScreenViewController" customModule="Sort_N_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9gE-ur-Y08" customClass="HelpScreenViewController" customModule="String_Alignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1O6-pw-nWf">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -769,7 +769,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbn-vY-beB" userLabel="RIght Label">
                                 <rect key="frame" x="296" y="0.0" width="440" height="414"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gV-6f-ISG" userLabel="Return To Settings" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gV-6f-ISG" userLabel="Return To Settings" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="20" y="349" width="45" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <constraints>
@@ -782,7 +782,7 @@
                                             <action selector="ReturnToSettingsButtonTapped:" destination="9gE-ur-Y08" eventType="touchUpInside" id="A5g-fd-Fhv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzI-oe-N6e" userLabel="Home" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzI-oe-N6e" userLabel="Home" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="375" y="349" width="45" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <constraints>
@@ -805,7 +805,7 @@
                                     <constraint firstAttribute="trailing" secondItem="KzI-oe-N6e" secondAttribute="trailing" multiplier="440/420" id="fuq-bS-Y4H"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jid-tj-SUa" userLabel="Left View" customClass="LeftUIView" customModule="Sort_N_Search" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jid-tj-SUa" userLabel="Left View" customClass="LeftUIView" customModule="String_Alignment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="296" height="414"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XhU-bh-uND">
@@ -832,7 +832,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kws-t9-gxm">
                                                 <rect key="frame" x="38" y="90" width="200" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bU-CR-ltO" userLabel="Linked-In" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bU-CR-ltO" userLabel="Linked-In" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         <color key="backgroundColor" name="Social UI Button"/>
                                                         <constraints>
@@ -846,7 +846,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6x-9N-uhg">
                                                         <rect key="frame" x="60" y="0.0" width="10" height="60"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOa-dg-iZM" userLabel="Github" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOa-dg-iZM" userLabel="Github" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="70" y="0.0" width="60" height="60"/>
                                                         <color key="backgroundColor" name="Social UI Button"/>
                                                         <constraints>
@@ -860,7 +860,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhV-0F-Jbl">
                                                         <rect key="frame" x="130" y="0.0" width="10" height="60"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjA-tu-N8I" userLabel="Github" customClass="IconUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjA-tu-N8I" userLabel="Github" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="140" y="0.0" width="60" height="60"/>
                                                         <color key="backgroundColor" name="Social UI Button"/>
                                                         <constraints>
@@ -879,7 +879,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73F-cG-W98">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="10"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbF-dl-b7y" customClass="TextUIButton" customModule="Sort_N_Search" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbF-dl-b7y" customClass="TextUIButton" customModule="String_Alignment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="10" width="200" height="36"/>
                                                         <color key="backgroundColor" name="Social UI Button"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -901,7 +901,7 @@
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="xIX-3Z-EMF">
                                                 <rect key="frame" x="2" y="344.33333333333331" width="272.33333333333331" height="39.666666666666686"/>
-                                                <string key="text">Made from scratch with Love, Swift 5, Xcode, and a Stack Overflow post or 2. Copyright © 2019-2020 Álvaro F Santillan. All rights reserved.</string>
+                                                <string key="text">Made from scratch with Love, Swift 5, Xcode, and a Stack Overflow post or 2. Copyright © 2019-2021 Álvaro F Santillan. All rights reserved.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <color key="textColor" name="Text"/>
                                                 <nil key="highlightedColor"/>

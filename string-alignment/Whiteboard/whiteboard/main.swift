@@ -47,3 +47,73 @@ func alignStrings(startString: [String], endString: [String], insertCost: Int, d
     }
     return costMatrix
 }
+
+func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> [String] {
+    let infinity = Int.max-2
+
+    // Variables to track location and store results.
+    var optimalOperations = [String]()
+    var currentLocationX = 3
+    var currentLocationY = 3
+
+    // This function finds the optimal path from the bottom right corner to the top left corner.
+    while !((startString[currentLocationX] == "-") && ( endString[currentLocationY] == "-")) {
+        // Catch out of bound errors.
+        
+        var top = Int()
+        var left = Int()
+        var diagonal = Int()
+        
+        do {
+            top = costMatrix[currentLocationX-1][currentLocationY]
+        } catch {
+            top = infinity
+        }
+
+        do {
+            left = costMatrix[currentLocationX][currentLocationY-1]
+        } catch {
+            left = infinity
+        }
+
+        do {
+            diagonal = costMatrix[currentLocationX-1][currentLocationY-1]
+        } catch {
+            diagonal = infinity
+        }
+            
+        // Top is the smallest update and append accordingly.
+        if top < left && top < diagonal {
+            currentLocationX = currentLocationX-1
+//            currentLocationY = currentLocationY
+            optimalOperations.append("delete")
+        }
+        // Diagonal is the smallest (no-op) update and append accordingly.
+        else if diagonal <= top && diagonal <= left && diagonal == costMatrix[currentLocationX][currentLocationY] {
+            currentLocationX = currentLocationX-1
+            currentLocationY = currentLocationY-1
+            optimalOperations.append("no-op")
+        }
+        // Diagonal is the smallest (sub) update and append accordingly.
+        else if diagonal <= top && diagonal <= left && diagonal != costMatrix[currentLocationX][currentLocationY] {
+            currentLocationX = currentLocationX-1
+            currentLocationY = currentLocationY-1
+            optimalOperations.append("sub")
+        }
+        // Left is the smallest update and append accordingly.
+        else if left <= top && left <= diagonal {
+//            currentLocationX = currentLocationX
+            currentLocationY = currentLocationY-1
+            optimalOperations.append("insert")
+        }
+    }
+
+    return optimalOperations.reversed()
+}
+
+let costMatrix = alignStrings(startString: ["-","B","E","A","R"], endString: ["-","B","A","R","E"], insertCost: 1, deleteCost: 1, subCost: 2)
+for i in costMatrix {
+    print(i)
+}
+
+print(extractAlignment(costMatrix: costMatrix, startString: ["-","B","E","A","R"], endString: ["-","B","A","R","E"], insertCost: 1, deleteCost: 1, subCost: 2))

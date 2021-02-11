@@ -164,32 +164,4 @@ def partADriver():
     print(optimalOperations)
     print(commonStrings)
 
-def partBDriver():
-    insertCost = 1
-    deleteCost = 1
-    subCost = 1
-    minRepeat = 10
-
-    # Open files HARD CODED
-    # with open(r'C:\Users\Alvaro Santillan\Downloads\Michelle08.txt', 'r') as file:
-    #     startString = file.read().replace('\n', '')
-
-    # with open(r'C:\Users\Alvaro Santillan\Downloads\Melania16.txt', 'r') as file:
-    #     endString = file.read().replace('\n', '')
-
-    with open(r'C:\Users\Alvaro Santillan\Downloads\Song1_Folsom_Prison.txt', 'r') as file:
-        startString = file.read().replace('\n', '')
-
-    with open(r'C:\Users\Alvaro Santillan\Downloads\Song2_Crescent_City_Blues.txt', 'r') as file:
-        endString = file.read().replace('\n', '')
-
-    costMatrix = alignStrings(startString, endString, insertCost, deleteCost, subCost)
-    optimalOperations = extractAlignment(costMatrix, startString, endString, insertCost, deleteCost, subCost)
-    plagiarismSubStrings = commonSubstrings(startString, minRepeat, optimalOperations)
-    plagiarismRatio = len(endString)/len(plagiarismSubStrings)
-    print("--------------------------Part 2------------------------------")
-    print(plagiarismSubStrings)
-    print("Plagiarism Ratio:", plagiarismRatio, "%")
-
 partADriver()
-partBDriver()

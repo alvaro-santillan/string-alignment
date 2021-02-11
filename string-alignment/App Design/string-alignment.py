@@ -27,18 +27,7 @@ def alignStrings(startString, endString, insertCost, deleteCost, subCost):
             elif endString[x] == startString[y]:
                 costMatrix[y][x] = min(topPlusCost, leftPlusCost, diagonal)
             else:
-                costMatrix[y][x] = min(topPlusCost, leftPlusCost, diagonalPlusCost)            
-                # Top is the smallest.
-                # if topPlusCost <= leftPlusCost and topPlusCost <= diagonalPlusCost:
-                #     costMatrix[y][x] = topPlusCost
-
-                # # Diagonal is the smallest.
-                # elif diagonalPlusCost <= topPlusCost and diagonalPlusCost <= leftPlusCost:
-                #     costMatrix[y][x] = diagonalPlusCost
-
-                # # Left is the smallest.
-                # elif leftPlusCost <= topPlusCost and leftPlusCost <= diagonalPlusCost:
-                #     costMatrix[y][x] = leftPlusCost
+                costMatrix[y][x] = min(topPlusCost, leftPlusCost, diagonalPlusCost)
 
     # print(np.matrix(costMatrix))
     return costMatrix
@@ -49,8 +38,6 @@ def extractAlignment(costMatrix, startString, endString, insertCost, deleteCost,
     endString = "-" + endString
 
     # Variables to track location and store results.
-    # optimalOperationPathCoordinates = [[-1, -1]]
-    # optimalOperationPathValue = [costMatrix[-1][-1]]
     optimalOperations = []
     currentLocationX = -1
     currentLocationY = -1
@@ -77,32 +64,24 @@ def extractAlignment(costMatrix, startString, endString, insertCost, deleteCost,
         if top < left and top < diagonal:
             currentLocationX = currentLocationX-1
             currentLocationY = currentLocationY
-            # optimalOperationPathCoordinates.append([currentLocationX,currentLocationY])
-            # optimalOperationPathValue.append(costMatrix[currentLocationX][currentLocationY])
             optimalOperations.append("delete")
 
         # Diagonal is the smallest (no-op) update and append accordingly.
         elif diagonal <= top and diagonal <= left and diagonal == costMatrix[currentLocationX][currentLocationY]:
             currentLocationX = currentLocationX-1
             currentLocationY = currentLocationY-1
-            # optimalOperationPathCoordinates.append([currentLocationX,currentLocationY])
-            # optimalOperationPathValue.append(costMatrix[currentLocationX][currentLocationY])
             optimalOperations.append("no-op")
 
         # Diagonal is the smallest (sub) update and append accordingly.
         elif diagonal <= top and diagonal <= left and diagonal != costMatrix[currentLocationX][currentLocationY]:
             currentLocationX = currentLocationX-1
             currentLocationY = currentLocationY-1
-            # optimalOperationPathCoordinates.append([currentLocationX,currentLocationY])
-            # optimalOperationPathValue.append(costMatrix[currentLocationX][currentLocationY])
             optimalOperations.append("sub")
 
         # Left is the smallest update and append accordingly.
         elif left <= top and left <= diagonal:
             currentLocationX = currentLocationX
             currentLocationY = currentLocationY-1
-            # optimalOperationPathCoordinates.append([currentLocationX,currentLocationY])
-            # optimalOperationPathValue.append(costMatrix[currentLocationX][currentLocationY])
             optimalOperations.append("insert")
     
     # print(optimalOperationPathCoordinates)
@@ -141,20 +120,24 @@ def commonSubstrings(startString, minRepeat, optimalOperations):
     return returnList
 
 def partADriver():
-    insertCost = 2 # 2
+    insertCost = 1 # 2
     deleteCost = 1 # 1
     subCost = 2 # 2
-    minRepeat = 2
-    startString = "BEAR" # 0-3
+    minRepeat = 1
+
+    # For min repeat = 2
+    startString = "BEAR" # 0-3 Pass
     endString = "BARE" # 0-3
-    startString = "PLAIN" # 0-4
-    endString = "PLANE" # 0-4
-    startString = "FLOUR"
+    startString = "PLAIN" # 0-4 Pass
+    endString = "PLANE"
+    startString = "FLOUR" # Pass
     endString = "FLOWER"
-    startString = "AHIGHSTEP"
+    startString = "AHIGHSTEP" # Pass
     endString = "HGIHAPE"
-    startString = "EXPONENTIAL" # 0-11
-    endString = "POLYNOMIAL" # 0-10
+    startString = "EXPONENTIAL" # Pass
+    endString = "POLYNOMIAL"
+    startString = "ACGTCATCA" # Pass
+    endString = "TAGTGTCA"
 
     costMatrix = alignStrings(startString, endString, insertCost, deleteCost, subCost)
     optimalOperations = extractAlignment(costMatrix, startString, endString, insertCost, deleteCost, subCost)

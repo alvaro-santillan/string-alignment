@@ -53,8 +53,8 @@ func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [St
 
     // Variables to track location and store results.
     var optimalOperations = [String]()
-    var currentLocationX = 3
-    var currentLocationY = 3
+    var currentLocationX = startString.count-1
+    var currentLocationY = endString.count-1
 
     // This function finds the optimal path from the bottom right corner to the top left corner.
     while !((startString[currentLocationX] == "-") && ( endString[currentLocationY] == "-")) {
@@ -63,22 +63,35 @@ func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [St
         var top = Int()
         var left = Int()
         var diagonal = Int()
+//        print("ran", startString[currentLocationX], endString[currentLocationY])
         
-        do {
-            top = costMatrix[currentLocationX-1][currentLocationY]
-        } catch {
+        if (currentLocationX-1 != -1) {
+            do {
+                top = costMatrix[currentLocationX-1][currentLocationY]
+            } catch {
+                top = infinity
+            }
+        } else {
             top = infinity
         }
 
-        do {
-            left = costMatrix[currentLocationX][currentLocationY-1]
-        } catch {
+        if (currentLocationY-1 != -1) {
+            do {
+                left = costMatrix[currentLocationX][currentLocationY-1]
+            } catch {
+                left = infinity
+            }
+        } else {
             left = infinity
         }
 
-        do {
-            diagonal = costMatrix[currentLocationX-1][currentLocationY-1]
-        } catch {
+        if (currentLocationX-1 != -1 && currentLocationY-1 != -1) {
+            do {
+                diagonal = costMatrix[currentLocationX-1][currentLocationY-1]
+            } catch {
+                diagonal = infinity
+            }
+        } else {
             diagonal = infinity
         }
             
@@ -106,14 +119,40 @@ func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [St
             currentLocationY = currentLocationY-1
             optimalOperations.append("insert")
         }
+        else {
+            print("hit")
+        }
+        
+        if (currentLocationY == -1 || currentLocationX == -1) {
+            break
+        }
     }
-
     return optimalOperations.reversed()
 }
 
-let costMatrix = alignStrings(startString: ["-","B","E","A","R"], endString: ["-","B","A","R","E"], insertCost: 1, deleteCost: 1, subCost: 2)
+let insertCost = 1
+let deleteCost = 1
+let subCost = 2
+let minRepeat = 1
+
+var startString = ["-","B","E","A","R"]
+var endString = ["-","B","A","R","E"]
+startString = ["-","P","L","A","I","N"]
+endString = ["-","P","L","A","N","E"]
+startString = ["-","F","L","O","U","R"]
+endString = ["-","F","L","O","W","E","R"]
+startString = ["-","A","H","I","G","H","S","T","E","P"]
+endString = ["-","H","G","I","H","A","P","E"]
+startString = ["-","E","X","P","O","N","E","N","T","I","A","L"]
+endString = ["-","P","O","L","Y","N","O","M","I","A","L"]
+startString = ["-","A","C","G","T","C","A","T","C","A"]
+endString = ["-","T","A","G","T","G","T","C","A"]
+
+let costMatrix = alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+let optimalOperations = extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+
+print("--------------------------Part 1------------------------------")
 for i in costMatrix {
     print(i)
 }
-
-print(extractAlignment(costMatrix: costMatrix, startString: ["-","B","E","A","R"], endString: ["-","B","A","R","E"], insertCost: 1, deleteCost: 1, subCost: 2))
+print(optimalOperations)

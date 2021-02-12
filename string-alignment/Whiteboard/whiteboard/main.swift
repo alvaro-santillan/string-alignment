@@ -58,47 +58,14 @@ func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [St
 
     // This function finds the optimal path from the bottom right corner to the top left corner.
     while !((startString[currentLocationX] == "-") && ( endString[currentLocationY] == "-")) {
-        // Catch out of bound errors.
-        
-        var top = Int()
-        var left = Int()
-        var diagonal = Int()
-//        print("ran", startString[currentLocationX], endString[currentLocationY])
-        
-        if (currentLocationX-1 != -1) {
-            do {
-                top = costMatrix[currentLocationX-1][currentLocationY]
-            } catch {
-                top = infinity
-            }
-        } else {
-            top = infinity
-        }
-
-        if (currentLocationY-1 != -1) {
-            do {
-                left = costMatrix[currentLocationX][currentLocationY-1]
-            } catch {
-                left = infinity
-            }
-        } else {
-            left = infinity
-        }
-
-        if (currentLocationX-1 != -1 && currentLocationY-1 != -1) {
-            do {
-                diagonal = costMatrix[currentLocationX-1][currentLocationY-1]
-            } catch {
-                diagonal = infinity
-            }
-        } else {
-            diagonal = infinity
-        }
+        // Calculate costs and catch out of bound errors.
+        let top = (currentLocationX-1 != -1) ? costMatrix[currentLocationX-1][currentLocationY] : infinity
+        let left = (currentLocationY-1 != -1) ? costMatrix[currentLocationX][currentLocationY-1] : infinity
+        let diagonal = (currentLocationX-1 != -1 && currentLocationY-1 != -1) ? costMatrix[currentLocationX-1][currentLocationY-1] : infinity
             
         // Top is the smallest update and append accordingly.
         if top < left && top < diagonal {
             currentLocationX = currentLocationX-1
-//            currentLocationY = currentLocationY
             optimalOperations.append("delete")
         }
         // Diagonal is the smallest (no-op) update and append accordingly.
@@ -115,14 +82,11 @@ func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [St
         }
         // Left is the smallest update and append accordingly.
         else if left <= top && left <= diagonal {
-//            currentLocationX = currentLocationX
             currentLocationY = currentLocationY-1
             optimalOperations.append("insert")
         }
-        else {
-            print("hit")
-        }
         
+        // The end is reached so can terminate.
         if (currentLocationY == -1 || currentLocationX == -1) {
             break
         }
@@ -132,7 +96,7 @@ func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [St
 
 let insertCost = 1
 let deleteCost = 1
-let subCost = 2
+let subCost = 1
 let minRepeat = 1
 
 var startString = ["-","B","E","A","R"]

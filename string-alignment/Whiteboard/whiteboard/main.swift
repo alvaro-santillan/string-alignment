@@ -1,16 +1,18 @@
 //
 //  main.swift
-//  sdfg
 //
 //  Created by Álvaro Santillan on 8/3/20.
 //  Copyright © 2020 Álvaro Santillan. All rights reserved.
 //
 
+// Known bug: word prossessing section is missing a edge case. Look into minRepeat.
+// Failed: "A","C","G","T","C","A","T","C","A". insertCost = 1 deleteCost = 1 subCost = 2 minRepeat = 1
 import Foundation
 
 func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> [[Int]] {
     // The worst score, so algorithim can only improve.
-    let infinity = Int.max-2
+    // delete, sub, or insert cost of more then ten will cause a integer overflow.
+    let infinity = Int.max-10
     var costMatrix = [[Int]]()
     
     // Create initial worst case matrix.
@@ -49,7 +51,7 @@ func alignStrings(startString: [String], endString: [String], insertCost: Int, d
 }
 
 func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> [String] {
-    let infinity = Int.max-2
+    let infinity = Int.max-10
 
     // Variables to track location and store results.
     var optimalOperations = [String]()
@@ -122,8 +124,14 @@ func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: 
                 if tempEndPointer >= startString.count - 1 {
                     tempEndPointer = startString.count - 1
                 }
-                let tempString = startString[((startPointer + 1) - skips)...tempEndPointer]
-                returnList.append(String(tempString.count) + ", " + tempString.joined())
+                // Word prossessing.
+                if tracker > minRepeat {
+                    let tempString = startString[((startPointer + 1) - skips)...tempEndPointer]
+                    returnList.append(String(tempString.count) + ", " + tempString.joined())
+                } else if tracker == minRepeat {
+                    let tempString = startString[((startPointer + 1) - skips)...(endPointer - skips)]
+                    returnList.append(String(tempString.count) + ", " + tempString.joined())
+                }
             }
             // Update pointers and reset the tracker.
             startPointer = endPointer - 1
@@ -143,14 +151,14 @@ var startString = ["-","B","E","A","R"]
 var endString = ["-","B","A","R","E"]
 startString = ["-","P","L","A","I","N"]
 endString = ["-","P","L","A","N","E"]
-//startString = ["-","F","L","O","U","R"]
-//endString = ["-","F","L","O","W","E","R"]
-//startString = ["-","A","H","I","G","H","S","T","E","P"]
-//endString = ["-","H","G","I","H","A","P","E"]
-//startString = ["-","E","X","P","O","N","E","N","T","I","A","L"]
-//endString = ["-","P","O","L","Y","N","O","M","I","A","L"]
-//startString = ["-","A","C","G","T","C","A","T","C","A"]
-//endString = ["-","T","A","G","T","G","T","C","A"]
+startString = ["-","F","L","O","U","R"]
+endString = ["-","F","L","O","W","E","R"]
+startString = ["-","A","H","I","G","H","S","T","E","P"]
+endString = ["-","H","G","I","H","A","P","E"]
+startString = ["-","E","X","P","O","N","E","C","T","I","A","L"]
+endString = ["-","P","O","L","Y","N","O","M","I","A","L"]
+startString = ["-","A","C","G","T","C","A","T","C","A"]
+endString = ["-","T","A","G","T","G","T","C","A"]
 
 let costMatrix = alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
 let optimalOperations = extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)

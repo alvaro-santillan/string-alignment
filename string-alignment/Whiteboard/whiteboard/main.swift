@@ -105,9 +105,8 @@ func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: 
     // Check for L no-ops until the entire array is traversed.
     while startPointer < (optimalOperations.count) {
         // Handle inserts by adding skips.
-        if optimalOperations[startPointer] == "insert" {
-            skips += 1
-        }
+        skips = optimalOperations[startPointer] == "insert" ? skips + 1 : skips
+        
         // Handle if L no-ops are found.
         if optimalOperations[startPointer] == "no-op" {
             endPointer = startPointer
@@ -119,12 +118,11 @@ func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: 
             }
             // Append section into the result array.
             if tracker >= minRepeat {
-//                let tempString = startString[startPointer - skips]
                 var tempEndPointer = endPointer
-                if tempEndPointer >= startString.count-1 {
-                    tempEndPointer = startString.count-1
+                if tempEndPointer >= startString.count - 1 {
+                    tempEndPointer = startString.count - 1
                 }
-                let tempString = startString[((startPointer+1) - skips)...tempEndPointer]
+                let tempString = startString[((startPointer + 1) - skips)...tempEndPointer]
                 returnList.append(String(tempString.count) + ", " + tempString.joined())
             }
             // Update pointers and reset the tracker.
@@ -133,8 +131,6 @@ func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: 
         startPointer += 1
         tracker = 0
     }
-    
-//    print(returnList)
     return returnList
 }
 
@@ -147,22 +143,22 @@ var startString = ["-","B","E","A","R"]
 var endString = ["-","B","A","R","E"]
 startString = ["-","P","L","A","I","N"]
 endString = ["-","P","L","A","N","E"]
-startString = ["-","F","L","O","U","R"]
-endString = ["-","F","L","O","W","E","R"]
-startString = ["-","A","H","I","G","H","S","T","E","P"]
-endString = ["-","H","G","I","H","A","P","E"]
-startString = ["-","E","X","P","O","N","E","N","T","I","A","L"]
-endString = ["-","P","O","L","Y","N","O","M","I","A","L"]
-startString = ["-","A","C","G","T","C","A","T","C","A"]
-endString = ["-","T","A","G","T","G","T","C","A"]
+//startString = ["-","F","L","O","U","R"]
+//endString = ["-","F","L","O","W","E","R"]
+//startString = ["-","A","H","I","G","H","S","T","E","P"]
+//endString = ["-","H","G","I","H","A","P","E"]
+//startString = ["-","E","X","P","O","N","E","N","T","I","A","L"]
+//endString = ["-","P","O","L","Y","N","O","M","I","A","L"]
+//startString = ["-","A","C","G","T","C","A","T","C","A"]
+//endString = ["-","T","A","G","T","G","T","C","A"]
 
 let costMatrix = alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
 let optimalOperations = extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
 let commonStrings = commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
 
 print("--------------------------Part 1------------------------------")
-//for i in costMatrix {
-//    print(i)
-//}
-//print(optimalOperations)
+for i in costMatrix {
+    print(i)
+}
+print(optimalOperations)
 print(commonStrings)

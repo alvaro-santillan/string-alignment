@@ -94,9 +94,53 @@ func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [St
     return optimalOperations.reversed()
 }
 
+func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: [String]) -> [String] {
+    // Variables to track location and store results.
+    var startPointer = 0
+    var endPointer = 0
+    var tracker = 0
+    var skips = 0
+    var returnList = [String]()
+
+    // Check for L no-ops until the entire array is traversed.
+    while startPointer < (optimalOperations.count) {
+        // Handle inserts by adding skips.
+        if optimalOperations[startPointer] == "insert" {
+            skips += 1
+        }
+        // Handle if L no-ops are found.
+        if optimalOperations[startPointer] == "no-op" {
+            endPointer = startPointer
+            // Traverse the array updating "pointers" along the way.
+            // The 2nd condition is used to prevent out of index error.
+            while endPointer < (optimalOperations.count) && optimalOperations[endPointer] == "no-op" {
+                tracker += 1
+                endPointer += 1
+            }
+            // Append section into the result array.
+            if tracker >= minRepeat {
+//                let tempString = startString[startPointer - skips]
+                var tempEndPointer = endPointer
+                if tempEndPointer >= startString.count-1 {
+                    tempEndPointer = startString.count-1
+                }
+                let tempString = startString[((startPointer+1) - skips)...tempEndPointer]
+                returnList.append(String(tempString.count) + ", " + tempString.joined())
+            }
+            // Update pointers and reset the tracker.
+            startPointer = endPointer - 1
+        }
+        startPointer += 1
+        tracker = 0
+    }
+    
+//    print(returnList)
+    return returnList
+}
+
 let insertCost = 1
 let deleteCost = 1
-let subCost = 1
+let subCost = 2
 let minRepeat = 1
 
 var startString = ["-","B","E","A","R"]
@@ -114,9 +158,11 @@ endString = ["-","T","A","G","T","G","T","C","A"]
 
 let costMatrix = alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
 let optimalOperations = extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+let commonStrings = commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
 
 print("--------------------------Part 1------------------------------")
-for i in costMatrix {
-    print(i)
-}
-print(optimalOperations)
+//for i in costMatrix {
+//    print(i)
+//}
+//print(optimalOperations)
+print(commonStrings)

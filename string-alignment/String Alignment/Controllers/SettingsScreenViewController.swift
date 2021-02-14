@@ -70,6 +70,7 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.legendOptionText.text = legendData[indexPath.row][0] as? String
+        print(legendData[indexPath.row][1] as? Int)
         cell.legendOptionSquareColor.backgroundColor = colorPaletteManager(cellText: cellText)[(legendData[indexPath.row][1] as? Int)!]
         cell.legendOptionSquareColor.layer.borderWidth = 1
         cell.legendOptionSquareColor.layer.cornerRadius = cell.legendOptionSquareColor.frame.size.width/4

@@ -12,17 +12,17 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var segControl: UISegmentedControl!
     @IBOutlet weak var tableVIew: UITableView!
     @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var lastScoreLabel: UITextField!
-    @IBOutlet weak var highScoreLabel: UITextField!
+    @IBOutlet weak var lastWordOneLabel: UITextField!
+    @IBOutlet weak var lastWordTwoLabel: UITextField!
     
-    let pathFindingAlgorithmList = [["None","0","0"], ["Bubble Sort","0","0"], ["Insertion Sort","0","0"], ["Quick Sort With Median Of Medians","0","0"], ["Quick Sort","0","0"], ["Selection Sort","0","0"]]
+    let wordOneList = [["Abstractionist","0","0"], ["Attractiveness","0","0"], ["Bioengineering","0","0"], ["Cinematography","0","0"], ["Detoxification","0","0"], ["Distinguishing","0","0"], ["Indestructible","0","0"], ["Liberalization","0","0"], ["Mountaineering","0","0"], ["Pharmaceutical","0","0"], ["Quintessential","0","0"], ["Superstructure","0","0"], ["Thoughtfulness","0","0"], ["Weightlessness","0","0"], ["Widespreadness","0","0"]]
     
-    let mazeGenrationAlgorithimList = [["None","0","0"], ["Binary Search","0","0"], ["Linear Search","0","0"], ["Jump Select","0","0"]]
+    let wordTwoList = [["agile","0","0"], ["alert","0","0"], ["belly","0","0"], ["bench","0","0"], ["cross","0","0"], ["crowd","0","0"], ["fears","0","0"], ["fermi","0","0"], ["hacks","0","0"], ["krill","0","0"], ["logos","0","0"], ["omits","0","0"], ["peach","0","0"], ["swirl","0","0"], ["yummy","0","0"]]
     
     let defaults = UserDefaults.standard
-    var selectedPathAlgorithim = UserDefaults.standard.integer(forKey: "Selected Path Finding Algorithim")
-    var selectedMazeAlgorithim = UserDefaults.standard.integer(forKey: "Selected Maze Algorithim")
-    lazy var tableViewDisplayList = pathFindingAlgorithmList
+    var selectedWordOne = UserDefaults.standard.integer(forKey: "Selected Path Finding Algorithim")
+    var selectedWordTwo = UserDefaults.standard.integer(forKey: "Selected Maze Algorithim")
+    lazy var tableViewDisplayList = wordOneList
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func checkIfFirstRun() {
         if !defaults.bool(forKey: "Not First Launch") {
-            let legendData = [["Square", 13], ["Swap Halo", 6], ["Comparison Halo", 9], ["Gameboard", 0], ["Search Halo", 24], ["Found Halo", 19], ["Target Halo", 31]]
+            let legendData = [["Square", 13], ["Insert", 6], ["Delete", 9], ["Substitute", 0], ["No Opperation", 24], ["Processing Halo", 19], ["Final Path", 31], ["Final Letters", 31], ["Gameboard", 1], ["Gameboard Text", 31]]
             
             defaults.set(legendData, forKey: "Legend Preferences")
             defaults.set(2, forKey: "Snake Speed Text Setting")
@@ -53,14 +53,13 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set("None", forKey: "Selected Path Finding Algorithim Name")
             defaults.set("None", forKey: "Selected Maze Algorithim Name")
             
-            
             overrideUserInterfaceStyle = .dark
         }
     }
     
     func loadUserData() {
-        highScoreLabel.text = "Last Swaps: \(defaults.integer(forKey: "highScore"))"
-        lastScoreLabel.text = "Last Comps: \(defaults.integer(forKey: "lastScore"))"
+        lastWordTwoLabel.text = "\(defaults.integer(forKey: "highScore"))"
+        lastWordOneLabel.text = "\(defaults.integer(forKey: "lastScore"))"
         defaults.bool(forKey: "Dark Mode On Setting") ? (overrideUserInterfaceStyle = .dark) : (overrideUserInterfaceStyle = .light)
         segControl.font(name: "Dogica_Pixel", size: 9)
     }
@@ -81,20 +80,20 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segControl.selectedSegmentIndex == 0 {
-            selectedPathAlgorithim = indexPath.row
+            selectedWordOne = indexPath.row
             defaults.set(indexPath.row, forKey: "Selected Path Finding Algorithim")
-            defaults.set(pathFindingAlgorithmList[indexPath.row][0], forKey: "Selected Path Finding Algorithim Name")
+            defaults.set(wordOneList[indexPath.row][0], forKey: "Selected Path Finding Algorithim Name")
         }
         if segControl.selectedSegmentIndex == 1 {
-            selectedMazeAlgorithim = indexPath.row
+            selectedWordTwo = indexPath.row
             defaults.set(indexPath.row, forKey: "Selected Maze Algorithim")
-            defaults.set(mazeGenrationAlgorithimList[indexPath.row][0], forKey: "Selected Maze Algorithim Name")
+            defaults.set(wordTwoList[indexPath.row][0], forKey: "Selected Maze Algorithim Name")
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var choice = Int()
-        segControl.selectedSegmentIndex == 0 ? (choice = selectedPathAlgorithim) : (choice = selectedMazeAlgorithim)
+        segControl.selectedSegmentIndex == 0 ? (choice = selectedWordOne) : (choice = selectedWordTwo)
         defaults.set(segControl.selectedSegmentIndex, forKey: "Main Screen Segmented Control Choice")
         tableView.selectRow(at: [0, choice], animated: true, scrollPosition: UITableView.ScrollPosition.none)
     }
@@ -105,7 +104,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func segmentedControllerTapped(_ sender: UISegmentedControl) {
-        segControl.selectedSegmentIndex == 0 ? (tableViewDisplayList = pathFindingAlgorithmList) : (tableViewDisplayList = mazeGenrationAlgorithimList)
+        segControl.selectedSegmentIndex == 0 ? (tableViewDisplayList = wordOneList) : (tableViewDisplayList = wordTwoList)
         tableVIew.reloadData()
     }
 }

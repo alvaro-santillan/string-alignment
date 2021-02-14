@@ -15,12 +15,13 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableVIew: UITableView!
     
     // Text Buttons
-    @IBOutlet weak var sortStyleButton: UIButton!
-    @IBOutlet weak var animationButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var snakeSpeedButton: UIButton!
-    @IBOutlet weak var squareSizeButton: UIButton!
-    @IBOutlet weak var displayFormatButton: UIButton!
+    @IBOutlet weak var speedButton: UIButton!
+    @IBOutlet weak var substituteButton: UIButton!
+    @IBOutlet weak var deleteCostButton: UIButton!
+    @IBOutlet weak var animationsButton: UIButton!
+    @IBOutlet weak var insertCostButton: UIButton!
+    @IBOutlet weak var noOperationCostButton: UIButton!
+    @IBOutlet weak var minimumWordRepeatButton: UIButton!
     
     // Icon Buttons
     @IBOutlet weak var returnButton: UIButton!
@@ -45,14 +46,17 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
     
     func loadButtonStyling() {
         var options = ["Speed: Slow", "Speed: Normal", "Speed: Fast", "Speed: Extreme"]
-        fourOptionButtonLoader(targetButton: snakeSpeedButton, key: "Snake Speed Text Setting", optionArray: options)
-        options = ["Size: Extra Small", "Size: Small", "Size: Medium", "Size: Large"]
-        fourOptionButtonLoader(targetButton: squareSizeButton, key: "Square Size Setting", optionArray: options)
+        fourOptionButtonLoader(targetButton: speedButton, key: "Snake Speed Text Setting", optionArray: options)
+        options = ["Substitute Cost: 1", "Substitute Cost: 2", "Substitute Cost: 3", "Substitute Cost: 4"]
+        fourOptionButtonLoader(targetButton: substituteButton, key: "Substitute Cost Setting", optionArray: options)
+        options = ["Delete Cost: 1", "Delete Cost: 2", "Delete Cost: 3", "Delete Cost: 4"]
+        fourOptionButtonLoader(targetButton: deleteCostButton, key: "Delete Cost Setting", optionArray: options)
+        options = ["Insert Cost: 1", "Insert Cost: 2", "Insert Cost: 3", "Insert Cost: 4"]
+        fourOptionButtonLoader(targetButton: insertCostButton, key: "Insert Cost Setting", optionArray: options)
+        options = ["No Operation Cost: 1", "No Operation Cost: 2", "No Operation Cost: 3", "No Operation Cost: 4"]
+        fourOptionButtonLoader(targetButton: noOperationCostButton, key: "No Operation Cost Setting", optionArray: options)
+        tenOptionButtonLoader(targetButton: minimumWordRepeatButton, key: "Reset Setting", optionArray: [1,2,3,4,5,6,7,8,9,10])
         
-        resetButton.setTitle("No Changes", for: .normal)
-//        defaults.set(1, forKey: "Reset Setting")
-        
-        boolButtonLoader(isIconButton: false, targetButton: displayFormatButton, key: "Display Grid Setting", trueOption: "Format: Grid", falseOption: "Format: Row")
         boolButtonLoader(isIconButton: true, targetButton: soundButton, key: "Volume On Setting", trueOption: "Volume_On_Icon_Set", falseOption: "Volume_Mute_Icon_Set")
         boolButtonLoader(isIconButton: true, targetButton: vibrationButton, key: "Vibrate On Setting", trueOption: "Vibrate_On_Icon_Set", falseOption: "Vibrate_Off_Icon_Set")
         boolButtonLoader(isIconButton: true, targetButton: darkOrLightModeButton, key: "Dark Mode On Setting", trueOption: "Dark_Mode_Icon_Set", falseOption: "Light_Mode_Icon_Set")
@@ -70,7 +74,6 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.legendOptionText.text = legendData[indexPath.row][0] as? String
-        print(legendData[indexPath.row][1] as? Int)
         cell.legendOptionSquareColor.backgroundColor = colorPaletteManager(cellText: cellText)[(legendData[indexPath.row][1] as? Int)!]
         cell.legendOptionSquareColor.layer.borderWidth = 1
         cell.legendOptionSquareColor.layer.cornerRadius = cell.legendOptionSquareColor.frame.size.width/4
@@ -94,42 +97,37 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
         changeNotifier()
     }
     
-    @IBAction func sortByButtonTapped(_ sender: UIButton) {
-//        sender.setTitle("Gameboard Cleared", for: .normal)
-//        sortStyleButton.setTitle("Barriers Cleared", for: .normal)
-//        animationButton.setTitle("Path Cleared", for: .normal)
-//        defaults.set(true, forKey: "Clear All Setting")
-//        defaults.set(true, forKey: "Settings Value Modified")
-    }
-    
-    @IBAction func sortStyleButtonTapped(_ sender: UIButton) {
-//        sender.setTitle("Barriers Cleared", for: .normal)
-//        defaults.set(true, forKey: "Clear Barrier Setting")
-//        defaults.set(true, forKey: "Settings Value Modified")
-    }
-    
-    @IBAction func animationButtonTapped(_ sender: UIButton) {
-//        sender.setTitle("Path Cleared", for: .normal)
-//        defaults.set(true, forKey: "Clear Path Setting")
-//        defaults.set(true, forKey: "Settings Value Modified")
-    }
-    
-    @IBAction func snakeSpeedButtonTapped(_ sender: UIButton) {
+    @IBAction func speedButtonTapped(_ sender: UIButton) {
         let options = ["Speed: Slow", "Speed: Normal", "Speed: Fast", "Speed: Extreme"]
         fourOptionButtonResponder(sender, isSpeedButton: true, key: "Snake Speed Text Setting", optionArray: options)
     }
     
-    @IBAction func squareSizeButtonTapped(_ sender: UIButton) {
-        let options = ["Size: Extra Small", "Size: Small", "Size: Medium", "Size: Large"]
-        fourOptionButtonResponder(sender, isSpeedButton: false, key: "Square Size Setting", optionArray: options)
+    @IBAction func substituteCostButtonTapped(_ sender: UIButton) {
+        let options = ["Substitute Cost: 1", "Substitute Cost: 2", "Substitute Cost: 3", "Substitute Cost: 4"]
+        fourOptionButtonResponder(sender, isSpeedButton: false, key: "Substitute Cost Setting", optionArray: options)
     }
     
-    @IBAction func displayFormatButtonTapped(_ sender: UIButton) {
-        boolButtonResponder(sender, isIconButton: false, key: "Display Grid Setting", trueOption: "Format: Grid", falseOption: "Format: Row")
+    @IBAction func deleteCostButtonTapped(_ sender: UIButton) {
+        let options = ["Delete Cost: 1", "Delete Cost: 2", "Delete Cost: 3", "Delete Cost: 4"]
+        fourOptionButtonResponder(sender, isSpeedButton: false, key: "Delete Cost Setting", optionArray: options)
     }
     
-    @IBAction func resetButtonTapped(_ sender: UIButton) {
-        let options = ["No Changes", "Randomize: Board", "Randomize: Most", "Randomize: Few", "Randomize: Few Unique", "Randomize: Top", "Randomize: Center", "Randomize: Bottom", "Randomize: Reverse Sorted", "Randomize: Sorted"]
+    @IBAction func animationsButtonTapped(_ sender: UIButton) {
+        // To-do
+    }
+    
+    @IBAction func insertCostButtonTapped(_ sender: UIButton) {
+        let options = ["Insert Cost: 1", "Insert Cost: 2", "Insert Cost: 3", "Insert Cost: 4"]
+        fourOptionButtonResponder(sender, isSpeedButton: false, key: "Insert Cost Setting", optionArray: options)
+    }
+    
+    @IBAction func noOperationCostButtonTapped(_ sender: UIButton) {
+        let options = ["No Operation Cost: 1", "No Operation Cost: 2", "No Operation Cost: 3", "No Operation Cost: 4"]
+        fourOptionButtonResponder(sender, isSpeedButton: false, key: "No Operation Cost Setting", optionArray: options)
+    }
+    
+    @IBAction func minimumWordRepeatButtonTapped(_ sender: UIButton) {
+        let options = [1,2,3,4,5,6,7,8,9,10]
         tenOptionButtonResponder(sender, isSpeedButton: false, key: "Reset Setting", optionArray: options)
     }
     

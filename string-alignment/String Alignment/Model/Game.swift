@@ -26,8 +26,6 @@ class GameManager {
     var paused = false
     var playerDirection: Int = 3 // 1 == left, 2 == up, 3 == right, 4 == down
     var currentScore: Int = 0
-    var barrierNodesWaitingToBeDisplayed: [SkNodeAndLocation] = []
-    var barrierNodesWaitingToBeRemoved: [SkNodeAndLocation] = []
     var verticalMaxBoundry = Int()
     var verticalMinBoundry = Int()
     var horizontalMaxBoundry = Int()
@@ -189,18 +187,12 @@ class GameManager {
             if time >= nextTime! {
                 if gameIsOver != true {
                     nextTime = time + Double(gameSpeed)
-                    barrierSquareManager()
 //                    scene.updateScoreButtonHalo()
                     scene.updateScoreButtonText()
                     checkIfPaused()
                 }
             }
         }
-    }
-    
-    func barrierSquareManager() {
-        barrierNodesWaitingToBeDisplayed = Array(Set(barrierNodesWaitingToBeDisplayed).subtracting(barrierNodesWaitingToBeRemoved))
-        barrierNodesWaitingToBeRemoved.removeAll()
     }
     
     var gameAnimationsWereRemoved = false

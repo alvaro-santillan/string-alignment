@@ -666,10 +666,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="et9-wm-bbf">
-                                        <rect key="frame" x="135" y="0.0" width="351" height="45"/>
+                                        <rect key="frame" x="135" y="0.0" width="406" height="45"/>
                                     </view>
                                     <button opaque="NO" alpha="0.80000000000000004" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GO-jV-W0k" userLabel="Step / Auto Play " customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
-                                        <rect key="frame" x="486" y="0.0" width="45" height="45"/>
+                                        <rect key="frame" x="541" y="0.0" width="45" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5GO-jV-W0k" secondAttribute="height" multiplier="1:1" id="RBs-gB-hOf"/>
@@ -682,23 +682,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoi-kw-a8i">
-                                        <rect key="frame" x="531" y="0.0" width="10" height="45"/>
-                                    </view>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjg-eF-i5t" userLabel="Return To Settings" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
-                                        <rect key="frame" x="541" y="0.0" width="45" height="45"/>
-                                        <color key="backgroundColor" name="UI Button"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="gjg-eF-i5t" secondAttribute="height" multiplier="1:1" id="gGO-0y-pZC"/>
-                                        </constraints>
-                                        <state key="normal" image="Plus_Icon_Set">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="barrierButtonTapped:" destination="bKH-RY-faG" eventType="touchUpInside" id="iOb-KA-bxv"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xp-fm-nUi">
                                         <rect key="frame" x="586" y="0.0" width="10" height="45"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xp-fm-nUi">
+                                        <rect key="frame" x="596" y="0.0" width="0.0" height="45"/>
                                     </view>
                                     <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0t6-qA-ACA" userLabel="Home" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="596" y="0.0" width="45" height="45"/>
@@ -731,6 +718,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="0t6-qA-ACA" firstAttribute="leading" secondItem="5GO-jV-W0k" secondAttribute="trailing" constant="10" id="W8n-l8-a55"/>
+                                    <constraint firstItem="0xp-fm-nUi" firstAttribute="leading" secondItem="0t6-qA-ACA" secondAttribute="leading" id="ZPv-GQ-oJo"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lMT-5a-1pP"/>
@@ -738,17 +729,14 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="os2-yv-uox" secondAttribute="trailing" multiplier="736/716" id="0Xw-Vc-ahc"/>
                             <constraint firstItem="hZ8-7E-hZ7" firstAttribute="width" secondItem="V6u-dH-R6S" secondAttribute="width" multiplier="135/736" id="35S-7i-gl7"/>
-                            <constraint firstItem="hoi-kw-a8i" firstAttribute="width" secondItem="V6u-dH-R6S" secondAttribute="width" multiplier="10/736" id="4Hu-Jc-4zG"/>
                             <constraint firstItem="os2-yv-uox" firstAttribute="leading" secondItem="lMT-5a-1pP" secondAttribute="trailing" multiplier="20/736" id="AkF-S4-uSV"/>
                             <constraint firstItem="a7y-o8-THV" firstAttribute="width" secondItem="V6u-dH-R6S" secondAttribute="width" multiplier="10/736" id="kxN-sx-DON"/>
                             <constraint firstItem="os2-yv-uox" firstAttribute="height" secondItem="V6u-dH-R6S" secondAttribute="height" multiplier="45/414" id="r56-7X-TDD"/>
                             <constraint firstAttribute="bottom" secondItem="os2-yv-uox" secondAttribute="bottom" multiplier="414/394" id="sEY-5H-ysd"/>
-                            <constraint firstItem="0xp-fm-nUi" firstAttribute="width" secondItem="V6u-dH-R6S" secondAttribute="width" multiplier="10/736" id="zD6-kx-XUK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3h6-dv-rTv"/>
                     <connections>
-                        <outlet property="barrierButton" destination="gjg-eF-i5t" id="biF-aM-ui2"/>
                         <outlet property="homeButton" destination="0t6-qA-ACA" id="QA2-DG-EPk"/>
                         <outlet property="playButton" destination="5GO-jV-W0k" id="eAV-wi-tRh"/>
                         <outlet property="scoreButton" destination="hZ8-7E-hZ7" id="LnM-Rz-A0a"/>
@@ -952,7 +940,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f62-Ey-MOA"/>
+        <segue reference="HB8-7U-962"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Chevron_Down_Icon_Set" width="336" height="384"/>
@@ -964,7 +952,6 @@
         <image name="Linked-In_Icon_Set" width="336" height="384"/>
         <image name="Pause_Icon_Set" width="336" height="384"/>
         <image name="Play_Icon_Set" width="336" height="384"/>
-        <image name="Plus_Icon_Set" width="336" height="384"/>
         <image name="Settings_Icon_Set" width="384" height="384"/>
         <image name="Volume_On_Icon_Set" width="288" height="384"/>
         <namedColor name="Left View Background">

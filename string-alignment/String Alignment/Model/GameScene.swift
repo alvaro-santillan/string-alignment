@@ -32,7 +32,6 @@ class GameScene: SKScene {
     var pathFindingAnimationSpeed = Float()
     var settingsWereChanged = Bool()
     var clearAllWasTapped = Bool()
-    var clearBarriersWasTapped = Bool()
     var clearPathWasTapped = Bool()
     
     var targetHaloColor = UIColor()
@@ -307,8 +306,6 @@ class GameScene: SKScene {
     private func startTheGame() {
         let topCenter = CGPoint(x: 0, y: (frame.size.height / 2) - 25)
         algorithimChoiceName.run(SKAction.move(to: topCenter, duration: 0.4)) {
-//            self.game.initiateSnakeStartingPosition()
-//            self.game.spawnFoodBlock()
             self.game.initaitateRandomSquares()
             self.startingAnimationAndSquareColoring()
         }
@@ -328,7 +325,6 @@ class GameScene: SKScene {
     }
     
     func barrierManager(touches: Set<UITouch>) {
-//        game.pathSelector()
         func selectSquareFromTouch(_ touchLocation: CGPoint) -> SKShapeNode? {
             let squares = self.nodes(at: touchLocation)
             for square in squares {
@@ -347,36 +343,14 @@ class GameScene: SKScene {
                 let squareLocation = Tuple(x: Int(squareLocationAsString![0])!, y: Int(squareLocationAsString![1])!)
                 let vibration = UIImpactFeedbackGenerator(style: .medium)
                 
-                var redOne: CGFloat = 0
-                var greenOne: CGFloat = 0
-                var blueOne: CGFloat = 0
-                var alphaOne: CGFloat = 0
-                
                 if squareLocation.x != 0 && squareLocation.x != (rowCount - 1) {
                     if squareLocation.y != 0 && squareLocation.y != (columnCount - 1) {
-//                        probibly unneded chech below since checked on touch
-                        if self.viewController?.barrierButton.isEnabled == true {
-                            selectedSquare.fillColor.getRed(&redOne, green: &greenOne, blue: &blueOne, alpha: &alphaOne)
-                            if defaults.bool(forKey: "Add Barrier Mode On Setting") {
-//                                    updateScoreButtonText()
-//                                    game.barrierNodesWaitingToBeDisplayed.append(SkNodeAndLocation(square: selectedSquare, location: squareLocation))
-                                selectedSquare.fillColor = selectedSquare.fillColor.withAlphaComponent(alphaOne + 0.05)
-//                                    colorTheBarriers()
-//                                    game.matrix[squareLocation.x][squareLocation.y] = 7
-                            } else {
-//                                    updateScoreButtonText()
-//                                    game.barrierNodesWaitingToBeRemoved.append(SkNodeAndLocation(square: selectedSquare, location: squareLocation))
-//                                    selectedSquare.fillColor = gameboardSquareColor
-//                                    colorTheBarriers()
-                                selectedSquare.fillColor = selectedSquare.fillColor.withAlphaComponent(alphaOne - 0.05)
-//                                    game.matrix[squareLocation.x][squareLocation.y] = 0
-                            }
-                        }
                         if defaults.bool(forKey: "Vibrate On Setting") {
                             vibration.impactOccurred()
                         }
                     }
                 }
+                // Aniation is broken.
                 selectedSquare.run(animationSequanceManager(animation: 2))
             }
         }
@@ -552,7 +526,6 @@ class GameScene: SKScene {
     func squareColoringWhileSnakeIsMoving() {
         if pathFindingAnimationsHaveEnded == true && game.paused == false {
             colorTheGameboard()
-            colorTheBarriers()
         }
     }
     
@@ -573,11 +546,6 @@ class GameScene: SKScene {
         for i in (game.foodPosition) {
             i.square.fillColor = squareColor
         }
-    }
-    
-    func colorTheBarriers() {
-        game.barrierSquareManager()
-        updateScoreButtonText()
     }
     
     // Start: Animation helper function.
@@ -659,16 +627,6 @@ class GameScene: SKScene {
         game.update(time: currentTime)
     }
     
-//    func updateScoreButtonHalo() {
-//        if game.conditionGreen {
-//            self.viewController?.scoreButton.layer.borderColor = UIColor.green.cgColor
-//        } else if game.conditionYellow {
-//            self.viewController?.scoreButton.layer.borderColor = UIColor.yellow.cgColor
-//        } else if game.conditionRed {
-//            self.viewController?.scoreButton.layer.borderColor = UIColor.red.cgColor
-//        }
-//    }
-    
     func updateScoreButtonText() {
         let scoreButtonTag = self.viewController?.scoreButton.tag
         
@@ -687,11 +645,9 @@ class GameScene: SKScene {
     // barrier drawing should not work while animating fix.
     func animationDualButtonManager(buttonsEnabled: Bool) {
         if buttonsEnabled == true {
-            self.viewController?.barrierButton.isEnabled = true
             self.viewController?.playButton.isEnabled = true
         } else if buttonsEnabled == false {
             self.viewController?.playButton.isEnabled = false
-            self.viewController?.barrierButton.isEnabled = false
         }
     }
 }

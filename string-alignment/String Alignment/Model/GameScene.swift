@@ -213,13 +213,13 @@ class GameScene: SKScene {
         if pathFindingAlgorithimName == nil || mazeGenerationAlgorithimName == nil {
             algorithimChoiceName.text = "Oops Something Went Wrong"
         } else if pathFindingAlgorithimName == "None" && mazeGenerationAlgorithimName == "None" {
-            algorithimChoiceName.text = "No Algorithm Selected"
+            algorithimChoiceName.text = "No Words Selected"
         } else if pathFindingAlgorithimName == "None" {
             algorithimChoiceName.text = "\(mazeGenerationAlgorithimName ?? "")"
         } else if mazeGenerationAlgorithimName == "None" {
             algorithimChoiceName.text = "\(pathFindingAlgorithimName ?? "")"
         } else {
-            algorithimChoiceName.text = "\(pathFindingAlgorithimName ?? "") Then \(mazeGenerationAlgorithimName ?? "")"
+            algorithimChoiceName.text = "\(pathFindingAlgorithimName ?? "") & \(mazeGenerationAlgorithimName ?? "")"
         }
         algorithimChoiceName.fontColor = screenLabelColor
         algorithimChoiceName.fontSize = 11

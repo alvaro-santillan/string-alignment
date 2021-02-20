@@ -46,6 +46,7 @@ class StringAlignment {
             costMatrix.append(tempArray)
         }
 
+        var squareCounter = 0
         // Update matrix to better values.
         for x in 0...startString.count - 1 {
             for y in 0...endString.count - 1 {
@@ -60,21 +61,28 @@ class StringAlignment {
                     // Populate first spot with 0 runs once.
                     costMatrix[x][y] = 0
                     
-                    // Animations
-                    let newI = SkNodeLocationAndColor(square: playableGameboard[y].square, location: playableGameboard[y].location, color: .orange)
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .yellow)
                     pendingAnimations.append([newI])
                 } else if endString[y] == "-" {
                     // Populate the first x and y columns in the matrix.
                     costMatrix[x][y] = x * deleteCost
                     
                     // Animations
-                    let newI = SkNodeLocationAndColor(square: playableGameboard[y].square, location: playableGameboard[y].location, color: .systemPink)
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .systemPink)
                     pendingAnimations.append([newI])
+//                    print(x, playableGameboard[x].location)
                 } else if endString[y] == startString[x] {
                     costMatrix[x][y] = min(topPlusCost, leftPlusCost, diagonal)
+                    
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .blue)
+                    pendingAnimations.append([newI])
                 } else {
                     costMatrix[x][y] = min(topPlusCost, leftPlusCost, diagonalPlusCost)
+                    
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .green)
+                    pendingAnimations.append([newI])
                 }
+                squareCounter += 1
             }
         }
         return (costMatrix, pendingAnimations)

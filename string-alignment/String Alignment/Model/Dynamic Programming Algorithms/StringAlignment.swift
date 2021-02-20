@@ -11,6 +11,12 @@
 import Foundation
 
 class StringAlignment {
+    weak var scene: GameScene!
+    
+    init(scene: GameScene) {
+        self.scene = scene
+    }
+    
     func stringFormater(startString: String) -> [String] {
         var upperCasedStartString = Array(startString.uppercased())
         upperCasedStartString.insert("-", at: upperCasedStartString.startIndex)
@@ -23,7 +29,9 @@ class StringAlignment {
         return startStringArray
     }
     
-    func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> [[Int]] {
+    func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> ([[Int]], [[SkNodeLocationAndColor]]) {
+        var pendingAnimations = [[SkNodeLocationAndColor]]()
+        let playableGameboard = scene.playableGameboard
         // The worst score, so algorithim can only improve.
         // delete, sub, or insert cost of more then ten will cause a integer overflow.
         let infinity = Int.max-10
@@ -51,9 +59,17 @@ class StringAlignment {
                 if endString[y] == "-" && startString[x] == "-" {
                     // Populate first spot with 0 runs once.
                     costMatrix[x][y] = 0
+                    
+                    // Animations
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[y].square, location: playableGameboard[y].location, color: .orange)
+                    pendingAnimations.append([newI])
                 } else if endString[y] == "-" {
                     // Populate the first x and y columns in the matrix.
                     costMatrix[x][y] = x * deleteCost
+                    
+                    // Animations
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[y].square, location: playableGameboard[y].location, color: .systemPink)
+                    pendingAnimations.append([newI])
                 } else if endString[y] == startString[x] {
                     costMatrix[x][y] = min(topPlusCost, leftPlusCost, diagonal)
                 } else {
@@ -61,7 +77,7 @@ class StringAlignment {
                 }
             }
         }
-        return costMatrix
+        return (costMatrix, pendingAnimations)
     }
 
     func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> [String] {

@@ -140,14 +140,16 @@ class GameManager {
             let subCost = 2
             let minRepeat = 1
 
-            let sa = StringAlignment()
+            let sa = StringAlignment(scene: scene)
             
 //            let startString = ["-","B","E","A","R"]
 //            let endString = ["-","B","A","R","E"]
             let endString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name") ?? "ERROR")
             let startString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name") ?? "ERROR")
             
-            let costMatrix = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+            let results = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+            let costMatrix = results.0
+            swapSquareAndColor = results.1
             let optimalOperations = sa.extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
             let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
 
@@ -162,13 +164,6 @@ class GameManager {
             print("Out Of Bounds Error", scene.pathFindingAlgorithimChoice)
         }
     }
-    
-//    func searchSelector() {
-//        if scene.mazeGeneratingAlgorithimChoice == 1 {
-//            let bis = BinarySearch(scene: scene)
-//            (searchHistory, targetFound, target) = bis.binarySearchHandler()
-//        }
-//    }
     
     func bringOvermatrix(tempMatrix: [[Int]]) {
         matrix = tempMatrix

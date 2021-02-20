@@ -137,36 +137,45 @@ class GameManager {
             let newI = SkNodeLocationAndColor(square: scene.playableGameboard[0].square, location: scene.playableGameboard[0].location, color: scene.playableGameboard[0].square.fillColor)
             swapSquareAndColor.append([newI])
         } else if scene.pathFindingAlgorithimChoice == 1 {
-            let bs = BubbleSort(scene: scene)
-            swapSquareAndColor = bs.bubbleSort(resuming: resuming)
-        } else if scene.pathFindingAlgorithimChoice == 2 {
-            let iss = InsertionSort(scene: scene)
-            swapSquareAndColor = iss.insertionSort(resuming: resuming)
-        } else if scene.pathFindingAlgorithimChoice == 3 {
-            let qs = QuickSortAndMedianOfMedians(scene: scene)
-            swapSquareAndColor = qs.quickSortHelper(resuming: resuming)
-        } else if scene.pathFindingAlgorithimChoice == 4 {
-            let nqs = QuickSort(scene: scene)
-            swapSquareAndColor = nqs.quickSortHelper(resuming: resuming)
-        } else if scene.pathFindingAlgorithimChoice == 5 {
-            let ss = SelectionSort(scene: scene)
-            swapSquareAndColor = ss.selectionSort(resuming: resuming)
-        }  else {
+            let insertCost = 1
+            let deleteCost = 1
+            let subCost = 2
+            let minRepeat = 1
+
+            var startString = ["-","B","E","A","R"]
+            var endString = ["-","B","A","R","E"]
+            startString = ["-","P","L","A","I","N"]
+            endString = ["-","P","L","A","N","E"]
+            startString = ["-","F","L","O","U","R"]
+            endString = ["-","F","L","O","W","E","R"]
+            startString = ["-","A","H","I","G","H","S","T","E","P"]
+            endString = ["-","H","G","I","H","A","P","E"]
+            startString = ["-","E","X","P","O","N","E","C","T","I","A","L"]
+            endString = ["-","P","O","L","Y","N","O","M","I","A","L"]
+            startString = ["-","A","C","G","T","C","A","T","C","A"]
+            endString = ["-","T","A","G","T","G","T","C","A"]
+
+            let sa = StringAlignment()
+            let costMatrix = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+            let optimalOperations = sa.extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+            let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
+
+            print("--------------------------Part 1------------------------------")
+            for i in costMatrix {
+                print(i)
+            }
+            print(optimalOperations)
+            print(commonStrings)
+            
+        } else {
             print("Out Of Bounds Error", scene.pathFindingAlgorithimChoice)
         }
     }
     
     func searchSelector() {
-        if scene.mazeGeneratingAlgorithimChoice == 2 {
-            let linear = (scene.gameBoard)
-            let ls = LinearSearch(scene: scene)
-            (searchHistory, targetFound, target) = ls.LinearSearch(gameboard: linear)
-        } else if scene.mazeGeneratingAlgorithimChoice == 1 {
+        if scene.mazeGeneratingAlgorithimChoice == 1 {
             let bis = BinarySearch(scene: scene)
             (searchHistory, targetFound, target) = bis.binarySearchHandler()
-        } else if scene.mazeGeneratingAlgorithimChoice == 3 {
-            let js = JumpSearch(scene: scene)
-            (searchHistory, targetFound, target) = js.jumpSearch()
         }
     }
     

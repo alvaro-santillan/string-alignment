@@ -124,10 +124,8 @@ class GameManager {
                 }
             }
         }
-        
         sortSelector(resuming: false)
         searchSelector()
-
     }
     
     func sortSelector(resuming: Bool) {
@@ -142,20 +140,13 @@ class GameManager {
             let subCost = 2
             let minRepeat = 1
 
-            var startString = ["-","B","E","A","R"]
-            var endString = ["-","B","A","R","E"]
-            startString = ["-","P","L","A","I","N"]
-            endString = ["-","P","L","A","N","E"]
-            startString = ["-","F","L","O","U","R"]
-            endString = ["-","F","L","O","W","E","R"]
-            startString = ["-","A","H","I","G","H","S","T","E","P"]
-            endString = ["-","H","G","I","H","A","P","E"]
-            startString = ["-","E","X","P","O","N","E","C","T","I","A","L"]
-            endString = ["-","P","O","L","Y","N","O","M","I","A","L"]
-            startString = ["-","A","C","G","T","C","A","T","C","A"]
-            endString = ["-","T","A","G","T","G","T","C","A"]
-
             let sa = StringAlignment()
+            
+//            let startString = ["-","B","E","A","R"]
+//            let endString = ["-","B","A","R","E"]
+            let endString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name") ?? "ERROR")
+            let startString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name") ?? "ERROR")
+            
             let costMatrix = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
             let optimalOperations = sa.extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
             let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)

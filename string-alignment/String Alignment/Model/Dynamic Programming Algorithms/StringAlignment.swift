@@ -11,6 +11,18 @@
 import Foundation
 
 class StringAlignment {
+    func stringFormater(startString: String) -> [String] {
+        var upperCasedStartString = Array(startString.uppercased())
+        upperCasedStartString.insert("-", at: upperCasedStartString.startIndex)
+        
+        var startStringArray = [String]()
+        for letter in upperCasedStartString {
+            startStringArray.append(String(letter))
+        }
+        
+        return startStringArray
+    }
+    
     func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> [[Int]] {
         // The worst score, so algorithim can only improve.
         // delete, sub, or insert cost of more then ten will cause a integer overflow.

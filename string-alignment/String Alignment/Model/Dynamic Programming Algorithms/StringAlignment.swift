@@ -46,7 +46,8 @@ class StringAlignment {
             costMatrix.append(tempArray)
         }
 
-        var squareCounter = 0
+        var squareCounter = 18 // HARDCODED
+//        var oldX = 0
         // Update matrix to better values.
         for x in 0...startString.count - 1 {
             for y in 0...endString.count - 1 {
@@ -68,7 +69,7 @@ class StringAlignment {
                     costMatrix[x][y] = x * deleteCost
                     
                     // Animations
-                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .systemPink)
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .red)
                     pendingAnimations.append([newI])
 //                    print(x, playableGameboard[x].location)
                 } else if endString[y] == startString[x] {
@@ -82,7 +83,14 @@ class StringAlignment {
                     let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .green)
                     pendingAnimations.append([newI])
                 }
-                squareCounter += 1
+                
+                if y == 14 {
+                    squareCounter += 3 // HARDCODED
+//                    oldX = x
+                } else {
+//                print(x)
+                    squareCounter += 1 //HARDCODED
+                }
             }
         }
         return (costMatrix, pendingAnimations)

@@ -19,7 +19,6 @@
 		3812394E23C68E2C0066B3FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3812394D23C68E2C0066B3FA /* Assets.xcassets */; };
 		3812395123C68E2C0066B3FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3812394F23C68E2C0066B3FA /* LaunchScreen.storyboard */; };
 		3812395923C68F450066B3FA /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3812395823C68F450066B3FA /* Game.swift */; };
-		3828412F24D91BAC00850BE2 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3828412E24D91BAC00850BE2 /* BinarySearch.swift */; };
 		382F0F1724AD527B0022E521 /* Custom Data Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F0F1624AD527B0022E521 /* Custom Data Structures.swift */; };
 		3860665524CD0D5C00AD91DC /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3860665424CD0D5C00AD91DC /* BubbleSort.swift */; };
 		3868F97C2426960C008F7B34 /* HelpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3868F97B2426960C008F7B34 /* HelpScreenViewController.swift */; };
@@ -45,7 +44,6 @@
 		3812395023C68E2C0066B3FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3812395223C68E2C0066B3FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3812395823C68F450066B3FA /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		3828412E24D91BAC00850BE2 /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		382F0F1624AD527B0022E521 /* Custom Data Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Data Structures.swift"; sourceTree = "<group>"; };
 		3860665424CD0D5C00AD91DC /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
 		3868F97B2426960C008F7B34 /* HelpScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpScreenViewController.swift; sourceTree = "<group>"; };
@@ -98,14 +96,6 @@
 			path = "String Alignment";
 			sourceTree = "<group>";
 		};
-		3832DFDD24D8CD050082291C /* Search Algorithims */ = {
-			isa = PBXGroup;
-			children = (
-				3828412E24D91BAC00850BE2 /* BinarySearch.swift */,
-			);
-			path = "Search Algorithims";
-			sourceTree = "<group>";
-		};
 		383DB19C24AC56190071EC65 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,7 +112,6 @@
 				3803D89C2497F87A002A6251 /* Custom Extensions.swift */,
 				382F0F1624AD527B0022E521 /* Custom Data Structures.swift */,
 				610284AE25E1A7CE0064E9EF /* Dynamic Programming Algorithms */,
-				3832DFDD24D8CD050082291C /* Search Algorithims */,
 				3860665624CD0D6400AD91DC /* Sorting Algorithms */,
 				3812394623C68E290066B3FA /* GameScene.swift */,
 				3812395823C68F450066B3FA /* Game.swift */,
@@ -259,7 +248,6 @@
 				3803D89B2497F7D7002A6251 /* Custom UI Managers.swift in Sources */,
 				3812394723C68E290066B3FA /* GameScene.swift in Sources */,
 				387FD13B241DC51C0004FD78 /* MainScreenTableViewCell.swift in Sources */,
-				3828412F24D91BAC00850BE2 /* BinarySearch.swift in Sources */,
 				3812395923C68F450066B3FA /* Game.swift in Sources */,
 				3812394923C68E290066B3FA /* MainScreenViewController.swift in Sources */,
 				3812394123C68E290066B3FA /* AppDelegate.swift in Sources */,

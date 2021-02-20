@@ -125,7 +125,7 @@ class GameManager {
             }
         }
         sortSelector(resuming: false)
-        searchSelector()
+//        searchSelector()
     }
     
     func sortSelector(resuming: Bool) {
@@ -163,12 +163,12 @@ class GameManager {
         }
     }
     
-    func searchSelector() {
-        if scene.mazeGeneratingAlgorithimChoice == 1 {
-            let bis = BinarySearch(scene: scene)
-            (searchHistory, targetFound, target) = bis.binarySearchHandler()
-        }
-    }
+//    func searchSelector() {
+//        if scene.mazeGeneratingAlgorithimChoice == 1 {
+//            let bis = BinarySearch(scene: scene)
+//            (searchHistory, targetFound, target) = bis.binarySearchHandler()
+//        }
+//    }
     
     func bringOvermatrix(tempMatrix: [[Int]]) {
         matrix = tempMatrix

@@ -47,7 +47,7 @@ class StringAlignment {
             costMatrix.append(tempArray)
         }
 
-        var squareCounter = 18 // HARDCODED        
+        var squareCounter = 17 // HARDCODED
         
         // Update matrix to better values.
         for x in 0...startString.count - 1 {
@@ -105,7 +105,7 @@ class StringAlignment {
                 }
                 
                 if y == 14 {
-                    squareCounter += 3 // HARDCODED
+                    squareCounter += 2 // HARDCODED
 //                    oldX = x
                 } else {
 //                print(x)
@@ -122,7 +122,7 @@ class StringAlignment {
         let infinity = Int.max-10
 
         var target: [SkNodeAndLocation] = []
-        var squareCounter = 149 // HARDCODED
+        var squareCounter = 142 // HARDCODED
         pendingAnimations.append(scene.gameBoard[squareCounter])
         target.append(scene.gameBoard.first(where: { $0.location == Tuple(x: 1, y: 1)})!) // HARDCODED
         
@@ -144,7 +144,7 @@ class StringAlignment {
                 currentLocationX = currentLocationX-1
                 optimalOperations.append("delete")
                 
-                squareCounter -= 19
+                squareCounter -= 18 // HARDCODED
 //                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .purple)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
@@ -154,8 +154,8 @@ class StringAlignment {
                 currentLocationY = currentLocationY-1
                 optimalOperations.append("no-op")
                 
-                squareCounter -= 1
-                squareCounter -= 19
+                squareCounter -= 1 // HARDCODED
+                squareCounter -= 18 // HARDCODED
 //                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .brown)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
@@ -165,8 +165,8 @@ class StringAlignment {
                 currentLocationY = currentLocationY-1
                 optimalOperations.append("sub")
                 
-                squareCounter -= 1
-                squareCounter -= 19
+                squareCounter -= 1 // HARDCODED
+                squareCounter -= 18 // HARDCODED
 //                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .orange)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
@@ -175,7 +175,7 @@ class StringAlignment {
                 currentLocationY = currentLocationY-1
                 optimalOperations.append("insert")
                 
-                squareCounter -= 1
+                squareCounter -= 1 // HARDCODED
 //                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .systemPink)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }

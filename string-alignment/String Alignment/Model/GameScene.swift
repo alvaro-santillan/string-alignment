@@ -27,6 +27,8 @@ class GameScene: SKScene {
     var respectRowCount = Bool()
     let pathFindingAlgorithimChoice = UserDefaults.standard.integer(forKey: "Selected Path Finding Algorithim")
     let mazeGeneratingAlgorithimChoice = UserDefaults.standard.integer(forKey: "Selected Maze Algorithim")
+    let pathFindingAlgorithimName = UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name")
+    let mazeGenerationAlgorithimName = UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name")
     
     // Game settings
     var pathFindingAnimationSpeed = Float()
@@ -192,8 +194,9 @@ class GameScene: SKScene {
             squareWidth = 35
         case 2:
             squareWidth = 40
+        // Always Case 3
         case 3:
-            squareWidth = 45
+            squareWidth = 46
         case 5:
             squareWidth = 50
         default:
@@ -212,9 +215,6 @@ class GameScene: SKScene {
     }
     
     private func createScreenLabels() {
-        let pathFindingAlgorithimName = defaults.string(forKey: "Selected Path Finding Algorithim Name")
-        let mazeGenerationAlgorithimName = defaults.string(forKey: "Selected Maze Algorithim Name")
-        
         algorithimChoiceName = SKLabelNode(fontNamed: "Dogica_Pixel")
         
         if pathFindingAlgorithimName == nil || mazeGenerationAlgorithimName == nil {
@@ -238,6 +238,22 @@ class GameScene: SKScene {
     
     func depopulateGameBoard() {
         gameBoard.removeAll()
+    }
+    
+    func stringFormater(startString: String, addExtraSpace: Bool) -> [String] {
+        var upperCasedStartString = Array(startString.uppercased())
+        upperCasedStartString.insert("-", at: upperCasedStartString.startIndex)
+        
+        if addExtraSpace == true {
+            upperCasedStartString.insert("-", at: upperCasedStartString.startIndex)
+        }
+        
+        var startStringArray = [String]()
+        for letter in upperCasedStartString {
+            startStringArray.append(String(letter))
+        }
+        
+        return startStringArray.reversed()
     }
     
     private func createGameBoard() {
@@ -271,10 +287,9 @@ class GameScene: SKScene {
         yAncor = CGFloat(yAncor - (squareWidth/2))
         
         createBackground()
-        var tempUpperWord = ["-","-","A","T","T","R","A","C","T","I","V","E","N","E","S","S"]
-        tempUpperWord = tempUpperWord.reversed()
-        var tempLeftWord = ["-","A","L","E","R","T"]
-        tempLeftWord = tempLeftWord.reversed()
+        
+        var tempUpperWord = stringFormater(startString: pathFindingAlgorithimName!, addExtraSpace: true)
+        var tempLeftWord = stringFormater(startString: mazeGenerationAlgorithimName!, addExtraSpace: false)
         
         for x in 0...rowCount - 1 {
             for y in 0...columnCount - 1 {
@@ -516,7 +531,7 @@ class GameScene: SKScene {
         
         func extractAlignmentAnimationEnding(searchWaitTime: SKAction, squareLocationAndColor: SkNodeAndLocation) {
             squareLocationAndColor.square.lineWidth = 5
-            squareLocationAndColor.square.strokeColor = self.noOpperationColor
+            squareLocationAndColor.square.strokeColor = self.finalPathColor
             
             DispatchQueue.main.asyncAfter(deadline: .now() + searchWaitTime.duration) {
                 if self.sucssesfullyFound == false {

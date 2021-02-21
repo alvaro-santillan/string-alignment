@@ -99,17 +99,17 @@ class GameScene: SKScene {
         processingHaloColor = colors[legendData[5][1] as! Int]
         finalPathColor = colors[legendData[6][1] as! Int]
         finalLettersColor = colors[legendData[7][1] as! Int]
-        gameBoardColor = colors[legendData[8][1] as! Int]
+//        gameBoardColor = colors[legendData[8][1] as! Int]
         GameBoardTextColor = colors[legendData[9][1] as! Int]
         
         if defaults.bool(forKey: "Dark Mode On Setting") {
-            gameboardSquareColor = darkBackgroundColors[legendData[3][1] as! Int]
+            gameboardSquareColor = darkBackgroundColors[legendData[8][1] as! Int]
             fadedGameBoardSquareColor = darkBackgroundColors[legendData[3][1] as! Int].withAlphaComponent(0.5)
             gameBackgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 1.00)
             screenLabelColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.00)
             scoreButtonColor = squareColor
         } else {
-            gameboardSquareColor = lightBackgroundColors[legendData[3][1] as! Int]
+            gameboardSquareColor = lightBackgroundColors[legendData[8][1] as! Int]
             fadedGameBoardSquareColor = lightBackgroundColors[legendData[3][1] as! Int].withAlphaComponent(0.5)
             gameBackgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
             screenLabelColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
@@ -292,9 +292,19 @@ class GameScene: SKScene {
                     playableGameboard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
                 }
                 
+                let squareLabelNode = SKLabelNode(fontNamed: "Dogica_Pixel")
+                squareLabelNode.text = "∞"
+                squareLabelNode.fontColor = GameBoardTextColor
+                squareLabelNode.fontSize = 11
+                squareLabelNode.horizontalAlignmentMode = .center
+                squareLabelNode.verticalAlignmentMode = .center
+//                algorithimChoiceName.position = CGPoint(x: 0, y: 185)
+                squareLabelNode.zPosition = 1
+                
                 square.name = String(x) + "," + String(y)
                 square.position = CGPoint(x: xAncor, y: yAncor)
                 square.strokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+                square.addChild(squareLabelNode)
                 
                 gameBoard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
                 gameBackground.addChild(square)

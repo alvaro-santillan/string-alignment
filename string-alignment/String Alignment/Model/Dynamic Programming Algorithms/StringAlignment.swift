@@ -46,15 +46,7 @@ class StringAlignment {
             costMatrix.append(tempArray)
         }
 
-        var squareCounter = 18 // HARDCODED
-//        var oldX = 0
-        
-        // Wired Animation Bug Fix.
-        var newI = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .gray)
-        pendingAnimations.append([newI])
-        newI = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .gray)
-        pendingAnimations.append([newI])
-        
+        var squareCounter = 18 // HARDCODED        
         
         // Update matrix to better values.
         for x in 0...startString.count - 1 {

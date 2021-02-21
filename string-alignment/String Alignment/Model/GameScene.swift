@@ -123,8 +123,8 @@ class GameScene: SKScene {
 //                }
 //                self.viewController?.loadThePausedButton()
 //                endingAnimationCount = 0
-                game.swapSquareAndColor.removeAll()
-                game.searchHistory.removeAll()
+                game.alignStringAnimations.removeAll()
+                game.extractAlignmentAnimations.removeAll()
                 swapCounter = 0
                 comparisonCounter = 0
 //                print("hititit")
@@ -372,30 +372,7 @@ class GameScene: SKScene {
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + gameBoardSquareWait.duration) {
-                snakeBodyAnimationBegining()
-            }
-        }
-        
-        // 2
-        func snakeBodyAnimationBegining() {
-            var snakeBodySquareWait = SKAction()
-            
-            for (squareIndex, squareLocationAndColor) in game.orderedSquareShades.enumerated() {
-                squareLocationAndColor.square.run(.sequence([snakeBodySquareWait, animationSequanceManager(animation: 1)]), completion: {snakeBodyAnimationEnding(squareAndLocation: squareLocationAndColor, snakeBodySquareWait: snakeBodySquareWait)})
-                snakeBodySquareWait = .wait(forDuration: TimeInterval(squareIndex) * 0.002) // 0.085
-            }
-        }
-        
-        // 3
-        var randomAnimationCalled = false
-        func snakeBodyAnimationEnding(squareAndLocation: SkNodeLocationAndColor, snakeBodySquareWait: SKAction) {
-            squareAndLocation.square.run(SKAction.colorTransitionActionFill(fromColor: gameboardSquareColor, toColor: squareAndLocation.color, duration: 0.5))
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + snakeBodySquareWait.duration) {
-                if randomAnimationCalled == false {
-                    foodSquareAnimationBegining()
-                    randomAnimationCalled = true
-                }
+                foodSquareAnimationBegining()
             }
         }
         
@@ -403,10 +380,9 @@ class GameScene: SKScene {
         func foodSquareAnimationBegining() {
             var randomSquareWait = SKAction()
             
-            for (squareIndex, squareLocationAndColor) in game.shuffledSquareShades.enumerated() {
-                squareLocationAndColor.square.run(.sequence([randomSquareWait, animationSequanceManager(animation: 1)]), completion: {foodSquareAnimationEnding(squareLocationAndColor: squareLocationAndColor, randomSquareWait: randomSquareWait)})
-                randomSquareWait = .wait(forDuration: TimeInterval(squareIndex) * 0.002) // 0.085
-            }
+            let squareLocationAndColor = game.shuffledSquareShades.first
+                randomSquareWait = .wait(forDuration: TimeInterval(1) * 1)
+            squareLocationAndColor!.square.run(.sequence([randomSquareWait, animationSequanceManager(animation: 1)]), completion: {foodSquareAnimationEnding(squareLocationAndColor: squareLocationAndColor!, randomSquareWait: randomSquareWait)})
         }
         
         // 5
@@ -434,26 +410,26 @@ class GameScene: SKScene {
     var hasRun = false
     var sucssesfullyFound = false
     var endingAnimationCount = Double()
-    func pathFindingAnimationsAndSquareColoring() {
-        
-        func swapAnimationBegining() {
+    
+    func stringAlignmentAnimationsAndSquareColoring() {
+        func alignAnimationBegining() {
             var queuedSquareWait = SKAction()
             pathFindingAnimationsHaveEnded = false
             
-            for (squareIndex, innerSquareArray) in game.swapSquareAndColor.enumerated() {
+            for (squareIndex, innerSquareArray) in game.alignStringAnimations.enumerated() {
                 for squareLocationAndColor in innerSquareArray {
                     if innerSquareArray.count != 1 {
-                        squareLocationAndColor.square.run(.sequence([queuedSquareWait]), completion: {swapAnimationEnding(squareLocationAndColor: squareLocationAndColor, swap: true, duration: queuedSquareWait)})
+                        squareLocationAndColor.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationAndColor: squareLocationAndColor, swap: true, duration: queuedSquareWait)})
                     } else {
-                        squareLocationAndColor.square.run(.sequence([queuedSquareWait]), completion: {swapAnimationEnding(squareLocationAndColor: squareLocationAndColor, swap: false, duration: queuedSquareWait)})
+                        squareLocationAndColor.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationAndColor: squareLocationAndColor, swap: false, duration: queuedSquareWait)})
                     }
                 }
                 queuedSquareWait = .wait(forDuration: TimeInterval(squareIndex) * Double(pathFindingAnimationSpeed))
-                game.swapSquareAndColor.remove(at: 0)
+                game.alignStringAnimations.remove(at: 0)
             }
         }
         
-        func swapAnimationEnding(squareLocationAndColor: SkNodeLocationAndColor, swap: Bool, duration: SKAction) {
+        func alignAnimationEnding(squareLocationAndColor: SkNodeLocationAndColor, swap: Bool, duration: SKAction) {
 //            Swap Animation, Not Trash
 //            squareLocationAndColor.square.run(.sequence([animationSequanceManager(animation: 2)]))
             squareLocationAndColor.square.fillColor = squareLocationAndColor.color
@@ -481,29 +457,29 @@ class GameScene: SKScene {
                     if (self.hasRun == false) {
                         self.gamboardAnimationEnded = true
                         self.animationDualButtonManager(buttonsEnabled: true)
-                        searchAnimationBegining()
+                        extractAlignmentAnimationBegining()
                     }
                     self.hasRun = true
                 }
             }
         }
         
-        func searchAnimationBegining() {
+        func extractAlignmentAnimationBegining() {
             if game.target.count != 0 {
                 game.target[0].square.strokeColor = self.targetHaloColor
             
                 var searchWaitTime = SKAction()
                 
-                for (squareIndex, squareLocationAndColor) in game.searchHistory.enumerated() {
+                for (squareIndex, squareLocationAndColor) in game.extractAlignmentAnimations.enumerated() {
 //                    Swap Animation, Not Trash
 //                    squareLocationAndColor.square.run(.sequence([searchWaitTime, animationSequanceManager(animation: 2)]),
-                    squareLocationAndColor.square.run(.sequence([searchWaitTime]), completion: {searchAnimationEnding(searchWaitTime: searchWaitTime, squareLocationAndColor: squareLocationAndColor)})
+                    squareLocationAndColor.square.run(.sequence([searchWaitTime]), completion: {extractAlignmentAnimationEnding(searchWaitTime: searchWaitTime, squareLocationAndColor: squareLocationAndColor)})
                     searchWaitTime = .wait(forDuration: TimeInterval(squareIndex) * 0.02) // 0.085
                 }
             }
         }
         
-        func searchAnimationEnding(searchWaitTime: SKAction, squareLocationAndColor: SkNodeAndLocation) {
+        func extractAlignmentAnimationEnding(searchWaitTime: SKAction, squareLocationAndColor: SkNodeAndLocation) {
             squareLocationAndColor.square.lineWidth = 5
             squareLocationAndColor.square.strokeColor = self.searchHaloColor
             
@@ -520,7 +496,7 @@ class GameScene: SKScene {
         visitedSquareDispatchCalled = false
         pathSquareDispatchCalled = false
         
-        swapAnimationBegining()
+        alignAnimationBegining()
     }
     
     func squareColoringWhileSnakeIsMoving() {
@@ -610,12 +586,12 @@ class GameScene: SKScene {
 //            noSettingsChange()
         }
         
-        if game!.swapSquareAndColor.count > 0 && gamboardAnimationEnded == true {
+        if game!.alignStringAnimations.count > 0 && gamboardAnimationEnded == true {
 //            print(gamboardAnimationEnded, game!.visitedNodeArray.count)
             if gamboardAnimationEnded == true {
                 // Dissble buttons for pathfinding animation.
                 animationDualButtonManager(buttonsEnabled: true)
-                pathFindingAnimationsAndSquareColoring()
+                stringAlignmentAnimationsAndSquareColoring()
 //                UserDefaults.standard.set(animatedQueuedSquareCount, forKey: "highScore")
 //                UserDefaults.standard.set(animatedVisitedSquareCount, forKey: "lastScore")
             }

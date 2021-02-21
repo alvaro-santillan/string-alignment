@@ -33,7 +33,7 @@ class GameManager {
     var foodPosition: [SkNodeAndLocation] = []
     
     var target: [SkNodeAndLocation] = []
-    var searchHistory: [SkNodeAndLocation] = []
+    var extractAlignmentAnimations: [SkNodeAndLocation] = []
     var binarySearHistory: [[SkNodeAndLocation]] = []
     var targetFound = false
     
@@ -49,29 +49,19 @@ class GameManager {
     // Sort
     var orderedSquareShades: [SkNodeLocationAndColor] = []
     var shuffledSquareShades: [SkNodeLocationAndColor] = []
-    var swapSquareAndColor = [[SkNodeLocationAndColor]]()
+    var alignStringAnimations = [[SkNodeLocationAndColor]]()
     var swapAnimationsSplit = [[[SkNodeLocationAndColor]]]()
     
     func roundUp(factor: Int, n: Int) -> Int {
         return (n + 24) / 25 * 25;
     }
     
-    
-    
     func initaitateRandomSquares() {
         var colorArray = [Float]()
         let playableGameboardSize = scene!.playableGameboardSize
         
-        if scene.nativeBoardLayoutOption == 5 { // 5 Few Unique
-            let divideFactor = playableGameboardSize/6
-            for i in 1...playableGameboardSize+1 {
-                let newI = roundUp(factor: divideFactor, n: i)
-                colorArray.append(1 - Float(newI)/Float(playableGameboardSize))
-            }
-        } else {
-            for i in 0...playableGameboardSize {
-                colorArray.append(1 - Float(i)/Float(playableGameboardSize))
-            }
+        for i in 0...playableGameboardSize {
+            colorArray.append(1 - Float(i)/Float(playableGameboardSize))
         }
         
         // Animation 1: Displays colors in order
@@ -80,45 +70,18 @@ class GameManager {
         for (skNodeAndLocation) in scene.gameBoard {
             if skNodeAndLocation.location.x != 0 && skNodeAndLocation.location.x != (scene.rowCount - 1) {
                 if skNodeAndLocation.location.y != 0 && skNodeAndLocation.location.y != (scene.columnCount - 1) {
-                    skNodeAndLocation.square.fillColor = scene.squareColor.withAlphaComponent(CGFloat(colorArrayTwo.first ?? 0.1234))
+                    skNodeAndLocation.square.fillColor = scene.squareColor
                     orderedSquareShades.append(SkNodeLocationAndColor(square: skNodeAndLocation.square, location: skNodeAndLocation.location, color: skNodeAndLocation.square.fillColor))
                     colorArrayTwo.removeFirst()
                 }
             }
         }
         
-        print("current board layout", scene.nativeBoardLayoutOption)
-        if scene.nativeBoardLayoutOption == 1 || scene.nativeBoardLayoutOption == 2 || scene.nativeBoardLayoutOption == 5 { // No Change, Randomize Board, Few Unique
-            colorArray.shuffle()
-        } else if scene.nativeBoardLayoutOption == 3 { // 3 Most
-            let arrayCount = Int(colorArray.count/6)
-            let upperSortedSquares = (colorArray.count) - arrayCount
-            colorArray[arrayCount...upperSortedSquares].shuffle()
-        } else if scene.nativeBoardLayoutOption == 4 { // 4 Few
-            let arrayCount = Int(colorArray.count/6)
-            let upperSortedSquares = (colorArray.count) - arrayCount
-            colorArray[...arrayCount].shuffle()
-            colorArray[upperSortedSquares...].shuffle()
-        } else if scene.nativeBoardLayoutOption == 6 { // 6 Top
-            let validTopSquares = ((scene.rowCount - 2)/3) * (scene.columnCount - 2)
-            colorArray[...(validTopSquares - 1)].shuffle()
-        } else if scene.nativeBoardLayoutOption == 7 { // 7 Center
-           let validCenterSquares = ((scene.rowCount - 2)/3) * (scene.columnCount - 2)
-            colorArray[validCenterSquares...((colorArray.count - validCenterSquares) - 2)].shuffle()
-        } else if scene.nativeBoardLayoutOption == 8 { // 8 Bottom
-           let validBottomSquares = ((scene.rowCount - 2)/3) * (scene.columnCount - 2)
-            colorArray[((colorArray.count - validBottomSquares) + 1)...].shuffle()
-        } else if scene.nativeBoardLayoutOption == 9 { // 9 Reverse Sorted
-            colorArray.reverse()
-        } else if scene.nativeBoardLayoutOption == 10 { // 10 Sorted
-            // Do nothing
-        }
-        
         // Animation 2: Squares are suffled
         for (skNodeAndLocation) in scene.gameBoard {
             if skNodeAndLocation.location.x != 0 && skNodeAndLocation.location.x != (scene.rowCount - 1) {
                 if skNodeAndLocation.location.y != 0 && skNodeAndLocation.location.y != (scene.columnCount - 1) {
-                    skNodeAndLocation.square.fillColor = scene.squareColor.withAlphaComponent(CGFloat(colorArray.first ?? 1.0))
+                    skNodeAndLocation.square.fillColor = scene.squareColor
                     shuffledSquareShades.append(SkNodeLocationAndColor(square: skNodeAndLocation.square, location: skNodeAndLocation.location, color: skNodeAndLocation.square.fillColor))
                     colorArray.removeFirst()
                 }
@@ -133,7 +96,7 @@ class GameManager {
         if scene.pathFindingAlgorithimChoice == 0 {
             // Hack to get search animations to run by them selves.
             let newI = SkNodeLocationAndColor(square: scene.playableGameboard[0].square, location: scene.playableGameboard[0].location, color: scene.playableGameboard[0].square.fillColor)
-            swapSquareAndColor.append([newI])
+            alignStringAnimations.append([newI])
         } else if scene.pathFindingAlgorithimChoice == 1 {
             let insertCost = 1
             let deleteCost = 1
@@ -149,10 +112,10 @@ class GameManager {
             
             let results = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
             let costMatrix = results.0
-            swapSquareAndColor = results.1
+            alignStringAnimations = results.1
             
             let optimalOperations = sa.extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
-            searchHistory = optimalOperations.1
+            extractAlignmentAnimations = optimalOperations.1
             targetFound = optimalOperations.2
             target = optimalOperations.3
 //            let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)

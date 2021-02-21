@@ -271,6 +271,10 @@ class GameScene: SKScene {
         yAncor = CGFloat(yAncor - (squareWidth/2))
         
         createBackground()
+        var tempUpperWord = ["-","-","A","T","T","R","A","C","T","I","V","E","N","E","S","S"]
+        tempUpperWord = tempUpperWord.reversed()
+        var tempLeftWord = ["-","A","L","E","R","T"]
+        tempLeftWord = tempLeftWord.reversed()
         
         for x in 0...rowCount - 1 {
             for y in 0...columnCount - 1 {
@@ -292,19 +296,19 @@ class GameScene: SKScene {
                     row.append(9)
                     square.fillColor = fadedGameBoardSquareColor
                     gameboardEdgeSquares.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
-                } else if x == 1 && y == 1 || x == 1 && y == 2 || x == 2 && y == 1 {
+                } else if x == 1 {
                     row.append(0)
                     square.fillColor = gameboardSquareColor
                     playableGameboardSize += 1
                     playableGameboard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
-                    squareLabelNode.text = "-"
+                    squareLabelNode.text = tempUpperWord.popLast()
                     square.addChild(squareLabelNode)
-                } else if x == 1 || y == 1 {
+                } else if y == 1 {
                     row.append(0)
                     square.fillColor = gameboardSquareColor
                     playableGameboardSize += 1
                     playableGameboard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
-                    squareLabelNode.text = "x"
+                    squareLabelNode.text = tempLeftWord.popLast()
                     square.addChild(squareLabelNode)
                 } else {
                     row.append(0)

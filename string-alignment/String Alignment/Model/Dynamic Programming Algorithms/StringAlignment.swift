@@ -9,6 +9,7 @@
 // Known bug: word prossessing section is missing a edge case. Look into minRepeat.
 // Failed: "A","C","G","T","C","A","T","C","A". insertCost = 1 deleteCost = 1 subCost = 2 minRepeat = 1
 import Foundation
+import UIKit
 
 class StringAlignment {
     weak var scene: GameScene!
@@ -69,18 +70,37 @@ class StringAlignment {
                     costMatrix[x][y] = x * deleteCost
                     
                     // Animations
-                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .red)
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: scene.deleteColor)
                     pendingAnimations.append([newI])
-//                    print(x, playableGameboard[x].location)
                 } else if endString[y] == startString[x] {
-                    costMatrix[x][y] = min(topPlusCost, leftPlusCost, diagonal)
+                    let smallest = min(topPlusCost, leftPlusCost, diagonal)
+                    var tempColor = UIColor()
+                    costMatrix[x][y] = smallest
                     
-                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .blue)
+                    if smallest == topPlusCost {
+                        tempColor = scene.deleteColor
+                    } else if smallest == leftPlusCost {
+                        tempColor = scene.insertColor
+                    } else {
+                        tempColor = scene.noOpperationColor
+                    }
+                    
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: tempColor)
                     pendingAnimations.append([newI])
                 } else {
-                    costMatrix[x][y] = min(topPlusCost, leftPlusCost, diagonalPlusCost)
+                    let smallest = min(topPlusCost, leftPlusCost, diagonalPlusCost)
+                    var tempColor = UIColor()
+                    costMatrix[x][y] = smallest
                     
-                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .green)
+                    if smallest == topPlusCost {
+                        tempColor = scene.deleteColor
+                    } else if smallest == leftPlusCost {
+                        tempColor = scene.insertColor
+                    } else {
+                        tempColor = scene.substituteColor
+                    }
+                    
+                    let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: tempColor)
                     pendingAnimations.append([newI])
                 }
                 

@@ -34,18 +34,22 @@ class GameScene: SKScene {
     var clearAllWasTapped = Bool()
     var clearPathWasTapped = Bool()
     
-    var targetHaloColor = UIColor()
-    var searchHaloColor = UIColor()
-    var foundHaloColor = UIColor()
+    var finalPathColor = UIColor()
+    var noOpperationColor = UIColor()
+    var processingHaloColor = UIColor()
     var squareColor = UIColor()
-    var swapHaloColor = UIColor()
-    var comparisonHaloColor = UIColor()
-    var verificationHaloColor = UIColor()
+    var insertColor = UIColor()
+    var deleteColor = UIColor()
+    var substituteColor = UIColor()
     var gameboardSquareColor = UIColor()
     var fadedGameBoardSquareColor = UIColor()
     var gameBackgroundColor = UIColor()
     var screenLabelColor = UIColor()
     var scoreButtonColor = UIColor()
+    
+    var finalLettersColor = UIColor()
+    var gameBoardColor = UIColor()
+    var GameBoardTextColor = UIColor()
     
 //    sort
     var playableGameboardSize = Int()
@@ -87,13 +91,16 @@ class GameScene: SKScene {
         self.viewController?.loadScoreButtonStyling()
         
         // Update square colors, seen by the user in the next frame update.
-        targetHaloColor = colors[legendData[6][1] as! Int]
-        searchHaloColor = colors[legendData[4][1] as! Int]
-        foundHaloColor = colors[legendData[5][1] as! Int]
         squareColor = colors[legendData[0][1] as! Int]
-        swapHaloColor = colors[legendData[1][1] as! Int]
-        comparisonHaloColor = colors[legendData[2][1] as! Int]
-        verificationHaloColor = colors[legendData[2][1] as! Int]
+        insertColor = colors[legendData[1][1] as! Int]
+        deleteColor = colors[legendData[2][1] as! Int]
+        substituteColor = colors[legendData[3][1] as! Int]
+        noOpperationColor = colors[legendData[4][1] as! Int]
+        processingHaloColor = colors[legendData[5][1] as! Int]
+        finalPathColor = colors[legendData[6][1] as! Int]
+        finalLettersColor = colors[legendData[7][1] as! Int]
+        gameBoardColor = colors[legendData[8][1] as! Int]
+        GameBoardTextColor = colors[legendData[9][1] as! Int]
         
         if defaults.bool(forKey: "Dark Mode On Setting") {
             gameboardSquareColor = darkBackgroundColors[legendData[3][1] as! Int]
@@ -436,14 +443,14 @@ class GameScene: SKScene {
             squareLocationAndColor.square.lineWidth = 5
             
             if swap == true {
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: swapHaloColor, duration: 0.5))
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: swapHaloColor, toColor: .clear, duration: 0.5))
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: insertColor, duration: 0.5))
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: insertColor, toColor: .clear, duration: 0.5))
                 swapCounter += 0.5
                 comparisonCounter += 0.5
                 endingAnimationCount += 1.0
             } else {
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: comparisonHaloColor, duration: 0.5))
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: comparisonHaloColor, toColor: .clear, duration: 0.5))
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: deleteColor, duration: 0.5))
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: deleteColor, toColor: .clear, duration: 0.5))
                 comparisonCounter += 1
                 endingAnimationCount += 1.0
             }
@@ -466,7 +473,7 @@ class GameScene: SKScene {
         
         func extractAlignmentAnimationBegining() {
             if game.target.count != 0 {
-                game.target[0].square.strokeColor = self.targetHaloColor
+                game.target[0].square.strokeColor = self.finalPathColor
             
                 var searchWaitTime = SKAction()
                 
@@ -481,12 +488,12 @@ class GameScene: SKScene {
         
         func extractAlignmentAnimationEnding(searchWaitTime: SKAction, squareLocationAndColor: SkNodeAndLocation) {
             squareLocationAndColor.square.lineWidth = 5
-            squareLocationAndColor.square.strokeColor = self.searchHaloColor
+            squareLocationAndColor.square.strokeColor = self.noOpperationColor
             
             DispatchQueue.main.asyncAfter(deadline: .now() + searchWaitTime.duration) {
                 if self.sucssesfullyFound == false {
                     if (self.game.targetFound) == true {
-                        self.game.target[0].square.strokeColor = self.foundHaloColor
+                        self.game.target[0].square.strokeColor = self.processingHaloColor
                         self.sucssesfullyFound = true
                     }
                 }

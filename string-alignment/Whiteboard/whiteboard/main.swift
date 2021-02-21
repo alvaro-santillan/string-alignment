@@ -9,21 +9,16 @@
 // Failed: "A","C","G","T","C","A","T","C","A". insertCost = 1 deleteCost = 1 subCost = 2 minRepeat = 1
 import Foundation
 
+let topPlusCost = 1
+let leftPlusCost = 1
+let diagonal = 0
 
+let theMin = min(topPlusCost, leftPlusCost, diagonal)
 
-
-func stringFormater(startString: String) -> [String] {
-    var upperCasedStartString = Array(startString.uppercased())
-    upperCasedStartString.insert("-", at: upperCasedStartString.startIndex)
-    
-    var startStringArray = [String]()
-    for letter in upperCasedStartString {
-        startStringArray.append(String(letter))
-    }
-    
-    return startStringArray
+if theMin == topPlusCost {
+    print("a")
+} else if theMin == leftPlusCost {
+    print("b")
+} else {
+    print("c")
 }
-
-let startString = "Bear"
-let endString = ["-","B","E","A","R"]
-print(stringFormater(startString: startString))

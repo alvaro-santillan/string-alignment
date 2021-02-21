@@ -276,6 +276,13 @@ class GameScene: SKScene {
             for y in 0...columnCount - 1 {
                 let square = SKShapeNode.init(rectOf: CGSize(width: shrinkedSquareWidth, height: shrinkedSquareWidth), cornerRadius: shrinkedSquareCornerRadius)
             
+                let squareLabelNode = SKLabelNode(fontNamed: "Dogica_Pixel")
+                squareLabelNode.fontColor = GameBoardTextColor
+                squareLabelNode.fontSize = 17 // HARDCODED
+                squareLabelNode.horizontalAlignmentMode = .center
+                squareLabelNode.verticalAlignmentMode = .center
+                squareLabelNode.zPosition = 1
+                
                 // Make gameboard edges unexsesible and dimmer.
                 if x == 0 || x == (rowCount - 1) {
                     row.append(9)
@@ -285,26 +292,33 @@ class GameScene: SKScene {
                     row.append(9)
                     square.fillColor = fadedGameBoardSquareColor
                     gameboardEdgeSquares.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
+                } else if x == 1 && y == 1 || x == 1 && y == 2 || x == 2 && y == 1 {
+                    row.append(0)
+                    square.fillColor = gameboardSquareColor
+                    playableGameboardSize += 1
+                    playableGameboard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
+                    squareLabelNode.text = "-"
+                    square.addChild(squareLabelNode)
+                } else if x == 1 || y == 1 {
+                    row.append(0)
+                    square.fillColor = gameboardSquareColor
+                    playableGameboardSize += 1
+                    playableGameboard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
+                    squareLabelNode.text = "x"
+                    square.addChild(squareLabelNode)
                 } else {
                     row.append(0)
                     square.fillColor = gameboardSquareColor
                     playableGameboardSize += 1
                     playableGameboard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
+                    squareLabelNode.text = "∞"
+                    square.addChild(squareLabelNode)
                 }
-                
-                let squareLabelNode = SKLabelNode(fontNamed: "Dogica_Pixel")
-                squareLabelNode.text = "∞"
-                squareLabelNode.fontColor = GameBoardTextColor
-                squareLabelNode.fontSize = 11
-                squareLabelNode.horizontalAlignmentMode = .center
-                squareLabelNode.verticalAlignmentMode = .center
-//                algorithimChoiceName.position = CGPoint(x: 0, y: 185)
-                squareLabelNode.zPosition = 1
                 
                 square.name = String(x) + "," + String(y)
                 square.position = CGPoint(x: xAncor, y: yAncor)
                 square.strokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-                square.addChild(squareLabelNode)
+                
                 
                 gameBoard.append(SkNodeAndLocation(square: square, location: Tuple(x: x, y: y)))
                 gameBackground.addChild(square)

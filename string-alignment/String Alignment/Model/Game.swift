@@ -125,7 +125,7 @@ class GameManager {
             }
         }
         sortSelector(resuming: false)
-//        searchSelector()
+        searchSelector()
     }
     
     func sortSelector(resuming: Bool) {
@@ -150,19 +150,28 @@ class GameManager {
             let results = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
             let costMatrix = results.0
             swapSquareAndColor = results.1
+            
             let optimalOperations = sa.extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
-            let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
+            searchHistory = optimalOperations.1
+            targetFound = optimalOperations.2
+            target = optimalOperations.3
+//            let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
 
             print("--------------------------Part 1------------------------------")
             for i in costMatrix {
                 print(i)
             }
-            print(optimalOperations)
-            print(commonStrings)
+            print(optimalOperations.0)
+//            print(commonStrings)
             
         } else {
             print("Out Of Bounds Error", scene.pathFindingAlgorithimChoice)
         }
+    }
+    
+    func searchSelector() {
+        let sa = StringAlignment(scene: scene)
+//            (searchHistory, targetFound, target) = ls.LinearSearch(gameboard: linear)
     }
     
     func bringOvermatrix(tempMatrix: [[Int]]) {

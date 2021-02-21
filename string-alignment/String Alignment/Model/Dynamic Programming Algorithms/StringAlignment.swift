@@ -48,6 +48,14 @@ class StringAlignment {
 
         var squareCounter = 18 // HARDCODED
 //        var oldX = 0
+        
+        // Wired Animation Bug Fix.
+        var newI = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .gray)
+        pendingAnimations.append([newI])
+        newI = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .gray)
+        pendingAnimations.append([newI])
+        
+        
         // Update matrix to better values.
         for x in 0...startString.count - 1 {
             for y in 0...endString.count - 1 {
@@ -96,9 +104,17 @@ class StringAlignment {
         return (costMatrix, pendingAnimations)
     }
 
-    func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> [String] {
+    func extractAlignment(costMatrix: [[Int]], startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> ([String], [SkNodeAndLocation], Bool, [SkNodeAndLocation]) {
+        var pendingAnimations = [SkNodeAndLocation]()
+        let playableGameboard = scene.playableGameboard
         let infinity = Int.max-10
 
+        var target: [SkNodeAndLocation] = []
+        var squareCounter = 149 // HARDCODED
+        pendingAnimations.append(scene.gameBoard[squareCounter])
+        target.append(scene.gameBoard.first(where: { $0.location == Tuple(x: 1, y: 1)})!) // HARDCODED
+        
+        
         // Variables to track location and store results.
         var optimalOperations = [String]()
         var currentLocationX = startString.count-1
@@ -115,23 +131,41 @@ class StringAlignment {
             if top < left && top < diagonal {
                 currentLocationX = currentLocationX-1
                 optimalOperations.append("delete")
+                
+                squareCounter -= 19
+//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .purple)
+                pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Diagonal is the smallest (no-op) update and append accordingly.
             else if diagonal <= top && diagonal <= left && diagonal == costMatrix[currentLocationX][currentLocationY] {
                 currentLocationX = currentLocationX-1
                 currentLocationY = currentLocationY-1
                 optimalOperations.append("no-op")
+                
+                squareCounter -= 1
+                squareCounter -= 19
+//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .brown)
+                pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Diagonal is the smallest (sub) update and append accordingly.
             else if diagonal <= top && diagonal <= left && diagonal != costMatrix[currentLocationX][currentLocationY] {
                 currentLocationX = currentLocationX-1
                 currentLocationY = currentLocationY-1
                 optimalOperations.append("sub")
+                
+                squareCounter -= 1
+                squareCounter -= 19
+//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .orange)
+                pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Left is the smallest update and append accordingly.
             else if left <= top && left <= diagonal {
                 currentLocationY = currentLocationY-1
                 optimalOperations.append("insert")
+                
+                squareCounter -= 1
+//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .systemPink)
+                pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             
             // The end is reached so can terminate.
@@ -139,7 +173,7 @@ class StringAlignment {
                 break
             }
         }
-        return optimalOperations.reversed()
+        return (optimalOperations.reversed(), pendingAnimations, true, target) // HARDCODED
     }
 
     func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: [String]) -> [String] {

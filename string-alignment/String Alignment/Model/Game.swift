@@ -93,11 +93,7 @@ class GameManager {
     
     func sortSelector(resuming: Bool) {
         
-        if scene.pathFindingAlgorithimChoice == 0 {
-            // Hack to get search animations to run by them selves.
-            let newI = SkNodeLocationAndColor(square: scene.playableGameboard[0].square, location: scene.playableGameboard[0].location, color: scene.playableGameboard[0].square.fillColor)
-            alignStringAnimations.append([newI])
-        } else if scene.pathFindingAlgorithimChoice == 1 {
+        if scene.pathFindingAlgorithimChoice == 1 {
             let insertCost = 1
             let deleteCost = 1
             let subCost = 2

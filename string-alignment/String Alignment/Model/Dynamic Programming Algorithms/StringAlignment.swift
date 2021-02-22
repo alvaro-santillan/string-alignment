@@ -71,18 +71,38 @@ class StringAlignment {
                     
                     // Animations
                     let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: scene.deleteColor)
-                    pendingAnimations.append([newI])
+                    // HARDCODED
+                    
+                    // Finds new color.
+                    var tempColor = playableGameboard[squareCounter - 16].square.fillColor
+                    for (_, row) in pendingAnimations.enumerated() {
+                        for (_, jrow) in row.enumerated() {
+                            if jrow.location == playableGameboard[squareCounter - 16].location {
+                                tempColor = jrow.color
+                            }
+                        }
+                    }
+                    
+                    let newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 16].square, location: playableGameboard[squareCounter - 16].location, color: tempColor)
+                    pendingAnimations.append([newI,newJ])
                 } else if endString[y] == startString[x] {
                     let smallest = min(topPlusCost, leftPlusCost, diagonal)
                     var tempColor = UIColor()
                     costMatrix[x][y] = smallest
                     
+                    var newJ = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .blue)
                     if smallest == topPlusCost {
                         tempColor = scene.deleteColor
+                        // HARDCODED
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 18].square, location: playableGameboard[squareCounter - 18].location, color: playableGameboard[squareCounter - 18].square.fillColor)
                     } else if smallest == leftPlusCost {
                         tempColor = scene.insertColor
+                        // HARDCODED
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 1].square, location: playableGameboard[squareCounter - 1].location, color: playableGameboard[squareCounter - 1].square.fillColor)
                     } else {
                         tempColor = scene.noOpperationColor
+                        // HARDCODED
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 19].square, location: playableGameboard[squareCounter - 19].location, color: playableGameboard[squareCounter - 19].square.fillColor)
                     }
                     
                     let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: tempColor)
@@ -92,12 +112,19 @@ class StringAlignment {
                     var tempColor = UIColor()
                     costMatrix[x][y] = smallest
                     
+                    var newJ = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: playableGameboard[0].square.fillColor)
                     if smallest == topPlusCost {
                         tempColor = scene.deleteColor
+                        // HARDCODED
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 18].square, location: playableGameboard[squareCounter - 18].location, color: playableGameboard[squareCounter - 18].square.fillColor)
                     } else if smallest == leftPlusCost {
                         tempColor = scene.insertColor
+                        // HARDCODED
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 1].square, location: playableGameboard[squareCounter - 1].location, color: playableGameboard[squareCounter - 1].square.fillColor)
                     } else {
                         tempColor = scene.substituteColor
+                        // HARDCODED
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 19].square, location: playableGameboard[squareCounter - 19].location, color: playableGameboard[squareCounter - 19].square.fillColor)
                     }
                     
                     let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: tempColor)

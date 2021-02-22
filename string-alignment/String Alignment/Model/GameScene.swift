@@ -445,7 +445,6 @@ class GameScene: SKScene {
                 self.animationDualButtonManager(buttonsEnabled: true)
             }
         }
-        
         gameBoardAnimation(gameBoard)
     }
     
@@ -482,18 +481,21 @@ class GameScene: SKScene {
         func alignAnimationEnding(squareLocationAndColor: SkNodeLocationAndColor, swap: Bool, duration: SKAction) {
 //            Swap Animation, Not Trash
 //            squareLocationAndColor.square.run(.sequence([animationSequanceManager(animation: 2)]))
+//            if swap != true {
             squareLocationAndColor.square.fillColor = squareLocationAndColor.color
             squareLocationAndColor.square.lineWidth = 5
+//            }
             
             if swap == true {
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: insertColor, duration: 0.5))
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: insertColor, toColor: .clear, duration: 0.5))
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: processingHaloColor, duration: 0.5))
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: processingHaloColor, toColor: .clear, duration: 0.5))
                 swapCounter += 0.5
                 comparisonCounter += 0.5
                 endingAnimationCount += 1.0
-            } else {
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: deleteColor, duration: 0.5))
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: deleteColor, toColor: .clear, duration: 0.5))
+            }
+            else {
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: GameBoardTextColor, duration: 0.5))
+                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: GameBoardTextColor, toColor: .clear, duration: 0.5))
                 comparisonCounter += 1
                 endingAnimationCount += 1.0
             }

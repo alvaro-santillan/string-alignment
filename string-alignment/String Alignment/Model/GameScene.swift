@@ -495,7 +495,12 @@ class GameScene: SKScene {
                     let squareLabelNode = squareLocationColorAndValue.square.childNode(withName: "squareLabelNode") as? SKLabelNode
                     squareLabelNode?.text = String(squareLocationColorAndValue.value)
                     squareLabelNode?.fontSize = 12
+                } else if squareLocationColorAndValue.location.y == 2 && squareLocationColorAndValue.location.x == 2 {
+                    let squareLabelNode = squareLocationColorAndValue.square.childNode(withName: "squareLabelNode") as? SKLabelNode
+                    squareLabelNode?.text = "0"
+                    squareLabelNode?.fontSize = 12
                 }
+                
                 swapCounter += 0.5
                 comparisonCounter += 0.5
                 endingAnimationCount += 1.0

@@ -51,6 +51,7 @@ class GameManager {
     var shuffledSquareShades: [SkNodeLocationAndColor] = []
     var alignStringAnimations = [[SkNodeLocationColorAndValue]]()
     var swapAnimationsSplit = [[[SkNodeLocationAndColor]]]()
+    var commonStringAnimations = [Int]()
     
     func roundUp(factor: Int, n: Int) -> Int {
         return (n + 24) / 25 * 25;
@@ -114,14 +115,16 @@ class GameManager {
             extractAlignmentAnimations = optimalOperations.1
             targetFound = optimalOperations.2
             target = optimalOperations.3
-//            let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
+//            let commonStringResults = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
+            var commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations.0)
 
             print("--------------------------Part 1------------------------------")
             for i in costMatrix {
                 print(i)
             }
+            commonStringAnimations = commonStrings.1
             print(optimalOperations.0)
-//            print(commonStrings)
+            print(commonStrings.1)
             
         } else {
             print("Out Of Bounds Error", scene.pathFindingAlgorithimChoice)

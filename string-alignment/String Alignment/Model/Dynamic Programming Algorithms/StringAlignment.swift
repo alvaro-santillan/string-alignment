@@ -179,7 +179,6 @@ class StringAlignment {
                 optimalOperations.append("delete")
                 
                 squareCounter -= 18 // HARDCODED
-//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .purple)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Diagonal is the smallest (no-op) update and append accordingly.
@@ -190,7 +189,6 @@ class StringAlignment {
                 
                 squareCounter -= 1 // HARDCODED
                 squareCounter -= 18 // HARDCODED
-//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .brown)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Diagonal is the smallest (sub) update and append accordingly.
@@ -201,7 +199,6 @@ class StringAlignment {
                 
                 squareCounter -= 1 // HARDCODED
                 squareCounter -= 18 // HARDCODED
-//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .orange)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Left is the smallest update and append accordingly.
@@ -210,7 +207,6 @@ class StringAlignment {
                 optimalOperations.append("insert")
                 
                 squareCounter -= 1 // HARDCODED
-//                let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: .systemPink)
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             
@@ -222,13 +218,14 @@ class StringAlignment {
         return (optimalOperations.reversed(), pendingAnimations, true, target) // HARDCODED
     }
 
-    func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: [String]) -> [String] {
+    func commonSubstrings(startString: [String], minRepeat: Int, optimalOperations: [String]) -> ([String], [Int]) {
         // Variables to track location and store results.
         var startPointer = 0
         var endPointer = 0
         var tracker = 0
         var skips = 0
         var returnList = [String]()
+        var locations = [Int]()
 
         // Check for L no-ops until the entire array is traversed.
         while startPointer < (optimalOperations.count) {
@@ -254,9 +251,11 @@ class StringAlignment {
                     if tracker > minRepeat {
                         let tempString = startString[((startPointer + 1) - skips)...tempEndPointer]
                         returnList.append(String(tempString.count) + ", " + tempString.joined())
+                        locations.append(contentsOf: tempString.indices)
                     } else if tracker == minRepeat {
                         let tempString = startString[((startPointer + 1) - skips)...(endPointer - skips)]
                         returnList.append(String(tempString.count) + ", " + tempString.joined())
+                        locations.append(contentsOf: tempString.indices)
                     }
                 }
                 // Update pointers and reset the tracker.
@@ -265,6 +264,6 @@ class StringAlignment {
             startPointer += 1
             tracker = 0
         }
-        return returnList
+        return (returnList, locations)
     }
 }

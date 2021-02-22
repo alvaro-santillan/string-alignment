@@ -30,8 +30,8 @@ class StringAlignment {
         return startStringArray
     }
     
-    func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> ([[Int]], [[SkNodeLocationAndColor]]) {
-        var pendingAnimations = [[SkNodeLocationAndColor]]()
+    func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> ([[Int]], [[SkNodeLocationColorAndValue]]) {
+        var pendingAnimations = [[SkNodeLocationColorAndValue]]()
         let playableGameboard = scene.playableGameboard
         // The worst score, so algorithim can only improve.
         // delete, sub, or insert cost of more then ten will cause a integer overflow.
@@ -69,8 +69,8 @@ class StringAlignment {
                 let topPlusCost = (x-1 != -1) ? costMatrix[x-1][y] + deleteCost : infinity
                 let leftPlusCost = (y-1 != -1) ? costMatrix[x][y-1] + insertCost : infinity
                 
-                var currentLocationAndSquare = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black)
-                var comparisonLocationAndSquare = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black)
+                var currentLocationAndSquare = SkNodeLocationColorAndValue(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black, value: 0)
+                var comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black, value: 0)
                 let currentSquare = playableGameboard[squareCounter].square
                 let currentLocation = playableGameboard[squareCounter].location
                 // HARDCODED
@@ -89,16 +89,17 @@ class StringAlignment {
                     costMatrix[x][y] = 0
                     
                     // Animations
-                    currentLocationAndSquare = SkNodeLocationAndColor(square: currentSquare, location: currentLocation, color: .yellow)
+                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: .yellow, value: 0)
                     pendingAnimations.append([currentLocationAndSquare])
                 } else if endString[y] == "-" {
                     // Populate the first x and y columns in the matrix.
-                    costMatrix[x][y] = x * deleteCost
+                    let newDeleteCost = x * deleteCost
+                    costMatrix[x][y] = newDeleteCost
                     
                     // Animations
                     newCumparisonSquareColor = findNewColor(targetLocation: topLocation)
-                    currentLocationAndSquare = SkNodeLocationAndColor(square: currentSquare, location: currentLocation, color: scene.deleteColor)
-                    comparisonLocationAndSquare = SkNodeLocationAndColor(square: topSquare, location: topLocation, color: newCumparisonSquareColor)
+                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: scene.deleteColor, value: newDeleteCost)
+                    comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: topSquare, location: topLocation, color: newCumparisonSquareColor, value: -1)
                     pendingAnimations.append([currentLocationAndSquare,comparisonLocationAndSquare])
                 } else if endString[y] == startString[x] {
                     let smallest = min(topPlusCost, leftPlusCost, diagonal)
@@ -106,17 +107,17 @@ class StringAlignment {
                     
                     if smallest == topPlusCost {
                         newCurrentSquareColor = scene.deleteColor
-                        comparisonLocationAndSquare = SkNodeLocationAndColor(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation))
+                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation), value: -1)
                     } else if smallest == leftPlusCost {
                         newCurrentSquareColor = scene.insertColor
-                        comparisonLocationAndSquare = SkNodeLocationAndColor(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation))
+                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation), value: -1)
                     } else {
                         newCurrentSquareColor = scene.noOpperationColor
-                        comparisonLocationAndSquare = SkNodeLocationAndColor(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation))
+                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation), value: -1)
                     }
                     
                     // Animations
-                    currentLocationAndSquare = SkNodeLocationAndColor(square: currentSquare, location: currentLocation, color: newCurrentSquareColor)
+                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: newCurrentSquareColor, value: smallest)
                     pendingAnimations.append([currentLocationAndSquare,comparisonLocationAndSquare])
                 } else {
                     let smallest = min(topPlusCost, leftPlusCost, diagonalPlusCost)
@@ -124,17 +125,17 @@ class StringAlignment {
                     
                     if smallest == topPlusCost {
                         newCurrentSquareColor = scene.deleteColor
-                        comparisonLocationAndSquare = SkNodeLocationAndColor(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation))
+                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation), value: -1)
                     } else if smallest == leftPlusCost {
                         newCurrentSquareColor = scene.insertColor
-                        comparisonLocationAndSquare = SkNodeLocationAndColor(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation))
+                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation), value: -1)
                     } else {
                         newCurrentSquareColor = scene.substituteColor
-                        comparisonLocationAndSquare = SkNodeLocationAndColor(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation))
+                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation), value: -1)
                     }
                     
                     // Animations
-                    currentLocationAndSquare = SkNodeLocationAndColor(square: currentSquare, location: currentLocation, color: newCurrentSquareColor)
+                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: newCurrentSquareColor, value: smallest)
                     pendingAnimations.append([currentLocationAndSquare,comparisonLocationAndSquare])
                 }
                 

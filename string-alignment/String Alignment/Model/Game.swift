@@ -49,7 +49,7 @@ class GameManager {
     // Sort
     var orderedSquareShades: [SkNodeLocationAndColor] = []
     var shuffledSquareShades: [SkNodeLocationAndColor] = []
-    var alignStringAnimations = [[SkNodeLocationAndColor]]()
+    var alignStringAnimations = [[SkNodeLocationColorAndValue]]()
     var swapAnimationsSplit = [[[SkNodeLocationAndColor]]]()
     
     func roundUp(factor: Int, n: Int) -> Int {

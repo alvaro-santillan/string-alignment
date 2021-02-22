@@ -296,6 +296,7 @@ class GameScene: SKScene {
                 let square = SKShapeNode.init(rectOf: CGSize(width: shrinkedSquareWidth, height: shrinkedSquareWidth), cornerRadius: shrinkedSquareCornerRadius)
             
                 let squareLabelNode = SKLabelNode(fontNamed: "Dogica_Pixel")
+                squareLabelNode.name = "squareLabelNode"
                 squareLabelNode.fontColor = GameBoardTextColor
                 squareLabelNode.fontSize = 17 // HARDCODED
                 squareLabelNode.horizontalAlignmentMode = .center
@@ -466,11 +467,11 @@ class GameScene: SKScene {
             pathFindingAnimationsHaveEnded = false
             
             for (squareIndex, innerSquareArray) in game.alignStringAnimations.enumerated() {
-                for squareLocationAndColor in innerSquareArray {
+                for squareLocationColorAndValue in innerSquareArray {
                     if innerSquareArray.count != 1 {
-                        squareLocationAndColor.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationAndColor: squareLocationAndColor, swap: true, duration: queuedSquareWait)})
+                        squareLocationColorAndValue.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationColorAndValue: squareLocationColorAndValue, swap: true, duration: queuedSquareWait)})
                     } else {
-                        squareLocationAndColor.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationAndColor: squareLocationAndColor, swap: false, duration: queuedSquareWait)})
+                        squareLocationColorAndValue.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationColorAndValue: squareLocationColorAndValue, swap: false, duration: queuedSquareWait)})
                     }
                 }
                 queuedSquareWait = .wait(forDuration: TimeInterval(squareIndex) * Double(pathFindingAnimationSpeed))
@@ -478,24 +479,30 @@ class GameScene: SKScene {
             }
         }
         
-        func alignAnimationEnding(squareLocationAndColor: SkNodeLocationAndColor, swap: Bool, duration: SKAction) {
+        func alignAnimationEnding(squareLocationColorAndValue: SkNodeLocationColorAndValue, swap: Bool, duration: SKAction) {
 //            Swap Animation, Not Trash
 //            squareLocationAndColor.square.run(.sequence([animationSequanceManager(animation: 2)]))
 //            if swap != true {
-            squareLocationAndColor.square.fillColor = squareLocationAndColor.color
-            squareLocationAndColor.square.lineWidth = 5
+            squareLocationColorAndValue.square.fillColor = squareLocationColorAndValue.color
+            squareLocationColorAndValue.square.lineWidth = 5
 //            }
             
             if swap == true {
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: processingHaloColor, duration: 0.5))
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: processingHaloColor, toColor: .clear, duration: 0.5))
+                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: processingHaloColor, duration: 0.5))
+                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: processingHaloColor, toColor: .clear, duration: 0.5))
+                
+                if squareLocationColorAndValue.value != -1 {
+                    let squareLabelNode = squareLocationColorAndValue.square.childNode(withName: "squareLabelNode") as? SKLabelNode
+                    squareLabelNode?.text = String(squareLocationColorAndValue.value)
+                    squareLabelNode?.fontSize = 12
+                }
                 swapCounter += 0.5
                 comparisonCounter += 0.5
                 endingAnimationCount += 1.0
             }
             else {
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: GameBoardTextColor, duration: 0.5))
-                squareLocationAndColor.square.run(SKAction.colorTransitionAction(fromColor: GameBoardTextColor, toColor: .clear, duration: 0.5))
+                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: GameBoardTextColor, duration: 0.5))
+                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: GameBoardTextColor, toColor: .clear, duration: 0.5))
                 comparisonCounter += 1
                 endingAnimationCount += 1.0
             }

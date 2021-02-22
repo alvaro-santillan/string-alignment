@@ -46,6 +46,17 @@ class StringAlignment {
             }
             costMatrix.append(tempArray)
         }
+        
+        func findNewColor(targetLocation: Tuple) -> UIColor {
+            for (_, row) in pendingAnimations.enumerated() {
+                for (_, jrow) in row.enumerated() {
+                    if jrow.location == targetLocation {
+                        return jrow.color
+                    }
+                }
+            }
+            return .black
+        }
 
         var squareCounter = 17 // HARDCODED
         
@@ -74,14 +85,7 @@ class StringAlignment {
                     // HARDCODED
                     
                     // Finds new color.
-                    var tempColor = playableGameboard[squareCounter - 16].square.fillColor
-                    for (_, row) in pendingAnimations.enumerated() {
-                        for (_, jrow) in row.enumerated() {
-                            if jrow.location == playableGameboard[squareCounter - 16].location {
-                                tempColor = jrow.color
-                            }
-                        }
-                    }
+                    let tempColor = findNewColor(targetLocation: playableGameboard[squareCounter - 16].location)
                     
                     let newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 16].square, location: playableGameboard[squareCounter - 16].location, color: tempColor)
                     pendingAnimations.append([newI,newJ])
@@ -90,45 +94,45 @@ class StringAlignment {
                     var tempColor = UIColor()
                     costMatrix[x][y] = smallest
                     
-                    var newJ = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .blue)
+                    var newJ = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: findNewColor(targetLocation: playableGameboard[0].location))
                     if smallest == topPlusCost {
                         tempColor = scene.deleteColor
                         // HARDCODED
-                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 18].square, location: playableGameboard[squareCounter - 18].location, color: playableGameboard[squareCounter - 18].square.fillColor)
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 16].square, location: playableGameboard[squareCounter - 16].location, color: findNewColor(targetLocation: playableGameboard[squareCounter - 16].location))
                     } else if smallest == leftPlusCost {
                         tempColor = scene.insertColor
                         // HARDCODED
-                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 1].square, location: playableGameboard[squareCounter - 1].location, color: playableGameboard[squareCounter - 1].square.fillColor)
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 1].square, location: playableGameboard[squareCounter - 1].location, color: findNewColor(targetLocation: playableGameboard[squareCounter - 1].location))
                     } else {
                         tempColor = scene.noOpperationColor
                         // HARDCODED
-                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 19].square, location: playableGameboard[squareCounter - 19].location, color: playableGameboard[squareCounter - 19].square.fillColor)
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 17].square, location: playableGameboard[squareCounter - 17].location, color: findNewColor(targetLocation: playableGameboard[squareCounter - 17].location))
                     }
                     
                     let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: tempColor)
-                    pendingAnimations.append([newI])
+                    pendingAnimations.append([newI,newJ])
                 } else {
                     let smallest = min(topPlusCost, leftPlusCost, diagonalPlusCost)
                     var tempColor = UIColor()
                     costMatrix[x][y] = smallest
                     
-                    var newJ = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: playableGameboard[0].square.fillColor)
+                    var newJ = SkNodeLocationAndColor(square: playableGameboard[0].square, location: playableGameboard[0].location, color: findNewColor(targetLocation: playableGameboard[0].location))
                     if smallest == topPlusCost {
                         tempColor = scene.deleteColor
                         // HARDCODED
-                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 18].square, location: playableGameboard[squareCounter - 18].location, color: playableGameboard[squareCounter - 18].square.fillColor)
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 16].square, location: playableGameboard[squareCounter - 16].location, color: findNewColor(targetLocation: playableGameboard[squareCounter - 16].location))
                     } else if smallest == leftPlusCost {
                         tempColor = scene.insertColor
                         // HARDCODED
-                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 1].square, location: playableGameboard[squareCounter - 1].location, color: playableGameboard[squareCounter - 1].square.fillColor)
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 1].square, location: playableGameboard[squareCounter - 1].location, color: findNewColor(targetLocation: playableGameboard[squareCounter - 1].location))
                     } else {
                         tempColor = scene.substituteColor
                         // HARDCODED
-                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 19].square, location: playableGameboard[squareCounter - 19].location, color: playableGameboard[squareCounter - 19].square.fillColor)
+                        newJ = SkNodeLocationAndColor(square: playableGameboard[squareCounter - 17].square, location: playableGameboard[squareCounter - 17].location, color: findNewColor(targetLocation: playableGameboard[squareCounter - 17].location))
                     }
                     
                     let newI = SkNodeLocationAndColor(square: playableGameboard[squareCounter].square, location: playableGameboard[squareCounter].location, color: tempColor)
-                    pendingAnimations.append([newI])
+                    pendingAnimations.append([newI,newJ])
                 }
                 
                 if y == 14 {

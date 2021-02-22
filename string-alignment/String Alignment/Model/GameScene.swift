@@ -530,7 +530,7 @@ class GameScene: SKScene {
         
         func extractAlignmentAnimationBegining() {
             if game.target.count != 0 {
-                game.target[0].square.strokeColor = self.finalPathColor
+//                game.target[0].square.strokeColor = self.finalPathColor
             
                 var searchWaitTime = SKAction()
                 
@@ -550,7 +550,7 @@ class GameScene: SKScene {
             DispatchQueue.main.asyncAfter(deadline: .now() + searchWaitTime.duration) {
                 if self.sucssesfullyFound == false {
                     if (self.game.targetFound) == true {
-                        self.game.target[0].square.strokeColor = self.processingHaloColor
+//                        self.game.target[0].square.strokeColor = self.processingHaloColor
                         self.sucssesfullyFound = true
                         commonStringsAnimationBegining()
                     }
@@ -559,9 +559,10 @@ class GameScene: SKScene {
         }
         
         // NEW
+        // NEW
         func commonStringsAnimationBegining() {
             if game.target.count != 0 {
-                game.target[0].square.strokeColor = self.finalPathColor
+//                game.target[0].square.strokeColor = self.finalPathColor
             
                 var searchWaitTime = SKAction()
                 
@@ -571,29 +572,37 @@ class GameScene: SKScene {
 //                    location.square.run(.sequence([searchWaitTime]), completion: {commonStringsAnimationEnding(searchWaitTime: searchWaitTime, squareLocationAndColor: location)})
                     
                     let squareLabelNode = gameBoard.first(where: { $0.location == Tuple(x: (location + 2), y: 1)})! // HARDCODED
-                    squareLabelNode.square.fillColor = .systemPink
+//                    squareLabelNode.square.fillColor = .systemPink
                     
-                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: finalLettersColor, duration: 0.5))
-                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: finalLettersColor, toColor: .clear, duration: 0.5))
                     
-                    searchWaitTime = .wait(forDuration: TimeInterval(squareIndex) * 0.02) // 0.085
+//                    pathFindingAnimationsHaveEnded = false
+                    
+                    squareLabelNode.square.run(.sequence([searchWaitTime]), completion: {commonStringsAnimationEnding(squareLocationColorAndValue: squareLabelNode, swap: true, duration: searchWaitTime)})
+
+//                    game.alignStringAnimations.remove(at: 0)
+                    
+//                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: finalLettersColor, duration: 0.5))
+//                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: finalLettersColor, toColor: .clear, duration: 0.5))
+                    
+                    searchWaitTime = .wait(forDuration: TimeInterval(squareIndex + 1) * 0.9) // 0.085
                 }
             }
         }
         
-        func commonStringsAnimationEnding(searchWaitTime: SKAction, squareLocationAndColor: SkNodeAndLocation) {
-            squareLocationAndColor.square.lineWidth = 5
-            squareLocationAndColor.square.strokeColor = self.finalPathColor
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + searchWaitTime.duration) {
-                if self.sucssesfullyFound == false {
-                    if (self.game.targetFound) == true {
-                        self.game.target[0].square.strokeColor = self.processingHaloColor
-                        self.sucssesfullyFound = true
-                    }
-                }
-            }
+    func commonStringsAnimationEnding(squareLocationColorAndValue: SkNodeAndLocation, swap: Bool, duration: SKAction) {
+//            Swap Animation, Not Trash
+//            squareLocationAndColor.square.run(.sequence([animationSequanceManager(animation: 2)]))
+//            if swap != true {
+//            squareLocationColorAndValue.square.fillColor = finalLettersColor
+//            squareLocationColorAndValue.square.lineWidth = 5
+//            }
+//        endingAnimationCount += 1.0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration.duration) {
+            squareLocationColorAndValue.square.fillColor = self.finalLettersColor
+            squareLocationColorAndValue.square.lineWidth = 5
         }
+    }
         // NEW
         
         visitedSquareDispatchCalled = false

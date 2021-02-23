@@ -91,39 +91,34 @@ class GameManager {
     }
     
     func sortSelector(resuming: Bool) {
-        if scene.pathFindingAlgorithimChoice == 1 {
-            let insertCost = UserDefaults.standard.integer(forKey: "Insert Cost Setting")
-            let deleteCost = UserDefaults.standard.integer(forKey: "Delete Cost Setting")
-            let subCost = UserDefaults.standard.integer(forKey: "Substitute Cost Setting")
-            _ = UserDefaults.standard.integer(forKey: "No Operation Cost Setting")
-            let minRepeat = UserDefaults.standard.integer(forKey: "Minimum Word Repeat Setting")
+        let insertCost = UserDefaults.standard.integer(forKey: "Insert Cost Setting")
+        let deleteCost = UserDefaults.standard.integer(forKey: "Delete Cost Setting")
+        let subCost = UserDefaults.standard.integer(forKey: "Substitute Cost Setting")
+        _ = UserDefaults.standard.integer(forKey: "No Operation Cost Setting")
+        let minRepeat = UserDefaults.standard.integer(forKey: "Minimum Word Repeat Setting")
 
-            let sa = StringAlignment(scene: scene)
-            
-            let endString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name") ?? "ERROR")
-            let startString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name") ?? "ERROR")
-            
-            let results = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
-            let costMatrix = results.0
-            alignStringAnimations = results.1
-            
-            let optimalOperations = sa.extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
-            extractAlignmentAnimations = optimalOperations.1
-            targetFound = optimalOperations.2
-            target = optimalOperations.3
-            let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations.0)
+        let sa = StringAlignment(scene: scene)
+        
+        let endString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name") ?? "ERROR")
+        let startString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name") ?? "ERROR")
+        
+        let results = sa.alignStrings(startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+        let costMatrix = results.0
+        alignStringAnimations = results.1
+        
+        let optimalOperations = sa.extractAlignment(costMatrix: costMatrix, startString: startString, endString: endString, insertCost: insertCost, deleteCost: deleteCost, subCost: subCost)
+        extractAlignmentAnimations = optimalOperations.1
+        targetFound = optimalOperations.2
+        target = optimalOperations.3
+        let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations.0)
 
-            print("--------------------------Part 1------------------------------")
-            for i in costMatrix {
-                print(i)
-            }
-            commonStringAnimations = commonStrings.1
-            print(optimalOperations.0)
-            print(commonStrings.1)
-            
-        } else {
-            print("Out Of Bounds Error", scene.pathFindingAlgorithimChoice)
+        print("--------------------------Part 1------------------------------")
+        for i in costMatrix {
+            print(i)
         }
+        commonStringAnimations = commonStrings.1
+        print(optimalOperations.0)
+        print(commonStrings.1)
     }
     
     func bringOvermatrix(tempMatrix: [[Int]]) {

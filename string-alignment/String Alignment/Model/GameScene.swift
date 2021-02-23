@@ -240,10 +240,10 @@ class GameScene: SKScene {
     
     func stringFormater(startString: String, addExtraSpace: Bool) -> [String] {
         var upperCasedStartString = Array(startString.uppercased())
-        upperCasedStartString.insert("-", at: upperCasedStartString.startIndex)
+        upperCasedStartString.insert(" ", at: upperCasedStartString.startIndex)
         
         if addExtraSpace == true {
-            upperCasedStartString.insert("-", at: upperCasedStartString.startIndex)
+            upperCasedStartString.insert(" ", at: upperCasedStartString.startIndex)
         }
         
         var startStringArray = [String]()

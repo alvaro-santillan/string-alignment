@@ -89,7 +89,7 @@ class StringAlignment {
                     costMatrix[x][y] = 0
                     
                     // Animations
-                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: .yellow, value: 0)
+                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: scene.noOpperationColor, value: 0)
                     pendingAnimations.append([currentLocationAndSquare])
                 } else if endString[y] == "-" {
                     // Populate the first x and y columns in the matrix.

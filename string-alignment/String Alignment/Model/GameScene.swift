@@ -102,17 +102,18 @@ class GameScene: SKScene {
         finalPathColor = colors[legendData[6][1] as! Int]
         finalLettersColor = colors[legendData[7][1] as! Int]
 //        gameBoardColor = colors[legendData[8][1] as! Int]
-        GameBoardTextColor = colors[legendData[9][1] as! Int]
         
         if defaults.bool(forKey: "Dark Mode On Setting") {
             gameboardSquareColor = darkBackgroundColors[legendData[8][1] as! Int]
             fadedGameBoardSquareColor = darkBackgroundColors[legendData[3][1] as! Int].withAlphaComponent(0.5)
+            GameBoardTextColor = lightBackgroundColors[legendData[9][1] as! Int]
             gameBackgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 1.00)
             screenLabelColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.00)
             scoreButtonColor = squareColor
         } else {
             gameboardSquareColor = lightBackgroundColors[legendData[8][1] as! Int]
             fadedGameBoardSquareColor = lightBackgroundColors[legendData[3][1] as! Int].withAlphaComponent(0.5)
+            GameBoardTextColor = darkBackgroundColors[legendData[9][1] as! Int]
             gameBackgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
             screenLabelColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
             scoreButtonColor = squareColor

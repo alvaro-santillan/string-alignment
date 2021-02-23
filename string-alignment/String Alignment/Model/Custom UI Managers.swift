@@ -227,6 +227,8 @@ func tenOptionButtonResponder(_ sender: UIButton, isSpeedButton: Bool, key: Stri
 func colorPaletteManager(cellText: (String?)) -> ([UIColor]) {
     if cellText == "Gameboard" {
         return UserDefaults.standard.bool(forKey: "Dark Mode On Setting") ? darkBackgroundColors : lightBackgroundColors
+    } else if cellText == "Gameboard Text" {
+        return UserDefaults.standard.bool(forKey: "Dark Mode On Setting") ? lightBackgroundColors : darkBackgroundColors
     } else {
         return colors
     }

@@ -53,6 +53,13 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set("None", forKey: "Selected Path Finding Algorithim Name")
             defaults.set("None", forKey: "Selected Maze Algorithim Name")
             
+            
+            defaults.set(1, forKey: "Insert Cost Setting")
+            defaults.set(1, forKey: "Delete Cost Setting")
+            defaults.set(2, forKey: "Substitute Cost Setting")
+            defaults.set(1, forKey: "No Operation Cost Setting")
+            defaults.set(1, forKey: "Reset Setting")
+            
             overrideUserInterfaceStyle = .dark
         }
     }

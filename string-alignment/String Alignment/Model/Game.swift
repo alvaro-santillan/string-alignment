@@ -95,15 +95,14 @@ class GameManager {
     func sortSelector(resuming: Bool) {
         
         if scene.pathFindingAlgorithimChoice == 1 {
-            let insertCost = 1
-            let deleteCost = 1
-            let subCost = 2
-            let minRepeat = 1
+            let insertCost = UserDefaults.standard.integer(forKey: "Insert Cost Setting")
+            let deleteCost = UserDefaults.standard.integer(forKey: "Delete Cost Setting")
+            let subCost = UserDefaults.standard.integer(forKey: "Substitute Cost Setting")
+            _ = UserDefaults.standard.integer(forKey: "No Operation Cost Setting")
+            let minRepeat = UserDefaults.standard.integer(forKey: "Reset Setting")
 
             let sa = StringAlignment(scene: scene)
             
-//            let startString = ["-","B","E","A","R"]
-//            let endString = ["-","B","A","R","E"]
             let endString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name") ?? "ERROR")
             let startString = sa.stringFormater(startString: UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name") ?? "ERROR")
             
@@ -116,7 +115,7 @@ class GameManager {
             targetFound = optimalOperations.2
             target = optimalOperations.3
 //            let commonStringResults = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
-            var commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations.0)
+            let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations.0)
 
             print("--------------------------Part 1------------------------------")
             for i in costMatrix {

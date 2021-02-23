@@ -504,9 +504,6 @@ class GameScene: SKScene {
                 comparisonCounter += 1
                 endingAnimationCount += 1.0
             }
-            
-            UserDefaults.standard.set(comparisonCounter, forKey: "lastScore")
-            UserDefaults.standard.set(swapCounter, forKey: "highScore")
             updateScoreButtonText()
             
             if hasRun == false {
@@ -664,8 +661,6 @@ class GameScene: SKScene {
                 // Dissble buttons for pathfinding animation.
                 animationDualButtonManager(buttonsEnabled: true)
                 stringAlignmentAnimationsAndSquareColoring()
-//                UserDefaults.standard.set(animatedQueuedSquareCount, forKey: "highScore")
-//                UserDefaults.standard.set(animatedVisitedSquareCount, forKey: "lastScore")
             }
             
         } else {

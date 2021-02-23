@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let defaultValue = ["highScore" : 0]
+        let defaultValue = ["lastWordOne" : 0]
         UserDefaults.standard.register(defaults: defaultValue)
 //        UserDefaults.standard.set(0, forKey: "Selected Path Finding Algorithim")
 //        UserDefaults.standard.set(0, forKey: "Selected Maze Algorithim")

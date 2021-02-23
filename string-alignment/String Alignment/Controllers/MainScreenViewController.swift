@@ -30,6 +30,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         loadUserData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        loadUserData()
+    }
+    
     func checkIfFirstRun() {
         if !defaults.bool(forKey: "Not First Launch") {
             let legendData = [["Square", 13], ["Insert", 6], ["Delete", 9], ["Substitute", 0], ["No Opperation", 24], ["Processing Halo", 19], ["Final Path", 31], ["Final Letters", 31], ["Gameboard", 1], ["Gameboard Text", 31]]
@@ -50,9 +54,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set(3, forKey: "Square Size Setting")
             defaults.set(1, forKey: "Minimum Word Repeat Setting")
             // Bug fix: prevents nil nil from occupying gamescreen on first launch.
-            defaults.set("None", forKey: "Selected Path Finding Algorithim Name")
-            defaults.set("None", forKey: "Selected Maze Algorithim Name")
-            
+            defaults.set(wordOneList[0][0], forKey: "Selected Path Finding Algorithim Name")
+            defaults.set(wordTwoList[0][0], forKey: "Selected Maze Algorithim Name")
+            defaults.set("None", forKey: "lastWordOne")
+            defaults.set("None", forKey: "lastWordTwo")
             
             defaults.set(1, forKey: "Insert Cost Setting")
             defaults.set(1, forKey: "Delete Cost Setting")
@@ -65,8 +70,8 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func loadUserData() {
-        lastWordTwoLabel.text = "\(defaults.integer(forKey: "highScore"))"
-        lastWordOneLabel.text = "\(defaults.integer(forKey: "lastScore"))"
+        lastWordTwoLabel.text = "\(defaults.string(forKey: "lastWordOne")!)"
+        lastWordOneLabel.text = "\(defaults.string(forKey: "lastWordTwo")!)"
         defaults.bool(forKey: "Dark Mode On Setting") ? (overrideUserInterfaceStyle = .dark) : (overrideUserInterfaceStyle = .light)
         segControl.font(name: "Dogica_Pixel", size: 9)
     }
@@ -108,6 +113,11 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func playButtonTapped(_ sender: UIButton) {
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameScreen") as UIViewController
         self.present(viewController, animated: true, completion: nil)
+        
+        let pathFindingAlgorithimName = UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name")
+        let mazeGenerationAlgorithimName = UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name")
+        UserDefaults.standard.set(pathFindingAlgorithimName, forKey: "lastWordTwo")
+        UserDefaults.standard.set(mazeGenerationAlgorithimName, forKey: "lastWordOne")
     }
     
     @IBAction func segmentedControllerTapped(_ sender: UISegmentedControl) {

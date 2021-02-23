@@ -55,7 +55,7 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
         fourOptionButtonLoader(targetButton: insertCostButton, key: "Insert Cost Setting", optionArray: options)
         options = ["No Operation Cost: 1", "No Operation Cost: 2", "No Operation Cost: 3", "No Operation Cost: 4"]
         fourOptionButtonLoader(targetButton: noOperationCostButton, key: "No Operation Cost Setting", optionArray: options)
-        tenOptionButtonLoader(targetButton: minimumWordRepeatButton, key: "Reset Setting", optionArray: [1,2,3,4,5,6,7,8,9,10])
+        tenOptionButtonLoader(targetButton: minimumWordRepeatButton, key: "Minimum Word Repeat Setting", optionArray: [1,2,3,4,5,6,7,8,9,10])
         
         boolButtonLoader(isIconButton: true, targetButton: soundButton, key: "Volume On Setting", trueOption: "Volume_On_Icon_Set", falseOption: "Volume_Mute_Icon_Set")
         boolButtonLoader(isIconButton: true, targetButton: vibrationButton, key: "Vibrate On Setting", trueOption: "Vibrate_On_Icon_Set", falseOption: "Vibrate_Off_Icon_Set")
@@ -128,7 +128,7 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func minimumWordRepeatButtonTapped(_ sender: UIButton) {
         let options = [1,2,3,4,5,6,7,8,9,10]
-        tenOptionButtonResponder(sender, isSpeedButton: false, key: "Reset Setting", optionArray: options)
+        tenOptionButtonResponder(sender, isSpeedButton: false, key: "Minimum Word Repeat Setting", optionArray: options)
     }
     
     @IBAction func returnButtonTapped(_ sender: UIButton) {

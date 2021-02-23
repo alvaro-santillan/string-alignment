@@ -122,11 +122,11 @@ class GameScene: SKScene {
         
         if firstRun {
             // Update to display reset option
-            nativeBoardLayoutOption = defaults.integer(forKey: "Reset Setting")
+            nativeBoardLayoutOption = defaults.integer(forKey: "Minimum Word Repeat Setting")
             // Populate score button text on first run.
             updateScoreButtonText()
         } else {
-            if nativeBoardLayoutOption != defaults.integer(forKey: "Reset Setting") {
+            if nativeBoardLayoutOption != defaults.integer(forKey: "Minimum Word Repeat Setting") {
 //                for i in gameBoard {
 //                    i.square.removeAllActions()
 //                }
@@ -136,10 +136,7 @@ class GameScene: SKScene {
                 game.extractAlignmentAnimations.removeAll()
                 swapCounter = 0
                 comparisonCounter = 0
-//                print("hititit")
-//                print(nativeBoardLayoutOption, defaults.integer(forKey: "Reset Setting"))
-                nativeBoardLayoutOption = defaults.integer(forKey: "Reset Setting")
-//                print("New board layout", nativeBoardLayoutOption)
+                nativeBoardLayoutOption = defaults.integer(forKey: "Minimum Word Repeat Setting")
                 game.initaitateRandomSquares()
                 self.startingAnimationAndSquareColoring()
             }

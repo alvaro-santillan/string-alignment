@@ -46,7 +46,6 @@ class GameManager {
         }
     }
     
-    // Sort
     var orderedSquareShades: [SkNodeLocationAndColor] = []
     var shuffledSquareShades: [SkNodeLocationAndColor] = []
     var alignStringAnimations = [[SkNodeLocationColorAndValue]]()
@@ -89,17 +88,15 @@ class GameManager {
             }
         }
         sortSelector(resuming: false)
-        searchSelector()
     }
     
     func sortSelector(resuming: Bool) {
-        
         if scene.pathFindingAlgorithimChoice == 1 {
             let insertCost = UserDefaults.standard.integer(forKey: "Insert Cost Setting")
             let deleteCost = UserDefaults.standard.integer(forKey: "Delete Cost Setting")
             let subCost = UserDefaults.standard.integer(forKey: "Substitute Cost Setting")
             _ = UserDefaults.standard.integer(forKey: "No Operation Cost Setting")
-            let minRepeat = UserDefaults.standard.integer(forKey: "Reset Setting")
+            let minRepeat = UserDefaults.standard.integer(forKey: "Minimum Word Repeat Setting")
 
             let sa = StringAlignment(scene: scene)
             
@@ -114,7 +111,6 @@ class GameManager {
             extractAlignmentAnimations = optimalOperations.1
             targetFound = optimalOperations.2
             target = optimalOperations.3
-//            let commonStringResults = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations)
             let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations.0)
 
             print("--------------------------Part 1------------------------------")
@@ -130,17 +126,11 @@ class GameManager {
         }
     }
     
-    func searchSelector() {
-        let sa = StringAlignment(scene: scene)
-//            (searchHistory, targetFound, target) = ls.LinearSearch(gameboard: linear)
-    }
-    
     func bringOvermatrix(tempMatrix: [[Int]]) {
         matrix = tempMatrix
     }
     
     func update(time: Double) {
-            
         if nextTime == nil {
             nextTime = time + Double(gameSpeed)
         } else if (paused == true) {
@@ -181,15 +171,6 @@ class GameManager {
     }
     
     var gameIsOver = Bool()
-    func endTheGame() {
-        scene.algorithimChoiceName.text = "Game Over"
-        self.viewController?.scoreButton.layer.borderColor = UIColor.red.cgColor
-//        updateScore()
-        gameIsOver = true
-        mazeGenerated = false
-        currentScore = 0
-        scene.animationDualButtonManager(buttonsEnabled: false)
-    }
     
     func playSound(selectedSoundFileName: String) {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)

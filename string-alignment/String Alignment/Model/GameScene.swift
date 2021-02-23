@@ -264,11 +264,9 @@ class GameScene: SKScene {
             self.addChild(gameBackground)
         }
         
-        // Enter if grid
-        if respectRowCount == false {
-            let realRowCount = Int(((frame.size.height)/squareWidth).rounded(.up)) // 17
-            rowCount = realRowCount
-        }
+
+        let realRowCount = Int(((frame.size.height)/squareWidth).rounded(.up)) // 17
+        rowCount = realRowCount
         
         let realColumnCount = Int(((frame.size.width)/squareWidth).rounded(.up)) // 30
         columnCount = realColumnCount

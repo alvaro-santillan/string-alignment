@@ -15,9 +15,9 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var lastWordOneLabel: UITextField!
     @IBOutlet weak var lastWordTwoLabel: UITextField!
     
-    let wordOneList = [["Abstractionist","0","0"], ["Attractiveness","0","0"], ["Bioengineering","0","0"], ["Cinematography","0","0"], ["Detoxification","0","0"], ["Distinguishing","0","0"], ["Indestructible","0","0"], ["Liberalization","0","0"], ["Mountaineering","0","0"], ["Pharmaceutical","0","0"], ["Quintessential","0","0"], ["Superstructure","0","0"], ["Thoughtfulness","0","0"], ["Weightlessness","0","0"], ["Widespreadness","0","0"]]
+    let wordOneList = ["Abstractionist", "Attractiveness", "Bioengineering", "Cinematography","Detoxification", "Distinguishing", "Indestructible", "Liberalization", "Mountaineering", "Pharmaceutical", "Quintessential", "Superstructure", "Thoughtfulness", "Weightlessness", "Widespreadness"]
     
-    let wordTwoList = [["agile","0","0"], ["alert","0","0"], ["belly","0","0"], ["bench","0","0"], ["cross","0","0"], ["crowd","0","0"], ["fears","0","0"], ["fermi","0","0"], ["hacks","0","0"], ["krill","0","0"], ["logos","0","0"], ["omits","0","0"], ["peach","0","0"], ["swirl","0","0"], ["yummy","0","0"]]
+    let wordTwoList = ["agile", "alert", "belly", "bench", "cross", "crowd", "fears", "fermi", "hacks", "krill", "logos", "omits", "peach", "swirl","yummy"]
     
     let defaults = UserDefaults.standard
     var selectedWordOne = UserDefaults.standard.integer(forKey: "Selected Path Finding Algorithim")
@@ -54,8 +54,8 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set(3, forKey: "Square Size Setting")
             defaults.set(1, forKey: "Minimum Word Repeat Setting")
             // Bug fix: prevents nil nil from occupying gamescreen on first launch.
-            defaults.set(wordOneList[0][0], forKey: "Selected Path Finding Algorithim Name")
-            defaults.set(wordTwoList[0][0], forKey: "Selected Maze Algorithim Name")
+            defaults.set(wordOneList[0], forKey: "Selected Path Finding Algorithim Name")
+            defaults.set(wordTwoList[0], forKey: "Selected Maze Algorithim Name")
             defaults.set("None", forKey: "lastWordOne")
             defaults.set("None", forKey: "lastWordTwo")
             
@@ -80,13 +80,8 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
-        cell.label.text = tableViewDisplayList[indexPath.row][0]
-        cell.guaranteedIconSquare.contentMode = .scaleAspectFit
-        cell.layer.cornerRadius = 5
-        
-        tableViewDisplayList[indexPath.row][1] == "1" ? (cell.guaranteedIconSquare.image = UIImage(named: "Guaranteed_Icon_Set.pdf")) : (cell.guaranteedIconSquare.image = nil)
-        tableViewDisplayList[indexPath.row][2] == "1" ? (cell.optimalIconSquare.image = UIImage(named: "Optimal_Icon_Set.pdf")) : (cell.optimalIconSquare.image = nil)
-        
+        cell.label.text = tableViewDisplayList[indexPath.row]
+
         return cell
     }
 
@@ -94,12 +89,12 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         if segControl.selectedSegmentIndex == 0 {
             selectedWordOne = indexPath.row
             defaults.set(indexPath.row, forKey: "Selected Path Finding Algorithim")
-            defaults.set(wordOneList[indexPath.row][0], forKey: "Selected Path Finding Algorithim Name")
+            defaults.set(wordOneList[indexPath.row], forKey: "Selected Path Finding Algorithim Name")
         }
         if segControl.selectedSegmentIndex == 1 {
             selectedWordTwo = indexPath.row
             defaults.set(indexPath.row, forKey: "Selected Maze Algorithim")
-            defaults.set(wordTwoList[indexPath.row][0], forKey: "Selected Maze Algorithim Name")
+            defaults.set(wordTwoList[indexPath.row], forKey: "Selected Maze Algorithim Name")
         }
     }
     

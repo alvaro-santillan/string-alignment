@@ -26,6 +26,7 @@
 		3868F9822426B5EC008F7B34 /* SettingsScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3868F9812426B5EC008F7B34 /* SettingsScreenTableViewCell.swift */; };
 		387FD13B241DC51C0004FD78 /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387FD13A241DC51C0004FD78 /* MainScreenTableViewCell.swift */; };
 		610284B125E1A83A0064E9EF /* StringAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610284B025E1A83A0064E9EF /* StringAlignment.swift */; };
+		617B9D7225E59A4600EAFA3D /* WordData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 617B9D7125E59A4600EAFA3D /* WordData.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		3868F9812426B5EC008F7B34 /* SettingsScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenTableViewCell.swift; sourceTree = "<group>"; };
 		387FD13A241DC51C0004FD78 /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
 		610284B025E1A83A0064E9EF /* StringAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringAlignment.swift; sourceTree = "<group>"; };
+		617B9D7125E59A4600EAFA3D /* WordData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordData.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				3812394D23C68E2C0066B3FA /* Assets.xcassets */,
 				383DB19C24AC56190071EC65 /* Fonts */,
 				3812395223C68E2C0066B3FA /* Info.plist */,
+				617B9D7125E59A4600EAFA3D /* WordData.plist */,
 				3812394223C68E290066B3FA /* GameScene.sks */,
 				3812394023C68E290066B3FA /* AppDelegate.swift */,
 			);
@@ -214,6 +217,7 @@
 			files = (
 				3812394C23C68E290066B3FA /* Main.storyboard in Resources */,
 				3803D88F2495DD51002A6251 /* dogicapixel.ttf in Resources */,
+				617B9D7225E59A4600EAFA3D /* WordData.plist in Resources */,
 				3812394323C68E290066B3FA /* GameScene.sks in Resources */,
 				3812394E23C68E2C0066B3FA /* Assets.xcassets in Resources */,
 				3803D8972495DD64002A6251 /* dogicapixelbold.ttf in Resources */,

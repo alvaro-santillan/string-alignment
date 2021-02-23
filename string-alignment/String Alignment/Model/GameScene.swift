@@ -584,7 +584,7 @@ class GameScene: SKScene {
 //                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: finalLettersColor, duration: 0.5))
 //                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: finalLettersColor, toColor: .clear, duration: 0.5))
                     
-                    searchWaitTime = .wait(forDuration: TimeInterval(squareIndex + 1) * 0.9) // 0.085
+                    searchWaitTime = .wait(forDuration: TimeInterval(squareIndex + 1) * 0.4) // 0.085
                 }
             }
         }

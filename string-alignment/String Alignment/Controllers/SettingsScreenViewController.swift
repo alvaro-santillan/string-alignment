@@ -38,6 +38,7 @@ class SettingsSceenViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         loadUserData()
         loadButtonStyling()
+        print(legendData)
     }
     
     func loadUserData() {

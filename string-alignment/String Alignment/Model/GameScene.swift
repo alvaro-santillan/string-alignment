@@ -480,12 +480,8 @@ class GameScene: SKScene {
         }
         
         func alignAnimationEnding(squareLocationColorAndValue: SkNodeLocationColorAndValue, swap: Bool, duration: SKAction) {
-//            Swap Animation, Not Trash
-//            squareLocationAndColor.square.run(.sequence([animationSequanceManager(animation: 2)]))
-//            if swap != true {
             squareLocationColorAndValue.square.fillColor = squareLocationColorAndValue.color
             squareLocationColorAndValue.square.lineWidth = 5
-//            }
             
             if swap == true {
                 squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: processingHaloColor, duration: 0.5))
@@ -530,13 +526,9 @@ class GameScene: SKScene {
         
         func extractAlignmentAnimationBegining() {
             if game.target.count != 0 {
-//                game.target[0].square.strokeColor = self.finalPathColor
-            
                 var searchWaitTime = SKAction()
                 
                 for (squareIndex, squareLocationAndColor) in game.extractAlignmentAnimations.enumerated() {
-//                    Swap Animation, Not Trash
-//                    squareLocationAndColor.square.run(.sequence([searchWaitTime, animationSequanceManager(animation: 2)]),
                     squareLocationAndColor.square.run(.sequence([searchWaitTime]), completion: {extractAlignmentAnimationEnding(searchWaitTime: searchWaitTime, squareLocationAndColor: squareLocationAndColor)})
                     searchWaitTime = .wait(forDuration: TimeInterval(squareIndex) * 0.02) // 0.085
                 }
@@ -550,7 +542,6 @@ class GameScene: SKScene {
             DispatchQueue.main.asyncAfter(deadline: .now() + searchWaitTime.duration) {
                 if self.sucssesfullyFound == false {
                     if (self.game.targetFound) == true {
-//                        self.game.target[0].square.strokeColor = self.processingHaloColor
                         self.sucssesfullyFound = true
                         commonStringsAnimationBegining()
                     }
@@ -558,52 +549,24 @@ class GameScene: SKScene {
             }
         }
         
-        // NEW
-        // NEW
         func commonStringsAnimationBegining() {
             if game.target.count != 0 {
-//                game.target[0].square.strokeColor = self.finalPathColor
-            
                 var searchWaitTime = SKAction()
                 
                 for (squareIndex, location) in game.commonStringAnimations.enumerated() {
-//                    Swap Animation, Not Trash
-//                    squareLocationAndColor.square.run(.sequence([searchWaitTime, animationSequanceManager(animation: 2)]),
-//                    location.square.run(.sequence([searchWaitTime]), completion: {commonStringsAnimationEnding(searchWaitTime: searchWaitTime, squareLocationAndColor: location)})
-                    
                     let squareLabelNode = gameBoard.first(where: { $0.location == Tuple(x: (location + 2), y: 1)})! // HARDCODED
-//                    squareLabelNode.square.fillColor = .systemPink
-                    
-                    
-//                    pathFindingAnimationsHaveEnded = false
-                    
                     squareLabelNode.square.run(.sequence([searchWaitTime]), completion: {commonStringsAnimationEnding(squareLocationColorAndValue: squareLabelNode, swap: true, duration: searchWaitTime)})
-
-//                    game.alignStringAnimations.remove(at: 0)
-                    
-//                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: finalLettersColor, duration: 0.5))
-//                    squareLabelNode.square.run(SKAction.colorTransitionAction(fromColor: finalLettersColor, toColor: .clear, duration: 0.5))
-                    
                     searchWaitTime = .wait(forDuration: TimeInterval(squareIndex + 1) * 0.4) // 0.085
                 }
             }
         }
         
-    func commonStringsAnimationEnding(squareLocationColorAndValue: SkNodeAndLocation, swap: Bool, duration: SKAction) {
-//            Swap Animation, Not Trash
-//            squareLocationAndColor.square.run(.sequence([animationSequanceManager(animation: 2)]))
-//            if swap != true {
-//            squareLocationColorAndValue.square.fillColor = finalLettersColor
-//            squareLocationColorAndValue.square.lineWidth = 5
-//            }
-//        endingAnimationCount += 1.0
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration.duration) {
-            squareLocationColorAndValue.square.fillColor = self.finalLettersColor
-            squareLocationColorAndValue.square.lineWidth = 5
+        func commonStringsAnimationEnding(squareLocationColorAndValue: SkNodeAndLocation, swap: Bool, duration: SKAction) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration.duration) {
+                squareLocationColorAndValue.square.fillColor = self.finalLettersColor
+                squareLocationColorAndValue.square.lineWidth = 5
+            }
         }
-    }
-        // NEW
         
         visitedSquareDispatchCalled = false
         pathSquareDispatchCalled = false

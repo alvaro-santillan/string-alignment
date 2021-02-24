@@ -491,12 +491,28 @@ class GameScene: SKScene {
                 
                 if squareLocationColorAndValue.operationType == "No Operation" {
                     noOpperationCounter += 1
+                    
+                    // Create sound action and run it.
+                    let soundAction = SKAction.playSoundFileNamed("c_Cb.wav", waitForCompletion: false)
+                    self.gameBackground.run(soundAction)
                 } else if squareLocationColorAndValue.operationType == "Delete" {
                     deleteCounter += 1 // Good
+                    
+                    // Create sound action and run it.
+                    let soundAction = SKAction.playSoundFileNamed("eb_Db.wav", waitForCompletion: false)
+                    self.gameBackground.run(soundAction)
                 } else if squareLocationColorAndValue.operationType == "Insert" {
                     insertCounter += 1 // Good
+                    
+                    // Create sound action and run it.
+                    let soundAction = SKAction.playSoundFileNamed("f_Fb.wav", waitForCompletion: false)
+                    self.gameBackground.run(soundAction)
                 } else if squareLocationColorAndValue.operationType == "Substitute" {
                     substituteCounter += 1
+                    
+                    // Create sound action and run it.
+                    let soundAction = SKAction.playSoundFileNamed("g_Gb.wav", waitForCompletion: false)
+                    self.gameBackground.run(soundAction)
                 }
                 endingAnimationCount += 1.0
             }

@@ -29,11 +29,12 @@ struct SkNodeLocationAndColor: Hashable {
     var color: UIColor
 }
 
-struct SkNodeLocationColorAndValue: Hashable {
+struct SkCompleteNode: Hashable {
     var square: SKShapeNode
     var location: Tuple
     var color: UIColor
     var value: Int
+    var operationType: String
 }
 
 struct ColorComponents {

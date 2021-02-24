@@ -131,11 +131,6 @@ class GameScene: SKScene {
             }
             
             if nativeBoardLayoutOption != defaults.integer(forKey: "Minimum Word Repeat Setting") {
-//                for i in gameBoard {
-//                    i.square.removeAllActions()
-//                }
-//                self.viewController?.loadThePausedButton()
-//                endingAnimationCount = 0
                 game.alignStringAnimations.removeAll()
                 game.extractAlignmentAnimations.removeAll()
                 insertCounter = 0

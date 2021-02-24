@@ -53,7 +53,7 @@ class HelpScreenViewController: UIViewController {
         var webURL = "https://www.linkedin.com/in/álvarosantillan"
         webURL = webURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
 
-        let appID = "1526769717"
+        let appID = "1555165858"
         var appURL = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
         appURL = appURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         

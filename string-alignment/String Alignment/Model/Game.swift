@@ -112,13 +112,13 @@ class GameManager {
         target = optimalOperations.3
         let commonStrings = sa.commonSubstrings(startString: startString, minRepeat: minRepeat, optimalOperations: optimalOperations.0)
 
-        print("--------------------------Part 1------------------------------")
-        for i in costMatrix {
-            print(i)
-        }
-        commonStringAnimations = commonStrings.1
-        print(optimalOperations.0)
-        print(commonStrings.1)
+//        print("--------------------------Part 1------------------------------")
+//        for i in costMatrix {
+//            print(i)
+//        }
+//        commonStringAnimations = commonStrings.1
+//        print(optimalOperations.0)
+//        print(commonStrings.1)
     }
     
     func bringOvermatrix(tempMatrix: [[Int]]) {

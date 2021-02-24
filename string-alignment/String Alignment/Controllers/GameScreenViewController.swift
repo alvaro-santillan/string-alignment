@@ -66,13 +66,13 @@ class GameScreenViewController: UIViewController {
         legendData = UserDefaults.standard.array(forKey: "Legend Preferences") as! [[Any]]
         scoreButton.layer.borderWidth = 2
         
-        if scoreButton.tag == 0 {
-            scoreButton.layer.borderColor = (colors[legendData[2][1] as! Int].withAlphaComponent(0.8)).cgColor
-            scoreButton.layer.backgroundColor = (colors[legendData[2][1] as! Int].withAlphaComponent(0.5)).cgColor
-        } else if scoreButton.tag == 1 {
+        if scoreButton.tag == 1 {
             scoreButton.layer.borderColor = (colors[legendData[1][1] as! Int].withAlphaComponent(0.8)).cgColor
             scoreButton.layer.backgroundColor = (colors[legendData[1][1] as! Int].withAlphaComponent(0.5)).cgColor
         } else if scoreButton.tag == 2 {
+            scoreButton.layer.borderColor = (colors[legendData[2][1] as! Int].withAlphaComponent(0.8)).cgColor
+            scoreButton.layer.backgroundColor = (colors[legendData[2][1] as! Int].withAlphaComponent(0.5)).cgColor
+        } else if scoreButton.tag == 3 {
             scoreButton.layer.borderColor = (colors[legendData[3][1] as! Int].withAlphaComponent(0.8)).cgColor
             scoreButton.layer.backgroundColor = colors[legendData[3][1] as! Int].withAlphaComponent(0.5).cgColor
         } else {
@@ -108,28 +108,28 @@ class GameScreenViewController: UIViewController {
         legendData = UserDefaults.standard.array(forKey: "Legend Preferences") as! [[Any]]
         // If button tapped switch to next option.
         switch sender.tag {
-            case 0:
+            case 1:
                 print("Insert count")
+                scoreButton.layer.borderColor = (colors[legendData[2][1] as! Int].withAlphaComponent(0.8)).cgColor
+                sender.backgroundColor = colors[legendData[2][1] as! Int].withAlphaComponent(0.5)
+                sender.tag = 2
+            case 2:
+                print("Delete count")
+                scoreButton.layer.borderColor = (colors[legendData[3][1] as! Int].withAlphaComponent(0.8)).cgColor
+                sender.backgroundColor = colors[legendData[3][1] as! Int].withAlphaComponent(0.5)
+                sender.tag = 3
+            case 3:
+                print("Substitute count")
+                scoreButton.layer.borderColor = (colors[legendData[4][1] as! Int].withAlphaComponent(0.8)).cgColor
+                sender.backgroundColor = colors[legendData[4][1] as! Int].withAlphaComponent(0.5)
+                sender.tag = 4
+            case 4:
+                print("No Opperation count")
                 scoreButton.layer.borderColor = (colors[legendData[1][1] as! Int].withAlphaComponent(0.8)).cgColor
                 sender.backgroundColor = colors[legendData[1][1] as! Int].withAlphaComponent(0.5)
                 sender.tag = 1
-            case 1:
-                print("Delete count")
-                scoreButton.layer.borderColor = (colors[legendData[2][1] as! Int].withAlphaComponent(0.8)).cgColor
-                sender.backgroundColor = colors[legendData[2][1] as! Int].withAlphaComponent(0.5)
-                sender.tag = 0
-            case 2:
-                print("Substitute count")
-                scoreButton.layer.borderColor = (colors[legendData[3][1] as! Int].withAlphaComponent(0.8)).cgColor
-                sender.backgroundColor = colors[legendData[3][1] as! Int].withAlphaComponent(0.5)
-                sender.tag = 2
-            case 3:
-                print("No Opperation count")
-                scoreButton.layer.borderColor = (colors[legendData[4][1] as! Int].withAlphaComponent(0.8)).cgColor
-                sender.backgroundColor = colors[legendData[4][1] as! Int].withAlphaComponent(0.5)
-                sender.tag = 3
             default:
-                print("Score button loading error")
+                print(sender.tag, "Score button tap error")
         }
         defaults.set(true, forKey: "Score Button Is Tapped")
     }

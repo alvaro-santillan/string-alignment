@@ -654,7 +654,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="os2-yv-uox">
                                 <rect key="frame" x="20" y="349" width="696" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZ8-7E-hZ7" userLabel="Score Button" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.80000000000000004" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZ8-7E-hZ7" userLabel="Score Button" customClass="IconUIButton" customModule="String_Alignment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="45"/>
                                         <color key="backgroundColor" name="UI Button"/>
                                         <fontDescription key="fontDescription" name="Dogica_Pixel" family="Dogica Pixel" pointSize="16"/>

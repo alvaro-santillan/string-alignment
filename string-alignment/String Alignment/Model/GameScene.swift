@@ -119,14 +119,17 @@ class GameScene: SKScene {
             scoreButtonColor = squareColor
         }
         
-        
-        
         if firstRun {
             // Update to display reset option
             nativeBoardLayoutOption = defaults.integer(forKey: "Minimum Word Repeat Setting")
             // Populate score button text on first run.
             updateScoreButtonText()
         } else {
+            for square in playableGameboard {
+                let label = square.square.childNode(withName: "squareLabelNode") as? SKLabelNode
+                label?.fontColor = GameBoardTextColor
+            }
+            
             if nativeBoardLayoutOption != defaults.integer(forKey: "Minimum Word Repeat Setting") {
 //                for i in gameBoard {
 //                    i.square.removeAllActions()

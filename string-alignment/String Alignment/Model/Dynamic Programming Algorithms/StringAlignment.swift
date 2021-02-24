@@ -30,8 +30,8 @@ class StringAlignment {
         return startStringArray
     }
     
-    func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> ([[Int]], [[SkNodeLocationColorAndValue]]) {
-        var pendingAnimations = [[SkNodeLocationColorAndValue]]()
+    func alignStrings(startString: [String], endString: [String], insertCost: Int, deleteCost: Int, subCost: Int) -> ([[Int]], [[SkCompleteNode]]) {
+        var pendingAnimations = [[SkCompleteNode]]()
         let playableGameboard = scene.playableGameboard
         // The worst score, so algorithim can only improve.
         // delete, sub, or insert cost of more then ten will cause a integer overflow.
@@ -69,8 +69,8 @@ class StringAlignment {
                 let topPlusCost = (x-1 != -1) ? costMatrix[x-1][y] + deleteCost : infinity
                 let leftPlusCost = (y-1 != -1) ? costMatrix[x][y-1] + insertCost : infinity
                 
-                var currentLocationAndSquare = SkNodeLocationColorAndValue(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black, value: 0)
-                var comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black, value: 0)
+                var currentLocationAndSquare = SkCompleteNode(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black, value: 0, operationType: "-")
+                var comparisonLocationAndSquare = SkCompleteNode(square: playableGameboard[0].square, location: playableGameboard[0].location, color: .black, value: 0, operationType: "-")
                 let currentSquare = playableGameboard[squareCounter].square
                 let currentLocation = playableGameboard[squareCounter].location
                 // HARDCODED
@@ -89,7 +89,7 @@ class StringAlignment {
                     costMatrix[x][y] = 0
                     
                     // Animations
-                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: scene.noOpperationColor, value: 0)
+                    currentLocationAndSquare = SkCompleteNode(square: currentSquare, location: currentLocation, color: scene.noOpperationColor, value: 0, operationType: "No Operation")
                     pendingAnimations.append([currentLocationAndSquare])
                 } else if endString[y] == "-" {
                     // Populate the first x and y columns in the matrix.
@@ -98,44 +98,52 @@ class StringAlignment {
                     
                     // Animations
                     newCumparisonSquareColor = findNewColor(targetLocation: topLocation)
-                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: scene.deleteColor, value: newDeleteCost)
-                    comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: topSquare, location: topLocation, color: newCumparisonSquareColor, value: -1)
+                    currentLocationAndSquare = SkCompleteNode(square: currentSquare, location: currentLocation, color: scene.deleteColor, value: newDeleteCost, operationType: "Delete")
+                    comparisonLocationAndSquare = SkCompleteNode(square: topSquare, location: topLocation, color: newCumparisonSquareColor, value: -1, operationType: "-")
                     pendingAnimations.append([currentLocationAndSquare,comparisonLocationAndSquare])
                 } else if endString[y] == startString[x] {
                     let smallest = min(topPlusCost, leftPlusCost, diagonal)
+                    var opperationType = String()
                     costMatrix[x][y] = smallest
                     
                     if smallest == topPlusCost {
                         newCurrentSquareColor = scene.deleteColor
-                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation), value: -1)
+                        opperationType = "Delete"
+                        comparisonLocationAndSquare = SkCompleteNode(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation), value: -1, operationType: "-")
                     } else if smallest == leftPlusCost {
                         newCurrentSquareColor = scene.insertColor
-                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation), value: -1)
+                        opperationType = "Insert"
+                        comparisonLocationAndSquare = SkCompleteNode(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation), value: -1, operationType: "-")
                     } else {
                         newCurrentSquareColor = scene.noOpperationColor
-                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation), value: -1)
+                        opperationType = "No Operation"
+                        comparisonLocationAndSquare = SkCompleteNode(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation), value: -1, operationType: "-")
                     }
                     
                     // Animations
-                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: newCurrentSquareColor, value: smallest)
+                    currentLocationAndSquare = SkCompleteNode(square: currentSquare, location: currentLocation, color: newCurrentSquareColor, value: smallest, operationType: opperationType)
                     pendingAnimations.append([currentLocationAndSquare,comparisonLocationAndSquare])
                 } else {
                     let smallest = min(topPlusCost, leftPlusCost, diagonalPlusCost)
+                    var opperationType = String()
                     costMatrix[x][y] = smallest
                     
                     if smallest == topPlusCost {
                         newCurrentSquareColor = scene.deleteColor
-                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation), value: -1)
+                        opperationType = "Delete"
+                        comparisonLocationAndSquare = SkCompleteNode(square: topSquare, location: topLocation, color: findNewColor(targetLocation: topLocation), value: -1, operationType: "-")
                     } else if smallest == leftPlusCost {
                         newCurrentSquareColor = scene.insertColor
-                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation), value: -1)
+                        opperationType = "Insert"
+                        comparisonLocationAndSquare = SkCompleteNode(square: leftSquare, location: leftLocation, color: findNewColor(targetLocation: leftLocation), value: -1, operationType: "-")
                     } else {
                         newCurrentSquareColor = scene.substituteColor
-                        comparisonLocationAndSquare = SkNodeLocationColorAndValue(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation), value: -1)
+                        opperationType = "Substitute"
+                        comparisonLocationAndSquare = SkCompleteNode(square: diagnalSquare, location: diagnalLocation, color: findNewColor(targetLocation: diagnalLocation), value: -1, operationType: "-")
                     }
                     
                     // Animations
-                    currentLocationAndSquare = SkNodeLocationColorAndValue(square: currentSquare, location: currentLocation, color: newCurrentSquareColor, value: smallest)
+                    currentLocationAndSquare = SkCompleteNode(square: currentSquare, location: currentLocation, color: newCurrentSquareColor, value: smallest, operationType: opperationType)
                     pendingAnimations.append([currentLocationAndSquare,comparisonLocationAndSquare])
                 }
                 

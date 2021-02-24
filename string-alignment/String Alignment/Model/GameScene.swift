@@ -135,8 +135,8 @@ class GameScene: SKScene {
 //                endingAnimationCount = 0
                 game.alignStringAnimations.removeAll()
                 game.extractAlignmentAnimations.removeAll()
-                swapCounter = 0
-                comparisonCounter = 0
+                insertCounter = 0
+                deleteCounter = 0
                 nativeBoardLayoutOption = defaults.integer(forKey: "Minimum Word Repeat Setting")
                 game.initaitateRandomSquares()
                 self.startingAnimationAndSquareColoring()
@@ -451,8 +451,10 @@ class GameScene: SKScene {
     var pathSquareDispatchCalled = Bool()
     var visitedSquareWait = SKAction()
     var pathSquareWait = SKAction()
-    var swapCounter = Float()
-    var comparisonCounter = Float()
+    var insertCounter = Float()
+    var deleteCounter = Float()
+    var substituteCounter = Float()
+    var noOpperationCounter = Float()
     var hasRun = false
     var sucssesfullyFound = false
     var endingAnimationCount = Double()
@@ -464,18 +466,18 @@ class GameScene: SKScene {
             
             for (squareIndex, innerSquareArray) in game.alignStringAnimations.enumerated() {
                 for squareLocationColorAndValue in innerSquareArray {
-                    if innerSquareArray.count != 1 {
+//                    if innerSquareArray.count != 1 {
                         squareLocationColorAndValue.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationColorAndValue: squareLocationColorAndValue, swap: true, duration: queuedSquareWait)})
-                    } else {
-                        squareLocationColorAndValue.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationColorAndValue: squareLocationColorAndValue, swap: false, duration: queuedSquareWait)})
-                    }
+//                    } else {
+//                        squareLocationColorAndValue.square.run(.sequence([queuedSquareWait]), completion: {alignAnimationEnding(squareLocationColorAndValue: squareLocationColorAndValue, swap: false, duration: queuedSquareWait)})
+//                    }
                 }
                 queuedSquareWait = .wait(forDuration: TimeInterval(squareIndex) * Double(pathFindingAnimationSpeed))
                 game.alignStringAnimations.remove(at: 0)
             }
         }
         
-        func alignAnimationEnding(squareLocationColorAndValue: SkNodeLocationColorAndValue, swap: Bool, duration: SKAction) {
+        func alignAnimationEnding(squareLocationColorAndValue: SkCompleteNode, swap: Bool, duration: SKAction) {
             squareLocationColorAndValue.square.fillColor = squareLocationColorAndValue.color
             squareLocationColorAndValue.square.lineWidth = 5
             
@@ -493,16 +495,23 @@ class GameScene: SKScene {
                     squareLabelNode?.fontSize = 12
                 }
                 
-                swapCounter += 0.5
-                comparisonCounter += 0.5
+                if squareLocationColorAndValue.operationType == "No Operation" {
+                    noOpperationCounter += 1
+                } else if squareLocationColorAndValue.operationType == "Delete" {
+                    deleteCounter += 1
+                } else if squareLocationColorAndValue.operationType == "Insert" {
+                    insertCounter += 1
+                } else if squareLocationColorAndValue.operationType == "Substitute" {
+                    substituteCounter += 1
+                }
                 endingAnimationCount += 1.0
             }
-            else {
-                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: GameBoardTextColor, duration: 0.5))
-                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: GameBoardTextColor, toColor: .clear, duration: 0.5))
-                comparisonCounter += 1
-                endingAnimationCount += 1.0
-            }
+//            else {
+//                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: .clear, toColor: GameBoardTextColor, duration: 0.5))
+//                squareLocationColorAndValue.square.run(SKAction.colorTransitionAction(fromColor: GameBoardTextColor, toColor: .clear, duration: 0.5))
+//                insertCounter += 1
+//                endingAnimationCount += 1.0
+//            }
             updateScoreButtonText()
             
             if hasRun == false {
@@ -674,11 +683,15 @@ class GameScene: SKScene {
         
         switch scoreButtonTag {
             case 0: // Swap
-                self.viewController?.scoreButton.setTitle(String(Int(comparisonCounter)), for: .normal)
+                self.viewController?.scoreButton.setTitle(String(Int(deleteCounter)), for: .normal)
             case 1: // Comp
-                self.viewController?.scoreButton.setTitle(String(Int(swapCounter)), for: .normal)
+                self.viewController?.scoreButton.setTitle(String(Int(insertCounter)), for: .normal)
+            case 1:
+                self.viewController?.scoreButton.setTitle(String(Int(substituteCounter)), for: .normal)
+            case 1:
+                self.viewController?.scoreButton.setTitle(String(Int(noOpperationCounter)), for: .normal)
             default:
-                self.viewController?.scoreButton.setTitle(String(Int(comparisonCounter)), for: .normal)
+                self.viewController?.scoreButton.setTitle(String(Int(deleteCounter)), for: .normal)
                 print("Score button loading error", self.viewController?.scoreButton.tag)
         }
         defaults.set(false, forKey: "Score Button Is Tapped")

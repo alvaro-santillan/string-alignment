@@ -48,7 +48,7 @@ class GameManager {
     
     var orderedSquareShades: [SkNodeLocationAndColor] = []
     var shuffledSquareShades: [SkNodeLocationAndColor] = []
-    var alignStringAnimations = [[SkNodeLocationColorAndValue]]()
+    var alignStringAnimations = [[SkCompleteNode]]()
     var swapAnimationsSplit = [[[SkNodeLocationAndColor]]]()
     var commonStringAnimations = [Int]()
     

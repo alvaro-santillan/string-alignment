@@ -58,7 +58,7 @@ class StringAlignment {
             return .black
         }
 
-        var squareCounter = 17 // HARDCODED
+        var squareCounter = (scene.columnCount - 1) // HARDCODED
         
         // Update matrix to better values.
         for x in 0...startString.count - 1 {
@@ -74,10 +74,10 @@ class StringAlignment {
                 let currentSquare = playableGameboard[squareCounter].square
                 let currentLocation = playableGameboard[squareCounter].location
                 // HARDCODED
-                let topSquare = playableGameboard[squareCounter - 16].square
-                let topLocation = playableGameboard[squareCounter - 16].location
-                let diagnalSquare = playableGameboard[squareCounter - 17].square
-                let diagnalLocation = playableGameboard[squareCounter - 17].location
+                let topSquare = playableGameboard[squareCounter - (scene.columnCount - 2)].square
+                let topLocation = playableGameboard[squareCounter - (scene.columnCount - 2)].location
+                let diagnalSquare = playableGameboard[squareCounter - (scene.columnCount - 3)].square
+                let diagnalLocation = playableGameboard[squareCounter - (scene.columnCount - 3)].location
                 let leftSquare = playableGameboard[squareCounter - 1].square
                 let leftLocation = playableGameboard[squareCounter - 1].location
                 var newCurrentSquareColor = UIColor()
@@ -140,7 +140,7 @@ class StringAlignment {
                 }
                 
                 // HARDCODED
-                if y == 14 {
+                if y == scene.pathFindingAlgorithimName?.count {
                     squareCounter += 2
                 } else {
                     squareCounter += 1
@@ -156,7 +156,7 @@ class StringAlignment {
         let infinity = Int.max-10
 
         var target: [SkNodeAndLocation] = []
-        var squareCounter = 142 // HARDCODED
+        var squareCounter = ((scene.columnCount * scene.rowCount) - scene.columnCount - 2) // Last square to get calculated.
         pendingAnimations.append(scene.gameBoard[squareCounter])
         target.append(scene.gameBoard.first(where: { $0.location == Tuple(x: 1, y: 1)})!) // HARDCODED
         
@@ -178,7 +178,7 @@ class StringAlignment {
                 currentLocationX = currentLocationX-1
                 optimalOperations.append("delete")
                 
-                squareCounter -= 18 // HARDCODED
+                squareCounter -= scene.columnCount // HARDCODED
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Diagonal is the smallest (no-op) update and append accordingly.
@@ -188,7 +188,7 @@ class StringAlignment {
                 optimalOperations.append("no-op")
                 
                 squareCounter -= 1 // HARDCODED
-                squareCounter -= 18 // HARDCODED
+                squareCounter -= scene.columnCount // HARDCODED
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Diagonal is the smallest (sub) update and append accordingly.
@@ -198,7 +198,7 @@ class StringAlignment {
                 optimalOperations.append("sub")
                 
                 squareCounter -= 1 // HARDCODED
-                squareCounter -= 18 // HARDCODED
+                squareCounter -= scene.columnCount // HARDCODED
                 pendingAnimations.append(scene.gameBoard[squareCounter])
             }
             // Left is the smallest update and append accordingly.

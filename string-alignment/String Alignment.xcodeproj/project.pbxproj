@@ -27,6 +27,8 @@
 		387FD13B241DC51C0004FD78 /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387FD13A241DC51C0004FD78 /* MainScreenTableViewCell.swift */; };
 		610284B125E1A83A0064E9EF /* StringAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610284B025E1A83A0064E9EF /* StringAlignment.swift */; };
 		617B9D7225E59A4600EAFA3D /* WordData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 617B9D7125E59A4600EAFA3D /* WordData.plist */; };
+		617B9D7725E5C96A00EAFA3D /* WordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B9D7625E5C96A00EAFA3D /* WordData.swift */; };
+		617B9D7A25E5C9DC00EAFA3D /* WordDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B9D7925E5C9DC00EAFA3D /* WordDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		387FD13A241DC51C0004FD78 /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
 		610284B025E1A83A0064E9EF /* StringAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringAlignment.swift; sourceTree = "<group>"; };
 		617B9D7125E59A4600EAFA3D /* WordData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordData.plist; sourceTree = "<group>"; };
+		617B9D7625E5C96A00EAFA3D /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
+		617B9D7925E5C9DC00EAFA3D /* WordDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				3803D89A2497F7D7002A6251 /* Custom UI Managers.swift */,
+				617B9D7625E5C96A00EAFA3D /* WordData.swift */,
+				617B9D7925E5C9DC00EAFA3D /* WordDataLoader.swift */,
 				3803D89C2497F87A002A6251 /* Custom Extensions.swift */,
 				382F0F1624AD527B0022E521 /* Custom Data Structures.swift */,
 				610284AE25E1A7CE0064E9EF /* Dynamic Programming Algorithms */,
@@ -235,10 +241,12 @@
 				382F0F1724AD527B0022E521 /* Custom Data Structures.swift in Sources */,
 				3868F97C2426960C008F7B34 /* HelpScreenViewController.swift in Sources */,
 				610284B125E1A83A0064E9EF /* StringAlignment.swift in Sources */,
+				617B9D7A25E5C9DC00EAFA3D /* WordDataLoader.swift in Sources */,
 				3868F9822426B5EC008F7B34 /* SettingsScreenTableViewCell.swift in Sources */,
 				3868F97E24269985008F7B34 /* GameScreenViewController.swift in Sources */,
 				3803D89B2497F7D7002A6251 /* Custom UI Managers.swift in Sources */,
 				3812394723C68E290066B3FA /* GameScene.swift in Sources */,
+				617B9D7725E5C96A00EAFA3D /* WordData.swift in Sources */,
 				387FD13B241DC51C0004FD78 /* MainScreenTableViewCell.swift in Sources */,
 				3812395923C68F450066B3FA /* Game.swift in Sources */,
 				3812394923C68E290066B3FA /* MainScreenViewController.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 class MainScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var segControl: UISegmentedControl!
@@ -15,17 +16,27 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var lastWordOneLabel: UITextField!
     @IBOutlet weak var lastWordTwoLabel: UITextField!
     
-    let wordOneList = ["Abstractionist", "Attractiveness", "Bioengineering", "Cinematography","Detoxification", "Distinguishing", "Indestructible", "Liberalization", "Mountaineering", "Pharmaceutical", "Quintessential", "Superstructure", "Thoughtfulness", "Weightlessness", "Widespreadness"]
-    
-    let wordTwoList = ["agile", "alert", "belly", "bench", "cross", "crowd", "fears", "fermi", "hacks", "krill", "logos", "omits", "peach", "swirl","yummy"]
+    var wordOneList = [String]()
+    var wordTwoList = [String]()
+    var listData = WordDataLoader() // New
+    var entries = [String]() // New
+    var realRowCount = 3
+    var realColumnCount = 3
     
     let defaults = UserDefaults.standard
     var selectedWordOne = UserDefaults.standard.integer(forKey: "Selected Path Finding Algorithim")
     var selectedWordTwo = UserDefaults.standard.integer(forKey: "Selected Maze Algorithim")
     lazy var tableViewDisplayList = wordOneList
     
+    override func viewWillAppear(_ animated: Bool) {
+        listData.loadData(filename: "WordData")
+        wordOneList = listData.getEntires(index: realColumnCount)
+        wordTwoList = listData.getEntires(index: realRowCount)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        determinCorrectWordSize()
         checkIfFirstRun()
         loadUserData()
     }
@@ -67,6 +78,16 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             
             overrideUserInterfaceStyle = .dark
         }
+    }
+    
+    func determinCorrectWordSize() {
+        let squareWidth = 46
+        let frame = UIScreen.main.bounds.size
+        // -5 == -4 Due to buffer squares and -1 becouse word plist starts at 0.
+        realRowCount = (Int(((frame.height)/CGFloat(squareWidth)).rounded(.up)) - 5)
+        realColumnCount = (Int(((frame.width)/CGFloat(squareWidth)).rounded(.up)) - 5)
+        print(realRowCount, realColumnCount)
+        
     }
     
     func loadUserData() {

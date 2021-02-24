@@ -116,7 +116,7 @@ class GameManager {
 //        for i in costMatrix {
 //            print(i)
 //        }
-//        commonStringAnimations = commonStrings.1
+        commonStringAnimations = commonStrings.1
 //        print(optimalOperations.0)
 //        print(commonStrings.1)
     }

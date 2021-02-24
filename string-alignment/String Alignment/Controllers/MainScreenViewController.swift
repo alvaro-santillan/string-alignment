@@ -36,6 +36,11 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        listData.loadData(filename: "WordData")
+        wordOneList = listData.getEntires(index: realColumnCount)
+        wordTwoList = listData.getEntires(index: realRowCount)
+        
         determinCorrectWordSize()
         checkIfFirstRun()
         loadUserData()

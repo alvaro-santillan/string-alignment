@@ -34,6 +34,8 @@
 		618D816B25E716F600949517 /* bb_Ab.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816625E716F600949517 /* bb_Ab.wav */; };
 		618D816C25E716F600949517 /* c_Cb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816725E716F600949517 /* c_Cb.wav */; };
 		618D816D25E716F600949517 /* f_Fb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816825E716F600949517 /* f_Fb.wav */; };
+		618D817025E7198700949517 /* b_B.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816F25E7198700949517 /* b_B.wav */; };
+		618D817325E7199400949517 /* a_A.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D817225E7199400949517 /* a_A.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		618D816625E716F600949517 /* bb_Ab.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bb_Ab.wav; sourceTree = "<group>"; };
 		618D816725E716F600949517 /* c_Cb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = c_Cb.wav; sourceTree = "<group>"; };
 		618D816825E716F600949517 /* f_Fb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = f_Fb.wav; sourceTree = "<group>"; };
+		618D816F25E7198700949517 /* b_B.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = b_B.wav; sourceTree = "<group>"; };
+		618D817225E7199400949517 /* a_A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = a_A.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,8 @@
 				618D816525E716F600949517 /* eb_Db.wav */,
 				618D816825E716F600949517 /* f_Fb.wav */,
 				618D816425E716F600949517 /* g_Gb.wav */,
+				618D816F25E7198700949517 /* b_B.wav */,
+				618D817225E7199400949517 /* a_A.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -247,10 +253,12 @@
 				3812394C23C68E290066B3FA /* Main.storyboard in Resources */,
 				618D816C25E716F600949517 /* c_Cb.wav in Resources */,
 				3803D88F2495DD51002A6251 /* dogicapixel.ttf in Resources */,
+				618D817025E7198700949517 /* b_B.wav in Resources */,
 				617B9D7225E59A4600EAFA3D /* WordData.plist in Resources */,
 				618D816925E716F600949517 /* g_Gb.wav in Resources */,
 				3812394323C68E290066B3FA /* GameScene.sks in Resources */,
 				618D816A25E716F600949517 /* eb_Db.wav in Resources */,
+				618D817325E7199400949517 /* a_A.wav in Resources */,
 				3812394E23C68E2C0066B3FA /* Assets.xcassets in Resources */,
 				3803D8972495DD64002A6251 /* dogicapixelbold.ttf in Resources */,
 				618D816D25E716F600949517 /* f_Fb.wav in Resources */,

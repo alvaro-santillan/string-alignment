@@ -545,6 +545,9 @@ class GameScene: SKScene {
             squareLocationAndColor.square.lineWidth = 5
             squareLocationAndColor.square.strokeColor = self.finalPathColor
             
+            let soundAction = SKAction.playSoundFileNamed("b_B.wav", waitForCompletion: false)
+            self.gameBackground.run(soundAction)
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + searchWaitTime.duration) {
                 if self.sucssesfullyFound == false {
                     if (self.game.targetFound) == true {

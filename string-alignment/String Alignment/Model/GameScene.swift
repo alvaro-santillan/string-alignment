@@ -563,6 +563,12 @@ class GameScene: SKScene {
         visitedSquareDispatchCalled = false
         pathSquareDispatchCalled = false
         
+        // Reset Counters before every animation.
+        insertCounter = 0
+        deleteCounter = 0
+        substituteCounter = 0
+        noOpperationCounter = 0
+        
         alignAnimationBegining()
     }
     

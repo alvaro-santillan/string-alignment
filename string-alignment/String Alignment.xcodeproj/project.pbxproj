@@ -29,7 +29,11 @@
 		617B9D7225E59A4600EAFA3D /* WordData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 617B9D7125E59A4600EAFA3D /* WordData.plist */; };
 		617B9D7725E5C96A00EAFA3D /* WordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B9D7625E5C96A00EAFA3D /* WordData.swift */; };
 		617B9D7A25E5C9DC00EAFA3D /* WordDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B9D7925E5C9DC00EAFA3D /* WordDataLoader.swift */; };
-		618D816025E7141D00949517 /* 205.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D815F25E7141D00949517 /* 205.wav */; };
+		618D816925E716F600949517 /* g_Gb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816425E716F600949517 /* g_Gb.wav */; };
+		618D816A25E716F600949517 /* eb_Db.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816525E716F600949517 /* eb_Db.wav */; };
+		618D816B25E716F600949517 /* bb_Ab.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816625E716F600949517 /* bb_Ab.wav */; };
+		618D816C25E716F600949517 /* c_Cb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816725E716F600949517 /* c_Cb.wav */; };
+		618D816D25E716F600949517 /* f_Fb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 618D816825E716F600949517 /* f_Fb.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +61,11 @@
 		617B9D7125E59A4600EAFA3D /* WordData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordData.plist; sourceTree = "<group>"; };
 		617B9D7625E5C96A00EAFA3D /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
 		617B9D7925E5C9DC00EAFA3D /* WordDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataLoader.swift; sourceTree = "<group>"; };
-		618D815F25E7141D00949517 /* 205.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 205.wav; sourceTree = "<group>"; };
+		618D816425E716F600949517 /* g_Gb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = g_Gb.wav; sourceTree = "<group>"; };
+		618D816525E716F600949517 /* eb_Db.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = eb_Db.wav; sourceTree = "<group>"; };
+		618D816625E716F600949517 /* bb_Ab.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bb_Ab.wav; sourceTree = "<group>"; };
+		618D816725E716F600949517 /* c_Cb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = c_Cb.wav; sourceTree = "<group>"; };
+		618D816825E716F600949517 /* f_Fb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = f_Fb.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +102,8 @@
 				383DB1A024AC591B0071EC65 /* Model */,
 				384607BC23E7ECCD001C944D /* Controllers */,
 				3812394D23C68E2C0066B3FA /* Assets.xcassets */,
-				618D815F25E7141D00949517 /* 205.wav */,
 				383DB19C24AC56190071EC65 /* Fonts */,
+				618D816325E716E500949517 /* Sounds */,
 				3812395223C68E2C0066B3FA /* Info.plist */,
 				617B9D7125E59A4600EAFA3D /* WordData.plist */,
 				3812394223C68E290066B3FA /* GameScene.sks */,
@@ -166,6 +174,18 @@
 			path = "Dynamic Programming Algorithms";
 			sourceTree = "<group>";
 		};
+		618D816325E716E500949517 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				618D816625E716F600949517 /* bb_Ab.wav */,
+				618D816725E716F600949517 /* c_Cb.wav */,
+				618D816525E716F600949517 /* eb_Db.wav */,
+				618D816825E716F600949517 /* f_Fb.wav */,
+				618D816425E716F600949517 /* g_Gb.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,13 +245,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3812394C23C68E290066B3FA /* Main.storyboard in Resources */,
+				618D816C25E716F600949517 /* c_Cb.wav in Resources */,
 				3803D88F2495DD51002A6251 /* dogicapixel.ttf in Resources */,
-				618D816025E7141D00949517 /* 205.wav in Resources */,
 				617B9D7225E59A4600EAFA3D /* WordData.plist in Resources */,
+				618D816925E716F600949517 /* g_Gb.wav in Resources */,
 				3812394323C68E290066B3FA /* GameScene.sks in Resources */,
+				618D816A25E716F600949517 /* eb_Db.wav in Resources */,
 				3812394E23C68E2C0066B3FA /* Assets.xcassets in Resources */,
 				3803D8972495DD64002A6251 /* dogicapixelbold.ttf in Resources */,
+				618D816D25E716F600949517 /* f_Fb.wav in Resources */,
 				3812395123C68E2C0066B3FA /* LaunchScreen.storyboard in Resources */,
+				618D816B25E716F600949517 /* bb_Ab.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

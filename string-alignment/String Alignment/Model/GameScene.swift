@@ -557,7 +557,7 @@ class GameScene: SKScene {
                 squareLocationColorAndValue.square.lineWidth = 5
                 
                 // Create sound action and run it.
-                let soundAction = SKAction.playSoundFileNamed("205.wav", waitForCompletion: false)
+                let soundAction = SKAction.playSoundFileNamed("bb_Ab.wav", waitForCompletion: false)
                 self.gameBackground.run(soundAction)
             }
         }

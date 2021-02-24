@@ -29,6 +29,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     lazy var tableViewDisplayList = wordOneList
     
     override func viewWillAppear(_ animated: Bool) {
+        determinCorrectWordSize()
         listData.loadData(filename: "WordData")
         wordOneList = listData.getEntires(index: realColumnCount)
         wordTwoList = listData.getEntires(index: realRowCount)
@@ -37,6 +38,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        determinCorrectWordSize()
         listData.loadData(filename: "WordData")
         wordOneList = listData.getEntires(index: realColumnCount)
         wordTwoList = listData.getEntires(index: realRowCount)

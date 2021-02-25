@@ -29,6 +29,7 @@ class GameScene: SKScene {
     let mazeGeneratingAlgorithimChoice = UserDefaults.standard.integer(forKey: "Selected Maze Algorithim")
     let pathFindingAlgorithimName = UserDefaults.standard.string(forKey: "Selected Path Finding Algorithim Name")
     let mazeGenerationAlgorithimName = UserDefaults.standard.string(forKey: "Selected Maze Algorithim Name")
+    var soundOnSetting = UserDefaults.standard.bool(forKey: "Volume On Setting")
     
     // Game settings
     var pathFindingAnimationSpeed = Float()
@@ -82,6 +83,9 @@ class GameScene: SKScene {
     var nativeBoardLayoutOption = Int()
     func settingLoader(firstRun: Bool) {
         settingsWereChanged = true
+        
+        // Retrive sound preferences
+        soundOnSetting = UserDefaults.standard.bool(forKey: "Volume On Setting")
         
         // Retrive legend preferences
         let legendData = defaults.array(forKey: "Legend Preferences") as! [[Any]]
@@ -493,26 +497,34 @@ class GameScene: SKScene {
                     noOpperationCounter += 1
                     
                     // Create sound action and run it.
-                    let soundAction = SKAction.playSoundFileNamed("c_Cb.wav", waitForCompletion: false)
-                    self.gameBackground.run(soundAction)
+                    if soundOnSetting {
+                        let soundAction = SKAction.playSoundFileNamed("c_Cb.wav", waitForCompletion: false)
+                        self.gameBackground.run(soundAction)
+                    }
                 } else if squareLocationColorAndValue.operationType == "Delete" {
                     deleteCounter += 1 // Good
                     
                     // Create sound action and run it.
-                    let soundAction = SKAction.playSoundFileNamed("eb_Db.wav", waitForCompletion: false)
-                    self.gameBackground.run(soundAction)
+                    if soundOnSetting {
+                        let soundAction = SKAction.playSoundFileNamed("eb_Db.wav", waitForCompletion: false)
+                        self.gameBackground.run(soundAction)
+                    }
                 } else if squareLocationColorAndValue.operationType == "Insert" {
                     insertCounter += 1 // Good
                     
                     // Create sound action and run it.
-                    let soundAction = SKAction.playSoundFileNamed("f_Fb.wav", waitForCompletion: false)
-                    self.gameBackground.run(soundAction)
+                    if soundOnSetting {
+                        let soundAction = SKAction.playSoundFileNamed("f_Fb.wav", waitForCompletion: false)
+                        self.gameBackground.run(soundAction)
+                    }
                 } else if squareLocationColorAndValue.operationType == "Substitute" {
                     substituteCounter += 1
                     
                     // Create sound action and run it.
-                    let soundAction = SKAction.playSoundFileNamed("g_Gb.wav", waitForCompletion: false)
-                    self.gameBackground.run(soundAction)
+                    if soundOnSetting {
+                        let soundAction = SKAction.playSoundFileNamed("g_Gb.wav", waitForCompletion: false)
+                        self.gameBackground.run(soundAction)
+                    }
                 }
                 endingAnimationCount += 1.0
             }
@@ -545,8 +557,10 @@ class GameScene: SKScene {
             squareLocationAndColor.square.lineWidth = 5
             squareLocationAndColor.square.strokeColor = self.finalPathColor
             
-            let soundAction = SKAction.playSoundFileNamed("b_B.wav", waitForCompletion: false)
-            self.gameBackground.run(soundAction)
+            if soundOnSetting {
+                let soundAction = SKAction.playSoundFileNamed("b_B.wav", waitForCompletion: false)
+                self.gameBackground.run(soundAction)
+            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + searchWaitTime.duration) {
                 if self.sucssesfullyFound == false {
@@ -576,8 +590,10 @@ class GameScene: SKScene {
                 squareLocationColorAndValue.square.lineWidth = 5
                 
                 // Create sound action and run it.
-                let soundAction = SKAction.playSoundFileNamed("bb_Ab.wav", waitForCompletion: false)
-                self.gameBackground.run(soundAction)
+                if self.soundOnSetting {
+                    let soundAction = SKAction.playSoundFileNamed("bb_Ab.wav", waitForCompletion: false)
+                    self.gameBackground.run(soundAction)
+                }
             }
         }
         
